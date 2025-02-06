@@ -1,0 +1,108 @@
+﻿using OniMP.Commands.NetCommands;
+using OniMP.Core;
+using OniMP.Core.Player;
+using OniMP.Events;
+using OniMP.Events.Common;
+using OniMP.Extensions;
+using OniMP.Multiplayer.Datas.World;
+using OniMP.Multiplayer.EventCalls;
+using OniMP.Multiplayer.Interfaces;
+using OniMP.Multiplayer.UI.Overlays;
+using OniMP.Network.Common;
+
+namespace OniMP.Multiplayer.Managers.Server;
+
+/// <summary>
+/// World manager for Server
+/// </summary>
+/// <remarks>
+/// Creates a new manager with <paramref name="stateManagers"/>
+/// </remarks>
+/// <param name="stateManagers"></param>
+public class WorldManager(List<IWorldStateManager> stateManagers)
+{
+    private readonly List<IWorldStateManager> worldStateManagers = stateManagers;
+
+    /// <summary>
+    /// Sync the map between server and client.
+    /// </summary>
+    public void Sync()
+    {
+        
+        SetupStatusOverlay();
+
+        var resume = !SpeedControlScreen.Instance.IsPaused;
+        MultiplayerManager.Instance.NetServer.Send(new PauseGameCommand());
+
+        EventManager.TriggerEvent(new WorldSyncEvent());
+
+        MultiplayerManager.Instance.MultiGame.Players.ForEach(it => MultiplayerManager.Instance.NetServer.Send(new ChangePlayerStateCommand(it.Id, PlayerState.Loading)));
+        MultiplayerManager.Instance.NetServer.Send(new ChangePlayerStateCommand(MultiplayerManager.Instance.MultiGame.Players.Current.Id, PlayerState.Ready));
+        MultiplayerManager.Instance.NetServer.Send(new NotifyWorldSavePreparingCommand(), MultiplayerCommandOptions.SkipHost);
+
+        var world = new WorldSave(WorldName, GetWorldSave(), new WorldState());
+        worldStateManagers.ForEach(it => it.SaveState(world.State));
+        MultiplayerManager.Instance.NetServer.Send(new LoadWorldCommand(world), MultiplayerCommandOptions.SkipHost);
+        EventManager.SubscribeEvent<PlayersReadyEvent>(MPServerCalls.ResumeGameOnReady);
+    }
+
+    private void SetupStatusOverlay()
+    {
+        MultiplayerStatusOverlay.Show("Waiting for players...");
+        EventManager.SubscribeEvent<PlayerStateChangedEvent>(WaitPlayers);
+    }
+
+    /// <summary>
+    /// Loading <paramref name="world"/> in the game.
+    /// </summary>
+    /// <param name="world"></param>
+    public void RequestWorldLoad(WorldSave world)
+    {
+        MultiplayerStatusOverlay.Show($"Loading {world.Name}...");
+        EventManager.SubscribeEvent<PlayersReadyEvent>(MPCommonEvents.CloseOverlayOnReady);
+        EventManager.SubscribeEvent<WorldStateInitializingEvent>([UnsubAfterCall](_) => 
+        {
+            worldStateManagers.ForEach(it => it.LoadState(world.State));
+        });
+        LoadWorldSave(world.Name, world.Data);
+    }
+
+    private void LoadWorldSave(string name, byte[] data)
+    {
+        var savePath = SaveLoader.GetCloudSavesDefault()
+            ? SaveLoader.GetCloudSavePrefix()
+            : SaveLoader.GetSavePrefixAndCreateFolder();
+
+        var path = Path.Combine(savePath, name, $"{name}_multiplayer.sav");
+        Directory.CreateDirectory(Path.GetDirectoryName(path)!);
+        File.WriteAllBytes(path, data);
+        LoadScreen.DoLoad(path);
+    }
+
+    /// <summary>
+    /// State changing that waits until all player ready then close Overlay
+    /// </summary>
+    /// <param name="event"></param>
+    public void WaitPlayers(PlayerStateChangedEvent @event)
+    {
+        var players = MultiplayerManager.Instance.MultiGame.Players;
+        if (players.Ready)
+        {
+            MultiplayerStatusOverlay.Close();
+            EventManager.UnsubscribeEvent<PlayerStateChangedEvent>(WaitPlayers);
+        }
+        var readyPlayersCount = players.Count(it => it.State == PlayerState.Ready);
+        var playerList = string.Join("\n", players.Select(it => $"{it.Profile.PlayerName}: {it.State}"));
+        var statusText = $"Waiting for players ({readyPlayersCount}/{players.Count} ready)...\n{playerList}";
+        MultiplayerStatusOverlay.Text = statusText;
+    }
+
+    private static string WorldName => Path.GetFileNameWithoutExtension(SaveLoader.GetActiveSaveFilePath());
+
+    private static byte[] GetWorldSave()
+    {
+        var path = SaveLoader.GetActiveSaveFilePath();
+        SaveLoader.Instance.Save(path);
+        return File.ReadAllBytes(path);
+    }
+}
