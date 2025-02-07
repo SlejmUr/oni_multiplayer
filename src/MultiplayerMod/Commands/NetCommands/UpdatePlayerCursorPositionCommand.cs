@@ -7,6 +7,7 @@ namespace MultiplayerMod.Commands.NetCommands;
 /// </summary>
 /// <param name="playerId"></param>
 /// <param name="eventArgs"></param>
+[Serializable]
 public class UpdatePlayerCursorPositionCommand(Guid playerId, MouseMovedEventArgs eventArgs) : BaseCommandEvent
 {
     /// <summary>
@@ -18,4 +19,10 @@ public class UpdatePlayerCursorPositionCommand(Guid playerId, MouseMovedEventArg
     /// Mouse Moved Event
     /// </summary>
     public MouseMovedEventArgs EventArgs => eventArgs;
+
+    /// <inheritdoc/>
+    public override string ToString()
+    {
+        return $"{base.ToString()} | Id: {PlayerId}, Args: {EventArgs}";
+    }
 }

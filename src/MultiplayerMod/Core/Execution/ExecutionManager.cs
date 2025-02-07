@@ -1,4 +1,4 @@
-﻿using System.Runtime.CompilerServices;
+using System.Runtime.CompilerServices;
 
 namespace MultiplayerMod.Core.Execution;
 
@@ -79,12 +79,10 @@ internal class ExecutionManager
     /// Checks whether the required execution level is active.
     /// </summary>
     /// <param name="requiredLevel">A required execution level</param>
-    /// <param name="memberName"></param>
     /// <returns></returns>
-    public static bool LevelIsActive(ExecutionLevel requiredLevel, [CallerMemberName] string memberName = "")
+    public static bool LevelIsActive(ExecutionLevel requiredLevel)
     {
         bool isActive = CurrentLevel >= requiredLevel;
-        Debug.Log($"LevelIsActive {isActive} {CurrentLevel} {requiredLevel} {memberName}");
         return isActive;
     }
 }

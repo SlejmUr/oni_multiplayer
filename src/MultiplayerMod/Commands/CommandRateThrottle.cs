@@ -9,8 +9,8 @@ namespace MultiplayerMod.Commands;
 public class CommandRateThrottle(int rate)
 {
 
-    private readonly TimeSpan period = new TimeSpan(10000000 / rate);
-    private readonly Dictionary<Type, System.DateTime> lastInvokedByType = new();
+    private readonly TimeSpan period = new(10000000 / rate);
+    private readonly Dictionary<Type, System.DateTime> lastInvokedByType = [];
 
     /// <summary>
     /// Runs the <paramref name="action"/> if last invoked is smaller than <see cref="period"/>

@@ -1,4 +1,4 @@
-﻿using MultiplayerMod.Commands.NetCommands;
+using MultiplayerMod.Commands.NetCommands;
 using MultiplayerMod.Core;
 using MultiplayerMod.Core.Player;
 using MultiplayerMod.Events;
@@ -73,7 +73,7 @@ public class WorldManager(List<IWorldStateManager> stateManagers)
             ? SaveLoader.GetCloudSavePrefix()
             : SaveLoader.GetSavePrefixAndCreateFolder();
 
-        var path = Path.Combine(savePath, name, $"{name}_multiplayer.sav");
+        var path = Path.Combine(savePath, name, $"{name}.sav");
         Directory.CreateDirectory(Path.GetDirectoryName(path)!);
         File.WriteAllBytes(path, data);
         LoadScreen.DoLoad(path);

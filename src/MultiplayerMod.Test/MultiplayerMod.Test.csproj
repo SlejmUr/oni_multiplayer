@@ -1,0 +1,42 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net48</TargetFramework>
+    <LangVersion>12</LangVersion>
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="NUnit" Version="3.12.0" />
+    <PackageReference Include="NUnit3TestAdapter" Version="3.16.1" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.5.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\MultiplayerMod\MultiplayerMod.csproj" />
+  </ItemGroup>
+
+    <!-- Here is the references for making this works. -->
+    <ItemGroup>
+        <!-- This package is used to publicize the assembly. -->
+        <PackageReference Include="BepInEx.AssemblyPublicizer.MSBuild" Version="0.4.2" PrivateAssets="all" ExcludeAssets="runtime" ReferenceOutputAssembly="false" Private="true" />
+        <Reference Include="Assembly-CSharp" HintPath="$(ReferencePath)\Assembly-CSharp.dll" Private="true" Publicize="true" />
+        <Reference Include="Assembly-CSharp-firstpass" HintPath="$(ReferencePath)\Assembly-CSharp-firstpass.dll" Private="true" Publicize="true" />
+        <Reference Include="UnityEngine.CoreModule" HintPath="$(ReferencePath)\UnityEngine.CoreModule.dll" Private="true" Publicize="true" />
+        <Reference Include="UnityEngine.UI" HintPath="$(ReferencePath)\UnityEngine.UI.dll" Private="true" Publicize="true" />
+        <Reference Include="0Harmony" HintPath="$(ReferencePath)\0Harmony.dll" Private="true" Publicize="true" />
+        <Reference Include="com.rlabrecque.steamworks.net" HintPath="$(ReferencePath)\com.rlabrecque.steamworks.net.dll" Private="true" />
+        <Reference Include="UnityEngine" HintPath="$(ReferencePath)\UnityEngine.dll" Private="true" />
+        <Reference Include="Unity.TextMeshPro" HintPath="$(ReferencePath)\Unity.TextMeshPro.dll" Private="true" />
+        <Reference Include="UnityEngine.ImageConversionModule" HintPath="$(ReferencePath)\UnityEngine.ImageConversionModule.dll" Private="true" />
+        <Reference Include="UnityEngine.IMGUIModule" HintPath="$(ReferencePath)\UnityEngine.IMGUIModule.dll" Private="true" />
+        <Reference Include="UnityEngine.UIModule" HintPath="$(ReferencePath)\UnityEngine.UIModule.dll" Private="true" />
+        <Reference Include="ImGui.NET" HintPath="$(ReferencePath)\ImGui.NET.dll" Private="true" />
+    </ItemGroup>
+
+    <!-- This requires to make the $(ReferencePath) works, and also available assembly when building -->
+    <Import Project="..\MultiplayerMod\MultiplayerMod.props.user" />
+    <PropertyGroup>
+        <AssemblySearchPaths>$(AssemblySearchPaths);$(ReferencePath);</AssemblySearchPaths>
+    </PropertyGroup>
+</Project>

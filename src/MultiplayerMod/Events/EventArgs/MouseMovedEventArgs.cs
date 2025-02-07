@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 
 namespace MultiplayerMod.Events.EventArgs;
 
@@ -10,25 +10,31 @@ namespace MultiplayerMod.Events.EventArgs;
 /// <param name="screenName"></param>
 /// <param name="screenType"></param>
 [Serializable]
-public class MouseMovedEventArgs(Vector2 position, Vector2 positionWithinScreen, string screenName, Type screenType)
+public class MouseMovedEventArgs(Vector2 position, Vector2? positionWithinScreen, string screenName, string screenType)
 {
     /// <summary>
-    /// 
+    /// Position of the mouse
     /// </summary>
     public Vector2 Position => position;
 
     /// <summary>
-    /// 
+    /// Position of the mouse inside the screen
     /// </summary>
-    public Vector2 PositionWithinScreen => positionWithinScreen;
+    public Vector2? PositionWithinScreen => positionWithinScreen;
 
     /// <summary>
-    /// 
+    /// The name of the screen
     /// </summary>
     public string ScreenName => screenName;
 
     /// <summary>
-    /// 
+    /// The type of the screen
     /// </summary>
-    public Type ScreenType => screenType;
+    public string ScreenTypeName => screenType;
+
+    /// <inheritdoc/>
+    public override string ToString()
+    {
+        return $"Pos: {Position.ToString()} PosWithScreen: {(PositionWithinScreen == null ? "null" : PositionWithinScreen.ToString())}, ScreenName: {ScreenName}, ScreenType: {ScreenTypeName}";
+    }
 }

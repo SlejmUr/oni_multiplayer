@@ -1,4 +1,4 @@
-﻿using System.Runtime.Serialization;
+using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 
 namespace MultiplayerMod.Core.Serialization.Surrogates;
@@ -16,8 +16,10 @@ public static class SerializationSurrogates
     static SerializationSurrogates()
     {
         Selector.Add(new Vector2SerializationSurrogate());
+        Selector.Add(new Vector2NullSerializationSurrogate());
         Selector.Add(new Vector2fSerializationSurrogate());
         Selector.Add(new Vector3SerializationSurrogate());
+        Debug.Log("All selector added");
     }
 
     /// <summary>

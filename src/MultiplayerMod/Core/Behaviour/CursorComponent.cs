@@ -30,7 +30,7 @@ public class CursorComponent : KMonoBehaviour
 
     private string playerName;
     private string screenName;
-    private Type screenType;
+    private string screenTypeName;
 
     /// <inheritdoc/>
     public override void OnSpawn()
@@ -91,7 +91,7 @@ public class CursorComponent : KMonoBehaviour
         var args = @event.EventArgs;
 
         screenName = args.ScreenName;
-        screenType = args.ScreenType;
+        screenTypeName = args.ScreenTypeName;
         worldCursor.Trace(args.Position);
         screenCursor.Trace(args.PositionWithinScreen);
     }
@@ -99,7 +99,7 @@ public class CursorComponent : KMonoBehaviour
     internal void Update()
     {
         var screenStack = KScreenManager.Instance.screenStack;
-        var playerScreen = screenStack.FirstOrDefault(screen => screen.GetType() == screenType);
+        var playerScreen = screenStack.FirstOrDefault(screen => screen.GetType().ToString() == screenTypeName);
 
         // If we see a screen where other player is - show cursor within that screen.
         var showScreenOrWorldCursor = screenCursor.CurrentPosition != null && (playerScreen?.isActive ?? false);
@@ -115,7 +115,7 @@ public class CursorComponent : KMonoBehaviour
         }
 
         var screenUnderCursor = FindScreenUnderCursor(transform.position);
-        var showScreenName = screenUnderCursor?.GetType() != screenType;
+        var showScreenName = screenUnderCursor?.GetType().ToString() != screenTypeName;
 
         cursorText.text = playerName + (showScreenName ? $" ({screenName ?? "World"})" : "");
         cursorImage.color = cursorText.color = showScreenName ? new Color(1, 1, 1, 0.5f) : Color.white;
