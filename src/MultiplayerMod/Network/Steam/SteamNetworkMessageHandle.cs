@@ -1,4 +1,4 @@
-﻿using OniMP.Core.Serialization;
+using OniMP.Core.Serialization;
 using OniMP.Network.Common.Message;
 using System.Runtime.InteropServices;
 
@@ -32,6 +32,9 @@ public class SteamNetworkMessageHandle : ISteamNetworkMessageHandle
         Size = size;
         bytes = new byte[(int)Size];
         Marshal.Copy(Pointer, bytes, 0, (int)Size);
+        Debug.Log("SteamNetworkMessageHandle: " + BitConverter.ToString(bytes).Replace("-", string.Empty));
+
+        Debug.Log("MessageTake: " + BitConverter.ToString(Message.Take((int)Size).ToArray()).Replace("-", string.Empty));
     }
 
     /// <summary>

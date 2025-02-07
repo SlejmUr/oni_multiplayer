@@ -1,4 +1,4 @@
-﻿using TMPro;
+using TMPro;
 using UnityEngine.EventSystems;
 using UnityEngine;
 using UnityEngine.UI;
@@ -35,29 +35,32 @@ public class CursorComponent : KMonoBehaviour
     /// <inheritdoc/>
     public override void OnSpawn()
     {
+        Debug.Log("OnSpawn!");
         camera = GameScreenManager.Instance.GetCamera(GameScreenManager.UIRenderTarget.ScreenSpaceCamera);
-
+        Debug.Log("camere get!");
         var cursorTexture = Assets.GetTexture("cursor_arrow");
         var cursor = new GameObject(name);
+        Debug.Log("created cursor object!");
         cursorImage = CreateCursorImage(cursor, cursorTexture);
         cursorText = CreateCursorText(cursor, new Vector3(cursorTexture.width, -cursorTexture.height, 0));
         cursor.transform.SetParent(transform, false);
         gameObject.SetLayerRecursively(LayerMask.NameToLayer("UI"));
-
+        Debug.Log("playername from assingedplayer!");
         playerName = assignedPlayer.Player.Profile.PlayerName;
         canvas.overrideSorting = true;
         canvas.sortingOrder = 100;
-
+        Debug.Log("SubscribeEvent PlayerCursorPositionUpdatedEvent!");
         EventManager.SubscribeEvent<PlayerCursorPositionUpdatedEvent>(OnPlayerCursorPositionUpdated);
     }
 
     private Image CreateCursorImage(GameObject parent, Texture2D cursorTexture)
     {
+        Debug.Log("CreateCursorImage!");
         var imageGameObject = new GameObject(name) { transform = { parent = parent.transform } };
         var rectTransform = imageGameObject.AddComponent<RectTransform>();
         rectTransform.sizeDelta = new Vector2(cursorTexture.width, cursorTexture.height);
         rectTransform.pivot = new Vector2(0, 1); // Align to top left corner.
-
+        Debug.Log("rectTransform end!");
         var imageComponent = imageGameObject.AddComponent<Image>();
         imageComponent.sprite = Sprite.Create(
             cursorTexture,
@@ -65,25 +68,27 @@ public class CursorComponent : KMonoBehaviour
             Vector2.zero
         );
         imageComponent.raycastTarget = false;
+        Debug.Log("should return!");
         return imageComponent;
     }
 
     private TextMeshProUGUI CreateCursorText(GameObject parent, Vector3 offset)
     {
+        Debug.Log("CreateCursorText!");
         var textGameObject = new GameObject(name) { transform = { parent = parent.transform } };
 
         var rectTransform = textGameObject.AddComponent<RectTransform>();
         rectTransform.sizeDelta = new Vector2(50, 50);
         rectTransform.pivot = new Vector2(0, 1); // Align to top left corner.
         rectTransform.position = offset;
-
+        Debug.Log("rectTransform!");
         var textComponent = textGameObject.AddComponent<TextMeshProUGUI>();
         textComponent.fontSize = 14;
         textComponent.font = Localization.FontAsset;
         textComponent.color = Color.white;
         textComponent.raycastTarget = false;
         textComponent.enableWordWrapping = false;
-
+        Debug.Log("textComponent!");
         return textComponent;
     }
 
@@ -94,7 +99,7 @@ public class CursorComponent : KMonoBehaviour
     {
         if (@event.Player != assignedPlayer.Player)
             return;
-
+        Debug.Log("OnPlayerCursorPositionUpdated!");
         var args = @event.EventArgs;
 
         screenName = args.ScreenName;
@@ -103,7 +108,7 @@ public class CursorComponent : KMonoBehaviour
         screenCursor.Trace(args.PositionWithinScreen);
     }
 
-    private void Update()
+    internal void Update()
     {
         var screenStack = KScreenManager.Instance.screenStack;
         var playerScreen = screenStack.FirstOrDefault(screen => screen.GetType() == screenType);

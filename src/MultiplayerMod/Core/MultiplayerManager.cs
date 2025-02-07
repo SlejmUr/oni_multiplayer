@@ -1,4 +1,4 @@
-﻿using OniMP.Core.Objects;
+using OniMP.Core.Objects;
 using OniMP.Core.Player;
 using OniMP.Multiplayer.Controllers;
 using OniMP.Multiplayer.EventCalls;
@@ -61,6 +61,7 @@ public class MultiplayerManager
 
     private void InitMultiplayerLogics()
     {
+        Debug.Log("InitMultiplayerLogics");
         WorldManager = new([]);
         MPCommandController.Registers();
         MPClientCalls.Registers();

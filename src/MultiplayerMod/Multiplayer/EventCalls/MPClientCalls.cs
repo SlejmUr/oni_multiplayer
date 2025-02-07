@@ -1,4 +1,4 @@
-﻿using OniMP.Commands.NetCommands;
+using OniMP.Commands.NetCommands;
 using OniMP.Core;
 using OniMP.Core.Player;
 using OniMP.Events;
@@ -19,6 +19,7 @@ internal class MPClientCalls
         if (state == NetStateClient.Connected)
         {
             // sending dlc check if we can play on same game.
+            Debug.Log("Sending dlc check");
             MultiplayerManager.Instance.NetClient.Send(new DLC_CheckCommand(DlcManager.GetActiveDLCIds()), MultiplayerCommandOptions.OnlyHost);
         }
         if (state == NetStateClient.Error)

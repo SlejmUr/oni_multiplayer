@@ -1,4 +1,4 @@
-﻿using OniMP.Core;
+using OniMP.Core;
 using OniMP.Core.Unity;
 
 namespace OniMP.Network.Steam;
@@ -19,5 +19,6 @@ public class SteamNetwork
         MultiplayerManager.Instance.NetServer = new SteamNetServer(steamLobby);
         MultiplayerManager.Instance.NetClient = new SteamNetClient(steamLobby);
         MultiplayerManager.Instance.PlayerProfileProvider = new SteamPlayerProfileProvider();
+        Debug.Log("SteamNetwork Init Finished");
     }
 }

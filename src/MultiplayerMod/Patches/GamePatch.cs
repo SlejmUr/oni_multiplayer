@@ -1,4 +1,4 @@
-﻿using HarmonyLib;
+using HarmonyLib;
 using OniMP.Core.Execution;
 using OniMP.Events;
 using OniMP.Events.Common;
@@ -30,11 +30,13 @@ internal static class GamePatch
     )]
     private static void SaveLoad(SaveLoadRoot __result)
     {
+        if (__result == null)
+            return;
+
         if (!ExecutionManager.LevelIsActive(ExecutionLevel.Multiplayer))
             return;
 
-        if (__result != null)
-            EventManager.TriggerEvent(new GameObjectCreated(__result.gameObject));
+        EventManager.TriggerEvent(new GameObjectCreated(__result.gameObject));
     }
 
     [HarmonyPostfix]
@@ -51,14 +53,14 @@ internal static class GamePatch
     )]
     private static void InstantiatePostfix(GameObject __result, bool initialize_id)
     {
-        if (!ExecutionManager.LevelIsActive(ExecutionLevel.Multiplayer))
-            return;
-
         if (!initialize_id)
             return;
 
         var kPrefabId = __result.GetComponent<KPrefabID>();
         if (kPrefabId == null)
+            return;
+
+        if (!ExecutionManager.LevelIsActive(ExecutionLevel.Multiplayer))
             return;
 
         EventManager.TriggerEvent(new GameObjectCreated(__result.gameObject));

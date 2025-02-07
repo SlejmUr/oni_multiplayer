@@ -1,4 +1,4 @@
-﻿using OniMP.Commands.NetCommands;
+using OniMP.Commands.NetCommands;
 using OniMP.Core.Exceptions;
 using OniMP.Core.Unity;
 using OniMP.Extensions;
@@ -321,10 +321,12 @@ public class SteamNetServer(SteamLobby lobby) : INetServer
         for (var i = 0; i < messagesCount; i++)
         {
             var steamMessage = Marshal.PtrToStructure<SteamNetworkingMessage_t>(messages[i]);
+            Debug.Log("Received Message");
             var message = messageProcessor.Process(
                 steamMessage.m_conn.m_HSteamNetConnection,
                 steamMessage.GetNetworkMessageHandle()
             );
+            Debug.Log($"processed message: {message}");
             if (message != null)
             {
                 INetId id = new SteamNetId(steamMessage.m_identityPeer.GetSteamID());

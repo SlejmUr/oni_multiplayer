@@ -1,4 +1,5 @@
-﻿using OniMP.Core.Serialization.Surrogates;
+using OniMP.Core.Serialization.Surrogates;
+using System.Reflection;
 using System.Runtime.Serialization.Formatters.Binary;
 
 namespace OniMP.Core.Serialization;
@@ -21,9 +22,15 @@ public static class CoreSerializer
     /// <returns>Type <typeparamref name="T"/> or default of type.</returns>
     public static T Deserialize<T>(byte[] data) where T : class
     {
-        if (!typeof(T).IsSerializable)
+        try
+        {
+            return (T) Formatter.Deserialize(new MemoryStream(data));
+        }
+        catch (Exception ex)
+        {
+            Debug.LogWarning(ex);
             return default;
-        return (T)Formatter.Deserialize(new MemoryStream(data));
+        }
     }
 
     /// <summary>
@@ -45,14 +52,20 @@ public static class CoreSerializer
     /// <returns>Empty if type is not Serializable, otherwise serialized array</returns>
     public static byte[] Serialize<T>(T obj)
     {
-        if (!typeof(T).IsSerializable)
+        Debug.Log($"Serialize {typeof(T)}");
+        try
         {
-            Debug.LogWarning($"Type {nameof(T)} cannot be serialized!");
+            using MemoryStream memory = new();
+            Formatter.Serialize(memory, obj);
+            var ret = memory.ToArray();
+            Debug.Log($"Data: {BitConverter.ToString(ret).Replace("-", string.Empty)}");
+            return ret;
+        }
+        catch (Exception ex)
+        {
+            Debug.LogWarning(ex);
             return [];
         }
-            
-        using MemoryStream memory = new();
-        Formatter.Serialize(memory, obj);
-        return memory.ToArray();
+
     }
 }

@@ -1,4 +1,4 @@
-﻿using OniMP.Core;
+using OniMP.Core;
 using OniMP.Events;
 using OniMP.Commands.NetCommands;
 using OniMP.Network.Common.Interfaces;
@@ -18,6 +18,8 @@ public class MPCommandController
         MultiplayerManager.Instance.NetServer.CommandReceived += OnServerReceivedCommand;
 
         MultiplayerManager.Instance.NetClient.CommandReceived += OnClientReceivedCommand;
+
+        Debug.Log("MPCommandController Registered");
     }
 
     [NoAutoSubscribe]

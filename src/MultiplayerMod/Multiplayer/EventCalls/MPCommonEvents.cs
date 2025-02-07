@@ -1,4 +1,4 @@
-﻿using OniMP.Core;
+using OniMP.Core;
 using OniMP.Core.Behaviour;
 using OniMP.Events.MainMenu;
 using OniMP.Events.Others;
@@ -27,7 +27,7 @@ internal class MPCommonEvents
             typeof(WorldDebugSnapshotRunner),
 #endif
             */
-            // typeof(PlayerCursor),
+            typeof(PlayerCursor),
             typeof(MulitplayerNotifier)
 
         ];
