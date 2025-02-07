@@ -12,6 +12,7 @@ namespace MultiplayerMod.Patches;
 [HarmonyPatch(typeof(Telepad))]
 internal class TelepadPatch
 {
+    internal static bool IsRequestedByCommand = false;
     internal static GameObject AcceptedGameObject;
 
     [HarmonyTranspiler]
@@ -41,6 +42,11 @@ internal class TelepadPatch
         if (!ExecutionManager.LevelIsActive(ExecutionLevel.Game))
             return;
         ImmigrantScreenPatch.Deliverables = null;
+        if (IsRequestedByCommand)
+        {
+            IsRequestedByCommand = false;
+            return;
+        }
         MultiplayerManager.Instance.NetClient.Send(new RejectDeliveryCommand(__instance.GetComponentResolver()));
     }
 
@@ -50,6 +56,11 @@ internal class TelepadPatch
             return;
         AcceptedGameObject = gameObject;
         ImmigrantScreenPatch.Deliverables = null;
+        if (IsRequestedByCommand)
+        {
+            IsRequestedByCommand = false;
+            return;
+        }
         MultiplayerManager.Instance.NetClient.Send(new AcceptDeliveryCommand(new AcceptDeliveryEventArgs(
                 telepad.GetComponentResolver(),
                 deliverable,

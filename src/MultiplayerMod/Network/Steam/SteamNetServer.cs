@@ -197,7 +197,6 @@ public class SteamNetServer(SteamLobby lobby) : INetServer
         Debug.Log($"Initializing game server version {version}");
         if (!GameServer.Init(0, 27020, 27015, EServerMode.eServerModeNoAuthentication, version))
             throw new NetworkPlatformException("Game server init failed");
-
         SteamGameServer.SetModDir("OxygenNotIncluded");
         SteamGameServer.SetProduct("OxygenNotIncluded Multiplayer");
         SteamGameServer.SetGameDescription("OxygenNotIncluded Multiplayer");
@@ -225,6 +224,7 @@ public class SteamNetServer(SteamLobby lobby) : INetServer
         connectionStatusChangedCallback.Unregister();
         SteamGameServerNetworkingSockets.DestroyPollGroup(pollGroup);
         SteamGameServerNetworkingSockets.CloseListenSocket(listenSocket);
+        SteamGameServer.LogOff();
 
         GameServer.Shutdown();
 

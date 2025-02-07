@@ -15,6 +15,7 @@ internal class OtherCommands
 
     internal static void AcceptDeliveryCommand_Event(AcceptDeliveryCommand command)
     {
+        TelepadPatch.IsRequestedByCommand = true;
         var telepad = command.Args.Target.Resolve();
         telepad.OnAcceptDelivery(command.Args.Deliverable);
         var capture = TelepadPatch.AcceptedGameObject;
@@ -27,7 +28,6 @@ internal class OtherCommands
         {
             var proxyMultiplayer = minionIdentity.GetMultiplayerInstance();
             proxyMultiplayer.Register(command.Args.ProxyId);
-            Debug.Log("ACCEPTED MINION: " + minionIdentity.ToString());
         }
 
         ImmigrantScreenPatch.Deliverables = null;
@@ -35,6 +35,7 @@ internal class OtherCommands
 
     internal static void RejectDeliveryCommand_Event(RejectDeliveryCommand command)
     {
+        TelepadPatch.IsRequestedByCommand = true;
         command.Target.Resolve().RejectAll();
         ImmigrantScreenPatch.Deliverables = null;
     }

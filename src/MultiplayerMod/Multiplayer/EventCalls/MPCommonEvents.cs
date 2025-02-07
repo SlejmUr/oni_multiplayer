@@ -27,7 +27,7 @@ internal class MPCommonEvents
             typeof(WorldDebugSnapshotRunner),
 #endif
             */
-            typeof(PlayerCursor),
+            //typeof(PlayerCursor),
             typeof(MulitplayerNotifier)
 
         ];
@@ -44,7 +44,7 @@ internal class MPCommonEvents
         MultiplayerManager.Instance.NetServer.Start();
     }
 
-    internal static void OnStopMultiplayer(StopMultiplayerEvent _)
+    internal static void StopServer(StopMultiplayerEvent _)
     {
         if (MultiplayerManager.Instance.MultiGame.Mode != Core.Player.PlayerRole.Server)
             return;
@@ -52,7 +52,7 @@ internal class MPCommonEvents
         MultiplayerManager.Instance.NetServer.Stop();
     }
 
-    internal static void GameStartedNoArgs_Event(GameStartedNoArgsEvent _)
+    internal static void TriggerBasicEvents(GameStartedNoArgsEvent _)
     {
         EventManager.TriggerEvent(new GameReadyEvent());
         EventManager.TriggerEvent(new WorldStateInitializingEvent());
