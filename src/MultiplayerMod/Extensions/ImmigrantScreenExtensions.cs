@@ -1,4 +1,4 @@
-﻿namespace OniMP.Extensions;
+﻿namespace MultiplayerMod.Extensions;
 
 /// <summary>
 /// 

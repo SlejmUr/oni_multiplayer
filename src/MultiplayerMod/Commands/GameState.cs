@@ -1,11 +1,11 @@
-﻿using OniMP.Commands.NetCommands;
-using OniMP.Core;
-using OniMP.Events.Common;
-using OniMP.Events;
-using OniMP.Network.Common;
-using OniMP.Patches;
+﻿using MultiplayerMod.Commands.NetCommands;
+using MultiplayerMod.Core;
+using MultiplayerMod.Events.Common;
+using MultiplayerMod.Events;
+using MultiplayerMod.Network.Common;
+using MultiplayerMod.Patches;
 
-namespace OniMP.Commands;
+namespace MultiplayerMod.Commands;
 
 internal class GameState
 {

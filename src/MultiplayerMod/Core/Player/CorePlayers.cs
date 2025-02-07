@@ -1,7 +1,7 @@
-﻿using OniMP.Extensions;
+﻿using MultiplayerMod.Extensions;
 using System.Collections;
 
-namespace OniMP.Core.Player;
+namespace MultiplayerMod.Core.Player;
 
 /// <summary>
 /// Advanced <see cref="IEnumerable{T}"/> for <see cref="CorePlayer"/>

@@ -1,7 +1,7 @@
-﻿using OniMP.Commands.NetCommands;
+using MultiplayerMod.Commands.NetCommands;
 using System.Reflection;
 
-namespace OniMP.Commands;
+namespace MultiplayerMod.Commands;
 
 internal class CallMethodCommands
 {

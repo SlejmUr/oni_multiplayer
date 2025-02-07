@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace OniMP.Core.Objects.Resolvers;
+namespace MultiplayerMod.Core.Objects.Resolvers;
 
 /// <summary>
 /// 

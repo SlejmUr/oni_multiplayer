@@ -1,6 +1,6 @@
-﻿using OniMP.Network.Common;
+﻿using MultiplayerMod.Network.Common;
 
-namespace OniMP.Events.Common;
+namespace MultiplayerMod.Events.Common;
 
 /// <summary>
 /// Multiplayer stated event

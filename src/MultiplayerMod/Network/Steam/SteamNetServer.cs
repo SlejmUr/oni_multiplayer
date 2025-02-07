@@ -1,11 +1,11 @@
-using OniMP.Commands.NetCommands;
-using OniMP.Core.Exceptions;
-using OniMP.Core.Unity;
-using OniMP.Extensions;
-using OniMP.Network.Common;
-using OniMP.Network.Common.Components;
-using OniMP.Network.Common.Interfaces;
-using OniMP.Network.Common.Message;
+using MultiplayerMod.Commands.NetCommands;
+using MultiplayerMod.Core.Exceptions;
+using MultiplayerMod.Core.Unity;
+using MultiplayerMod.Extensions;
+using MultiplayerMod.Network.Common;
+using MultiplayerMod.Network.Common.Components;
+using MultiplayerMod.Network.Common.Interfaces;
+using MultiplayerMod.Network.Common.Message;
 using Steamworks;
 using System.Collections.ObjectModel;
 using System.Runtime.InteropServices;
@@ -15,7 +15,7 @@ using static Steamworks.EResult;
 using static Steamworks.ESteamNetConnectionEnd;
 using static Steamworks.ESteamNetworkingConnectionState;
 
-namespace OniMP.Network.Steam;
+namespace MultiplayerMod.Network.Steam;
 
 /// <summary>
 /// Creates a new Steam Networking Server
@@ -321,14 +321,13 @@ public class SteamNetServer(SteamLobby lobby) : INetServer
         for (var i = 0; i < messagesCount; i++)
         {
             var steamMessage = Marshal.PtrToStructure<SteamNetworkingMessage_t>(messages[i]);
-            Debug.Log("Received Message");
             var message = messageProcessor.Process(
                 steamMessage.m_conn.m_HSteamNetConnection,
                 steamMessage.GetNetworkMessageHandle()
             );
-            Debug.Log($"processed message: {message}");
             if (message != null)
             {
+                Debug.Log($"Server Processed message: {message}");
                 INetId id = new SteamNetId(steamMessage.m_identityPeer.GetSteamID());
                 if (message.Options.HasFlag(MultiplayerCommandOptions.OnlyHost))
                 {

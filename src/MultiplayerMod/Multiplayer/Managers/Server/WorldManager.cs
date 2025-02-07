@@ -1,16 +1,16 @@
-﻿using OniMP.Commands.NetCommands;
-using OniMP.Core;
-using OniMP.Core.Player;
-using OniMP.Events;
-using OniMP.Events.Common;
-using OniMP.Extensions;
-using OniMP.Multiplayer.Datas.World;
-using OniMP.Multiplayer.EventCalls;
-using OniMP.Multiplayer.Interfaces;
-using OniMP.Multiplayer.UI.Overlays;
-using OniMP.Network.Common;
+﻿using MultiplayerMod.Commands.NetCommands;
+using MultiplayerMod.Core;
+using MultiplayerMod.Core.Player;
+using MultiplayerMod.Events;
+using MultiplayerMod.Events.Common;
+using MultiplayerMod.Extensions;
+using MultiplayerMod.Multiplayer.Datas.World;
+using MultiplayerMod.Multiplayer.EventCalls;
+using MultiplayerMod.Multiplayer.Interfaces;
+using MultiplayerMod.Multiplayer.UI.Overlays;
+using MultiplayerMod.Network.Common;
 
-namespace OniMP.Multiplayer.Managers.Server;
+namespace MultiplayerMod.Multiplayer.Managers.Server;
 
 /// <summary>
 /// World manager for Server

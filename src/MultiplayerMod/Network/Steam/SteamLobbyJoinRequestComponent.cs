@@ -1,10 +1,10 @@
-﻿using OniMP.Events;
-using OniMP.Events.Common;
-using OniMP.Events.Others;
+﻿using MultiplayerMod.Events;
+using MultiplayerMod.Events.Common;
+using MultiplayerMod.Events.Others;
 using Steamworks;
 using UnityEngine;
 
-namespace OniMP.Network.Steam;
+namespace MultiplayerMod.Network.Steam;
 
 /// <summary>
 /// Component that handles Joining to new players via command line

@@ -1,6 +1,6 @@
-﻿using OniMP.Core.Objects.Resolvers;
+﻿using MultiplayerMod.Core.Objects.Resolvers;
 
-namespace OniMP.Core.Exceptions;
+namespace MultiplayerMod.Core.Exceptions;
 
 /// <summary>
 /// Initializes a new instance of the <see cref="ObjectNotFoundException"/> class with a specified error message.

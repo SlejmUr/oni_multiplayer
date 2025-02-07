@@ -1,7 +1,7 @@
-﻿using OniMP.Core.Player;
-using OniMP.Events.EventArgs;
+﻿using MultiplayerMod.Core.Player;
+using MultiplayerMod.Events.EventArgs;
 
-namespace OniMP.Events.Others;
+namespace MultiplayerMod.Events.Others;
 
 /// <summary>
 /// An event that updates the player mouse position

@@ -1,7 +1,7 @@
-using OniMP.Core;
-using OniMP.Core.Unity;
+using MultiplayerMod.Core;
+using MultiplayerMod.Core.Unity;
 
-namespace OniMP.Network.Steam;
+namespace MultiplayerMod.Network.Steam;
 
 /// <summary>
 /// Steam related starter

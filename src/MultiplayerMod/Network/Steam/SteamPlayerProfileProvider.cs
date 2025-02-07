@@ -1,7 +1,7 @@
-﻿using OniMP.Core.Player;
+﻿using MultiplayerMod.Core.Player;
 using Steamworks;
 
-namespace OniMP.Network.Steam;
+namespace MultiplayerMod.Network.Steam;
 
 /// <summary>
 /// Creates a Steam Player Profile Provider with userName

@@ -1,8 +1,8 @@
-﻿using OniMP.Core.Player;
-using OniMP.Events;
-using OniMP.Events.Common;
+using MultiplayerMod.Core.Player;
+using MultiplayerMod.Events;
+using MultiplayerMod.Events.Common;
 
-namespace OniMP.Core.Behaviour;
+namespace MultiplayerMod.Core.Behaviour;
 
 /// <summary>
 /// When <see cref="CorePlayer"/> leaves the object will be destroyed.
@@ -17,7 +17,6 @@ public class DestroyOnPlayerLeave : KMonoBehaviour
     public override void OnSpawn()
     {
         var player = playerComponent.Player;
-        Debug.Log("DestroyOnPlayerLeave.OnSpawn, player: " + player);
         EventManager.SubscribeEvent<PlayerLeftEvent>(OnLeave);
     }
 

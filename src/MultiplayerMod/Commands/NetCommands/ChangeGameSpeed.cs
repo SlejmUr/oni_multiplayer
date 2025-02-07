@@ -1,4 +1,4 @@
-﻿namespace OniMP.Commands.NetCommands;
+﻿namespace MultiplayerMod.Commands.NetCommands;
 
 /// <summary>
 /// Command to user change to specific <paramref name="speed"/>

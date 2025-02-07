@@ -1,9 +1,9 @@
 ﻿using HarmonyLib;
-using OniMP.Core.Execution;
-using OniMP.Events;
-using OniMP.Events.Others;
+using MultiplayerMod.Core.Execution;
+using MultiplayerMod.Events;
+using MultiplayerMod.Events.Others;
 
-namespace OniMP.Patches;
+namespace MultiplayerMod.Patches;
 
 [HarmonyPatch]
 internal static class DebugPatch

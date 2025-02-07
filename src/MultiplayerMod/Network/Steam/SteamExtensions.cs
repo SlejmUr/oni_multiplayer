@@ -1,7 +1,7 @@
-﻿using OniMP.Network.Common.Message;
+using MultiplayerMod.Network.Common.Message;
 using Steamworks;
 
-namespace OniMP.Network.Steam;
+namespace MultiplayerMod.Network.Steam;
 
 /// <summary>
 /// Steam related Extenstions

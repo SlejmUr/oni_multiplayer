@@ -1,3 +1,3 @@
-﻿using OniMP.Multiplayer.Datas.World;
+﻿using MultiplayerMod.Multiplayer.Datas.World;
 
-namespace OniMP.Events.Others;
+namespace MultiplayerMod.Events.Others;

@@ -1,7 +1,7 @@
-﻿using OniMP.Core.Exceptions;
+﻿using MultiplayerMod.Core.Exceptions;
 using Steamworks;
 
-namespace OniMP.Network.Steam;
+namespace MultiplayerMod.Network.Steam;
 
 /// <summary>
 /// Steam Lobby functions

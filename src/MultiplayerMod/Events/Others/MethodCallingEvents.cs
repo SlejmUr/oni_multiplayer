@@ -1,6 +1,6 @@
-﻿using OniMP.Events.EventArgs;
+﻿using MultiplayerMod.Events.EventArgs;
 
-namespace OniMP.Events.Others;
+namespace MultiplayerMod.Events.Others;
 
 /// <summary>
 /// Event that called when a component calling a patched method

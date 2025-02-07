@@ -1,7 +1,7 @@
-﻿using OniMP.Commands.NetCommands;
-using OniMP.Core.Serialization;
+﻿using MultiplayerMod.Commands.NetCommands;
+using MultiplayerMod.Core.Serialization;
 
-namespace OniMP.Network.Common.Message;
+namespace MultiplayerMod.Network.Common.Message;
 
 /// <summary>
 /// Basic implementation of <see cref="INetworkMessage"/>

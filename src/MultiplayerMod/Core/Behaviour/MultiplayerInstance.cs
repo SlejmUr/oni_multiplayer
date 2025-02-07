@@ -1,6 +1,6 @@
-﻿using OniMP.Core.Objects;
+﻿using MultiplayerMod.Core.Objects;
 
-namespace OniMP.Core.Behaviour;
+namespace MultiplayerMod.Core.Behaviour;
 
 /// <summary>
 /// Instance saving objects

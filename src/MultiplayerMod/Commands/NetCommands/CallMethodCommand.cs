@@ -1,8 +1,8 @@
-﻿using OniMP.Core.Objects.Resolvers;
-using OniMP.Events.EventArgs;
-using OniMP.Extensions;
+﻿using MultiplayerMod.Core.Objects.Resolvers;
+using MultiplayerMod.Events.EventArgs;
+using MultiplayerMod.Extensions;
 
-namespace OniMP.Commands.NetCommands;
+namespace MultiplayerMod.Commands.NetCommands;
 
 /// <summary>
 /// Calling a specific method over command

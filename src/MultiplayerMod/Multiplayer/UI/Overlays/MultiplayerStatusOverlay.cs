@@ -1,7 +1,7 @@
 ﻿using TMPro;
 using UnityEngine;
 
-namespace OniMP.Multiplayer.UI.Overlays;
+namespace MultiplayerMod.Multiplayer.UI.Overlays;
 
 /// <summary>
 /// Status overlay. Showing the default loading screen with custom message

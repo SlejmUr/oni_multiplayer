@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace OniMP.Core.Unity;
+namespace MultiplayerMod.Core.Unity;
 
 /// <summary>
 /// Static class for managing <see cref="FakeUnityObject"/> and <see cref="GameObject"/>

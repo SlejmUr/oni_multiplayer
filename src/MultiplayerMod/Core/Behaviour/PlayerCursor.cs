@@ -1,10 +1,10 @@
-﻿using OniMP.Core.Player;
-using OniMP.Events;
-using OniMP.Events.Common;
-using OniMP.Extensions;
+using MultiplayerMod.Core.Player;
+using MultiplayerMod.Events;
+using MultiplayerMod.Events.Common;
+using MultiplayerMod.Extensions;
 using UnityEngine;
 
-namespace OniMP.Core.Behaviour;
+namespace MultiplayerMod.Core.Behaviour;
 
 internal class PlayerCursor : KMonoBehaviour
 {
@@ -22,16 +22,11 @@ internal class PlayerCursor : KMonoBehaviour
     {
         if (player == MultiplayerManager.Instance.MultiGame.Players.Current)
             return;
-        Debug.Log("CreatePlayerCursor!");
         var canvas = GameScreenManager.Instance.GetParent(GameScreenManager.UIRenderTarget.ScreenSpaceOverlay);
-        Debug.Log("canvas!");
         var cursorName = $"{player.Profile.PlayerName}'s cursor";
-        Debug.Log("cursorname!");
         var cursor = new GameObject(cursorName) { transform = { parent = canvas.transform } };
-        Debug.Log("cursor!");
         cursor.AddComponent<PlayerAssigner>().Player = player;
         cursor.AddComponent<CursorComponent>();
         cursor.AddComponent<DestroyOnPlayerLeave>();
-        Debug.Log("added componennts!");
     }
 }

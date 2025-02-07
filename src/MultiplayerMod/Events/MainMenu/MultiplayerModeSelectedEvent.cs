@@ -1,6 +1,6 @@
-﻿using OniMP.Core.Player;
+﻿using MultiplayerMod.Core.Player;
 
-namespace OniMP.Events.MainMenu;
+namespace MultiplayerMod.Events.MainMenu;
 
 /// <summary>
 /// Creating a new multiplayer with default as <paramref name="role"/>

@@ -1,4 +1,4 @@
-﻿namespace OniMP.Events;
+﻿namespace MultiplayerMod.Events;
 
 /// <summary>
 /// Base Event for all Event related actions

@@ -1,4 +1,4 @@
-﻿namespace OniMP.Network.Common.Message;
+﻿namespace MultiplayerMod.Network.Common.Message;
 
 /// <summary>
 /// Interface to Indicate it is a Network Message.

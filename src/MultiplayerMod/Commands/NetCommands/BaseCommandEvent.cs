@@ -1,7 +1,7 @@
-﻿using OniMP.Events;
-using OniMP.Network.Common.Interfaces;
+﻿using MultiplayerMod.Events;
+using MultiplayerMod.Network.Common.Interfaces;
 
-namespace OniMP.Commands.NetCommands;
+namespace MultiplayerMod.Commands.NetCommands;
 
 
 /// <summary>

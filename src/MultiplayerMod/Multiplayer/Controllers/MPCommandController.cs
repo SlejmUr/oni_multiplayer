@@ -1,9 +1,9 @@
-using OniMP.Core;
-using OniMP.Events;
-using OniMP.Commands.NetCommands;
-using OniMP.Network.Common.Interfaces;
+using MultiplayerMod.Core;
+using MultiplayerMod.Events;
+using MultiplayerMod.Commands.NetCommands;
+using MultiplayerMod.Network.Common.Interfaces;
 
-namespace OniMP.Multiplayer.Controllers;
+namespace MultiplayerMod.Multiplayer.Controllers;
 
 /// <summary>
 /// Server and Client Command receive hooks

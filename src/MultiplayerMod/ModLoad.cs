@@ -1,11 +1,11 @@
-﻿using EIV_Common.Coroutines;
+using EIV_Common.Coroutines;
 using HarmonyLib;
 using KMod;
-using OniMP.Core;
-using OniMP.Events;
+using MultiplayerMod.Core;
+using MultiplayerMod.Events;
 using System.Reflection;
 
-namespace OniMP;
+namespace MultiplayerMod;
 
 /// <summary>
 /// Mod Entry Point
@@ -20,8 +20,8 @@ public class ModLoad : UserMod2
     {
         base.OnLoad(harmony);
         var version = assembly.GetCustomAttribute<AssemblyInformationalVersionAttribute>().InformationalVersion;
-        Debug.Log("OniMP Version: " + version);
-        Debug.Log("OniMP GetPatchedMethods: " + harmony.GetPatchedMethods().Count());
+        Debug.Log("MultiplayerMod Version: " + version);
+        Debug.Log("MultiplayerMod GetPatchedMethods: " + harmony.GetPatchedMethods().Count());
         CoroutineWorkerCustom.Instance.Start();
         EventManager.LoadMain(assembly);
         MultiplayerManager.Instance.Init();

@@ -1,6 +1,6 @@
-﻿using OniMP.Core.Player;
+﻿using MultiplayerMod.Core.Player;
 
-namespace OniMP.Commands.NetCommands;
+namespace MultiplayerMod.Commands.NetCommands;
 
 /// <summary>
 /// Initialize new client to server

@@ -1,10 +1,10 @@
 using HarmonyLib;
-using OniMP.Core.Execution;
-using OniMP.Events;
-using OniMP.Events.Common;
+using MultiplayerMod.Core.Execution;
+using MultiplayerMod.Events;
+using MultiplayerMod.Events.Common;
 using UnityEngine;
 
-namespace OniMP.Patches;
+namespace MultiplayerMod.Patches;
 
 [HarmonyPatch]
 internal static class GamePatch

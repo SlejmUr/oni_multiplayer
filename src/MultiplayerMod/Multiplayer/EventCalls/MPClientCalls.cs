@@ -1,11 +1,11 @@
-using OniMP.Commands.NetCommands;
-using OniMP.Core;
-using OniMP.Core.Player;
-using OniMP.Events;
-using OniMP.Events.Common;
-using OniMP.Network.Common;
+using MultiplayerMod.Commands.NetCommands;
+using MultiplayerMod.Core;
+using MultiplayerMod.Core.Player;
+using MultiplayerMod.Events;
+using MultiplayerMod.Events.Common;
+using MultiplayerMod.Network.Common;
 
-namespace OniMP.Multiplayer.EventCalls;
+namespace MultiplayerMod.Multiplayer.EventCalls;
 
 internal class MPClientCalls
 {

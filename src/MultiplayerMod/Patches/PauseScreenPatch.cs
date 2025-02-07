@@ -1,10 +1,10 @@
 ﻿using HarmonyLib;
-using OniMP.Core;
-using OniMP.Core.Execution;
-using OniMP.Events;
-using OniMP.Events.Common;
+using MultiplayerMod.Core;
+using MultiplayerMod.Core.Execution;
+using MultiplayerMod.Events;
+using MultiplayerMod.Events.Common;
 
-namespace OniMP.Patches;
+namespace MultiplayerMod.Patches;
 
 [HarmonyPatch(typeof(PauseScreen))]
 internal static class PauseScreenPatch

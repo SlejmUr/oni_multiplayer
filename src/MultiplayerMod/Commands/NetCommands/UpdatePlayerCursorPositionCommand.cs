@@ -1,6 +1,6 @@
-﻿using OniMP.Events.EventArgs;
+using MultiplayerMod.Events.EventArgs;
 
-namespace OniMP.Commands.NetCommands;
+namespace MultiplayerMod.Commands.NetCommands;
 
 /// <summary>
 /// Event that updates <paramref name="playerId"/> Mouse position

@@ -1,7 +1,7 @@
-﻿using OniMP.Core.Behaviour;
-using OniMP.Extensions;
+﻿using MultiplayerMod.Core.Behaviour;
+using MultiplayerMod.Extensions;
 
-namespace OniMP.Core.Objects;
+namespace MultiplayerMod.Core.Objects;
 
 /// <summary>
 /// Initializer for Prefabs, Chores and other game object to <paramref name="objects"/>

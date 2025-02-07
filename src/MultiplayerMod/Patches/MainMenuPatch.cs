@@ -1,12 +1,12 @@
 ﻿using HarmonyLib;
-using OniMP.Core;
-using OniMP.Core.Player;
-using OniMP.Events;
-using OniMP.Events.Common;
-using OniMP.Events.MainMenu;
-using OniMP.Extensions;
+using MultiplayerMod.Core;
+using MultiplayerMod.Core.Player;
+using MultiplayerMod.Events;
+using MultiplayerMod.Events.Common;
+using MultiplayerMod.Events.MainMenu;
+using MultiplayerMod.Extensions;
 
-namespace OniMP.Patches;
+namespace MultiplayerMod.Patches;
 
 [HarmonyPatch(typeof(MainMenu))]
 internal static class MainMenuPatch

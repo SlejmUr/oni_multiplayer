@@ -1,6 +1,6 @@
 ﻿using System.Reflection;
 
-namespace OniMP.Extensions;
+namespace MultiplayerMod.Extensions;
 
 /// <summary>
 /// Reflection Extension for Fields, Properties, and more

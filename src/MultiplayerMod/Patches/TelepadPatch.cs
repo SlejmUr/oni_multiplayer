@@ -1,13 +1,13 @@
 ﻿using HarmonyLib;
-using OniMP.Core.Behaviour;
-using OniMP.Core.Execution;
-using OniMP.Extensions;
+using MultiplayerMod.Core.Behaviour;
+using MultiplayerMod.Core.Execution;
+using MultiplayerMod.Extensions;
 using System.Reflection.Emit;
 using UnityEngine;
 using UnityEngine.Pool;
 using static ModInfo;
 
-namespace OniMP.Patches;
+namespace MultiplayerMod.Patches;
 
 [HarmonyPatch(typeof(Telepad))]
 internal class TelepadPatch

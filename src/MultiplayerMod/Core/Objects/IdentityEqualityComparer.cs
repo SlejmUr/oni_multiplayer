@@ -1,6 +1,6 @@
 ﻿using System.Runtime.CompilerServices;
 
-namespace OniMP.Core.Objects;
+namespace MultiplayerMod.Core.Objects;
 
 /// <summary>
 /// Comparing the <typeparamref name="T"/> with <see cref="object.ReferenceEquals"/> and <see cref="RuntimeHelpers.GetHashCode"/>

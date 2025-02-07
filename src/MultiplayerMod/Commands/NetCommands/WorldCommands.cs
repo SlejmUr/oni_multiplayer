@@ -1,6 +1,6 @@
-﻿using OniMP.Multiplayer.Datas.World;
+﻿using MultiplayerMod.Multiplayer.Datas.World;
 
-namespace OniMP.Commands.NetCommands;
+namespace MultiplayerMod.Commands.NetCommands;
 
 /// <summary>
 /// Loading world save

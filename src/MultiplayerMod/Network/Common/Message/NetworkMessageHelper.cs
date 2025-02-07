@@ -1,7 +1,7 @@
-﻿using OniMP.Commands.NetCommands;
-using static OniMP.Network.Common.Configuration;
+﻿using MultiplayerMod.Commands.NetCommands;
+using static MultiplayerMod.Network.Common.Configuration;
 
-namespace OniMP.Network.Common.Message;
+namespace MultiplayerMod.Network.Common.Message;
 
 /// <summary>
 /// Static helper for <see cref="BaseCommandEvent"/>

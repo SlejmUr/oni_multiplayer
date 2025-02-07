@@ -1,10 +1,10 @@
-﻿using OniMP.Core.Objects.Resolvers;
-using OniMP.Core.Serialization.Surrogates;
-using OniMP.Extensions;
+using MultiplayerMod.Core.Objects.Resolvers;
+using MultiplayerMod.Core.Serialization.Surrogates;
+using MultiplayerMod.Extensions;
 using System.Reflection;
 using UnityEngine;
 
-namespace OniMP.Commands;
+namespace MultiplayerMod.Commands;
 
 /// <summary>
 /// Helping argument serializations.
@@ -62,11 +62,15 @@ public static class ArgumentUtils
     // TODO: Mitigate RCE
     [Serializable]
     internal class DelegateRef(
-        Type DelegateType,
-        object Target,
-        MethodInfo MethodInfo
+        Type delegateType,
+        object target,
+        MethodInfo methodInfo
     ) : IResolver
     {
+
+        Type DelegateType => delegateType;
+        object Target => target;
+        MethodInfo MethodInfo => methodInfo;
         public object Resolve()
         {
             return Delegate.CreateDelegate(
@@ -135,15 +139,22 @@ public static class ArgumentUtils
 
     [Serializable]
     internal class FetchList2Ref(
-        ComponentResolver<Storage> StorageReference,
-        ChoreType ComplexFabricatorChoreType,
-        StateMachineResolver StateMachineReference,
-        ComponentResolver<ComplexFabricator> ComplexFabricatorReference,
-        ComponentResolver<Constructable> ConstructableReference,
-        FilteredStorageRef FilteredStorageReference,
-        ComponentResolver<ManualDeliveryKG> ManualDeliveryKGReference
+        ComponentResolver<Storage> storageReference,
+        ChoreType complexFabricatorChoreType,
+        StateMachineResolver stateMachineReference,
+        ComponentResolver<ComplexFabricator> complexFabricatorReference,
+        ComponentResolver<Constructable> constructableReference,
+        FilteredStorageRef filteredStorageReference,
+        ComponentResolver<ManualDeliveryKG> manualDeliveryKGReference
     )
     {
+        ComponentResolver<Storage> StorageReference => storageReference;
+        ChoreType ComplexFabricatorChoreType => complexFabricatorChoreType;
+        StateMachineResolver StateMachineReference => stateMachineReference;
+        ComponentResolver<ComplexFabricator> ComplexFabricatorReference => complexFabricatorReference;
+        ComponentResolver<Constructable> ConstructableReference => constructableReference;
+        FilteredStorageRef FilteredStorageReference => filteredStorageReference;
+        ComponentResolver<ManualDeliveryKG> ManualDeliveryKGReference => manualDeliveryKGReference;
 
         public FetchList2Ref(FetchList2 fetchList2) : this(
             fetchList2.Destination.GetComponentResolver(),
@@ -173,10 +184,11 @@ public static class ArgumentUtils
     }
 
     [Serializable]
-    internal class FilteredStorageRef(ComponentResolver RootReference)
+    internal class FilteredStorageRef(ComponentResolver rootReference)
     {
+        ComponentResolver RootReference => rootReference;
 
-        private readonly static BindingFlags bindingFlags = BindingFlags.NonPublic | BindingFlags.Instance;
+        private readonly static BindingFlags BindingFlags = BindingFlags.NonPublic | BindingFlags.Instance;
 
         public FilteredStorageRef(FilteredStorage filteredStorage) : this(
             filteredStorage.root.GetComponentResolver()
@@ -188,9 +200,9 @@ public static class ArgumentUtils
             var root = RootReference.Resolve();
             var type = root!.GetType();
 
-            var field = type.GetField("storageFilter", bindingFlags) ??
-                        type.GetField("filteredStorage", bindingFlags) ??
-                        type.GetField("foodStorageFilter", bindingFlags);
+            var field = type.GetField("storageFilter", BindingFlags) ??
+                        type.GetField("filteredStorage", BindingFlags) ??
+                        type.GetField("foodStorageFilter", BindingFlags);
             return (FilteredStorage)field!.GetValue(root);
         }
     }

@@ -1,6 +1,6 @@
 ﻿using System.Collections.ObjectModel;
 
-namespace OniMP.Commands.NetCommands;
+namespace MultiplayerMod.Commands.NetCommands;
 
 /// <summary>
 /// Command that checks the server DLC's.

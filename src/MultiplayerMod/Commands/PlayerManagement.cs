@@ -1,12 +1,12 @@
-﻿using OniMP.Commands.NetCommands;
-using OniMP.Core;
-using OniMP.Core.Player;
-using OniMP.Events;
-using OniMP.Events.Common;
-using OniMP.Events.Others;
-using OniMP.Multiplayer.UI.Overlays;
+﻿using MultiplayerMod.Commands.NetCommands;
+using MultiplayerMod.Core;
+using MultiplayerMod.Core.Player;
+using MultiplayerMod.Events;
+using MultiplayerMod.Events.Common;
+using MultiplayerMod.Events.Others;
+using MultiplayerMod.Multiplayer.UI.Overlays;
 
-namespace OniMP.Commands;
+namespace MultiplayerMod.Commands;
 
 internal class PlayerManagement
 {

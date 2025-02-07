@@ -1,9 +1,9 @@
-﻿using OniMP.Core.Objects.Resolvers;
+﻿using MultiplayerMod.Core.Objects.Resolvers;
 using System.Runtime.CompilerServices;
 using UnityEngine;
-using OniMP.Core.Behaviour;
+using MultiplayerMod.Core.Behaviour;
 
-namespace OniMP.Extensions;
+namespace MultiplayerMod.Extensions;
 
 /// <summary>
 /// 

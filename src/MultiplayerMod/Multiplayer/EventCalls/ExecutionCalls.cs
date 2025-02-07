@@ -1,10 +1,10 @@
-﻿using OniMP.Core;
-using OniMP.Core.Execution;
-using OniMP.Core.Player;
-using OniMP.Events.Common;
-using OniMP.Events.MainMenu;
+﻿using MultiplayerMod.Core;
+using MultiplayerMod.Core.Execution;
+using MultiplayerMod.Core.Player;
+using MultiplayerMod.Events.Common;
+using MultiplayerMod.Events.MainMenu;
 
-namespace OniMP.Multiplayer.EventCalls;
+namespace MultiplayerMod.Multiplayer.EventCalls;
 
 internal class ExecutionCalls
 {

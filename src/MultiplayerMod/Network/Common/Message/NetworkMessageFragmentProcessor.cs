@@ -1,10 +1,10 @@
-﻿using OniMP.Core.Exceptions;
-using OniMP.Core.Serialization;
+﻿using MultiplayerMod.Core.Exceptions;
+using MultiplayerMod.Core.Serialization;
 using System.Collections.Concurrent;
 using System.Runtime.Serialization.Formatters.Binary;
-using static OniMP.Network.Common.Configuration;
+using static MultiplayerMod.Network.Common.Configuration;
 
-namespace OniMP.Network.Common.Message;
+namespace MultiplayerMod.Network.Common.Message;
 
 /// <summary>
 /// Processing <see cref="NetworkMessageFragment"/>

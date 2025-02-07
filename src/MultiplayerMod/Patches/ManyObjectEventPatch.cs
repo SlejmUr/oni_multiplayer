@@ -1,11 +1,11 @@
 ﻿using HarmonyLib;
-using OniMP.Core.Execution;
-using OniMP.Events;
-using OniMP.Events.EventArgs;
-using OniMP.Events.Others;
+using MultiplayerMod.Core.Execution;
+using MultiplayerMod.Events;
+using MultiplayerMod.Events.EventArgs;
+using MultiplayerMod.Events.Others;
 using System.Reflection;
 
-namespace OniMP.Patches;
+namespace MultiplayerMod.Patches;
 
 [HarmonyPatch]
 internal static class ManyObjectEventPatch

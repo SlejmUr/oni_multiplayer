@@ -1,6 +1,6 @@
 ﻿using Steamworks;
 
-namespace OniMP.Network.Steam;
+namespace MultiplayerMod.Network.Steam;
 
 /// <summary>
 /// Steam related Configuration

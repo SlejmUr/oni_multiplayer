@@ -1,6 +1,6 @@
-﻿using OniMP.Core.Serialization;
+﻿using MultiplayerMod.Core.Serialization;
 
-namespace OniMP.Network.Common.Message;
+namespace MultiplayerMod.Network.Common.Message;
 
 /// <summary>
 /// Serialized <see cref="INetworkMessage"/>

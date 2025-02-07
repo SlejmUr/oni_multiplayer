@@ -1,7 +1,7 @@
 ﻿using HarmonyLib;
-using OniMP.Extensions;
+using MultiplayerMod.Extensions;
 
-namespace OniMP.Patches;
+namespace MultiplayerMod.Patches;
 
 [HarmonyPatch(typeof(ImmigrantScreen))]
 internal static class ImmigrantScreenPatch

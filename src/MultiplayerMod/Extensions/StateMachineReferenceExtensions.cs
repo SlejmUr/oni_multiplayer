@@ -1,6 +1,6 @@
-﻿using OniMP.Core.Objects.Resolvers;
+﻿using MultiplayerMod.Core.Objects.Resolvers;
 
-namespace OniMP.Extensions;
+namespace MultiplayerMod.Extensions;
 
 /// <summary>
 /// Extension for <see cref="StateMachine.Instance"/>

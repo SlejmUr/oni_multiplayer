@@ -1,13 +1,13 @@
-using OniMP.Core.Objects;
-using OniMP.Core.Player;
-using OniMP.Multiplayer.Controllers;
-using OniMP.Multiplayer.EventCalls;
-using OniMP.Multiplayer.Managers.Server;
-using OniMP.Network.Common;
-using OniMP.Network.Common.Interfaces;
-using OniMP.Network.Steam;
+using MultiplayerMod.Core.Objects;
+using MultiplayerMod.Core.Player;
+using MultiplayerMod.Multiplayer.Controllers;
+using MultiplayerMod.Multiplayer.EventCalls;
+using MultiplayerMod.Multiplayer.Managers.Server;
+using MultiplayerMod.Network.Common;
+using MultiplayerMod.Network.Common.Interfaces;
+using MultiplayerMod.Network.Steam;
 
-namespace OniMP.Core;
+namespace MultiplayerMod.Core;
 
 /// <summary>
 /// Main point where Multiplayer related classes handled.

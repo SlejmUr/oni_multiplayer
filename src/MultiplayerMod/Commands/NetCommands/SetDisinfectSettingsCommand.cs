@@ -1,4 +1,4 @@
-﻿namespace OniMP.Commands.NetCommands;
+﻿namespace MultiplayerMod.Commands.NetCommands;
 
 [Serializable]
 internal class SetDisinfectSettingsCommand(int minGerm, bool enableAutoDisinfect) : BaseCommandEvent

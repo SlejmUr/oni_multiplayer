@@ -1,6 +1,6 @@
-﻿using OniMP.Network.Common.Message;
+﻿using MultiplayerMod.Network.Common.Message;
 
-namespace OniMP.Network.Common;
+namespace MultiplayerMod.Network.Common;
 
 /// <summary>
 /// Basic network Configuration

@@ -1,8 +1,8 @@
 ﻿using HarmonyLib;
-using OniMP.Core.Execution;
+using MultiplayerMod.Core.Execution;
 using System.Reflection;
 
-namespace OniMP.Patches;
+namespace MultiplayerMod.Patches;
 
 [HarmonyPatch]
 internal static class MethodPatchesDisabler

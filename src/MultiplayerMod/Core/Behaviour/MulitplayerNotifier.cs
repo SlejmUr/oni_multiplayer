@@ -1,8 +1,8 @@
-﻿using OniMP.Events;
-using OniMP.Events.Common;
+﻿using MultiplayerMod.Events;
+using MultiplayerMod.Events.Common;
 using UnityEngine;
 
-namespace OniMP.Core.Behaviour;
+namespace MultiplayerMod.Core.Behaviour;
 
 /// <summary>
 /// Notifying players with specified messages

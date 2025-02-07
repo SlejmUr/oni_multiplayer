@@ -1,7 +1,7 @@
 ﻿using System.Runtime.Serialization;
 using UnityEngine;
 
-namespace OniMP.Core.Serialization.Surrogates;
+namespace MultiplayerMod.Core.Serialization.Surrogates;
 
 /// <summary>
 /// Unity Vector 2 for Serialization

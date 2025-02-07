@@ -1,7 +1,7 @@
-﻿using OniMP.Core.Player;
-using OniMP.Network.Common.Interfaces;
+﻿using MultiplayerMod.Core.Player;
+using MultiplayerMod.Network.Common.Interfaces;
 
-namespace OniMP.Events.Others;
+namespace MultiplayerMod.Events.Others;
 
 /// <summary>
 /// Event that is exists to join to the <paramref name="endpoint"/>

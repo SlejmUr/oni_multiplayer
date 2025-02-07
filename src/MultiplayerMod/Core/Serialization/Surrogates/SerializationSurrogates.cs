@@ -1,7 +1,7 @@
 ﻿using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 
-namespace OniMP.Core.Serialization.Surrogates;
+namespace MultiplayerMod.Core.Serialization.Surrogates;
 
 /// <summary>
 /// Serialization helper class for <see cref="BinaryFormatter"/>

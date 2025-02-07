@@ -1,16 +1,16 @@
-﻿using OniMP.Commands.NetCommands;
-using OniMP.Core.Exceptions;
-using OniMP.Core.Unity;
-using OniMP.Network.Common;
-using OniMP.Network.Common.Components;
-using OniMP.Network.Common.Interfaces;
-using OniMP.Network.Common.Message;
+using MultiplayerMod.Commands.NetCommands;
+using MultiplayerMod.Core.Exceptions;
+using MultiplayerMod.Core.Unity;
+using MultiplayerMod.Network.Common;
+using MultiplayerMod.Network.Common.Components;
+using MultiplayerMod.Network.Common.Interfaces;
+using MultiplayerMod.Network.Common.Message;
 using Steamworks;
 using UnityEngine;
 using static Steamworks.Constants;
 using static Steamworks.ESteamNetConnectionEnd;
 
-namespace OniMP.Network.Steam;
+namespace MultiplayerMod.Network.Steam;
 
 /// <summary>
 /// Creates a new Steam Networking Client
@@ -180,6 +180,7 @@ public class SteamNetClient(SteamLobby lobby) : INetClient
             NetworkMessage message = messageProcessor.Process(steamMessage.m_conn.m_HSteamNetConnection,steamMessage.GetNetworkMessageHandle());
             if (message != null)
             {
+                Debug.Log($"Client Processed message: {message}");
                 if (!message.Options.HasFlag(MultiplayerCommandOptions.OnlyHost))
                     CommandReceived?.Invoke(message.CommandEvent);
 

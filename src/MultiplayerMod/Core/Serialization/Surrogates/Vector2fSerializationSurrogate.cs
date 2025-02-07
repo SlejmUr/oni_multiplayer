@@ -1,6 +1,6 @@
 ﻿using System.Runtime.Serialization;
 
-namespace OniMP.Core.Serialization.Surrogates;
+namespace MultiplayerMod.Core.Serialization.Surrogates;
 
 /// <summary>
 /// Assembly-Csharp-FirstPass Vector 2 for Serialization

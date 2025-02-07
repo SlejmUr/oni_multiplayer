@@ -1,8 +1,8 @@
-﻿using OniMP.Core.Behaviour;
-using OniMP.Events;
-using OniMP.Events.Common;
+using MultiplayerMod.Core.Behaviour;
+using MultiplayerMod.Events;
+using MultiplayerMod.Events.Common;
 
-namespace OniMP.Core.Objects;
+namespace MultiplayerMod.Core.Objects;
 
 /// <summary>
 /// Stores <see cref="MultiplayerObjectsIndex"/> and handling events for object existence and creation.

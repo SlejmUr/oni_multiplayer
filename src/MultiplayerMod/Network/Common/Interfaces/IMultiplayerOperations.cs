@@ -1,4 +1,4 @@
-﻿namespace OniMP.Network.Common.Interfaces;
+﻿namespace MultiplayerMod.Network.Common.Interfaces;
 
 /// <summary>
 /// Operations that Plaform can call

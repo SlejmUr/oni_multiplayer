@@ -1,8 +1,7 @@
-using OniMP.Core.Serialization.Surrogates;
-using System.Reflection;
+using MultiplayerMod.Core.Serialization.Surrogates;
 using System.Runtime.Serialization.Formatters.Binary;
 
-namespace OniMP.Core.Serialization;
+namespace MultiplayerMod.Core.Serialization;
 
 /// <summary>
 /// Global accessable Serializer for Binary.
@@ -52,14 +51,11 @@ public static class CoreSerializer
     /// <returns>Empty if type is not Serializable, otherwise serialized array</returns>
     public static byte[] Serialize<T>(T obj)
     {
-        Debug.Log($"Serialize {typeof(T)}");
         try
         {
             using MemoryStream memory = new();
             Formatter.Serialize(memory, obj);
-            var ret = memory.ToArray();
-            Debug.Log($"Data: {BitConverter.ToString(ret).Replace("-", string.Empty)}");
-            return ret;
+            return memory.ToArray();
         }
         catch (Exception ex)
         {

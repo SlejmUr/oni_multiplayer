@@ -1,7 +1,7 @@
-﻿using OniMP.Core.Objects.Resolvers;
+﻿using MultiplayerMod.Core.Objects.Resolvers;
 using System.Runtime.CompilerServices;
 
-namespace OniMP.Extensions;
+namespace MultiplayerMod.Extensions;
 
 /// <summary>
 /// Extensions for getting <see cref="ComponentResolver"/>

@@ -1,14 +1,14 @@
-﻿using OniMP.Core;
-using OniMP.Core.Exceptions;
-using OniMP.Core.Player;
-using OniMP.Events.Common;
-using OniMP.Events;
-using OniMP.Events.Others;
-using OniMP.Network.Common;
-using OniMP.Commands.NetCommands;
-using OniMP.Network.Common.Interfaces;
+﻿using MultiplayerMod.Core;
+using MultiplayerMod.Core.Exceptions;
+using MultiplayerMod.Core.Player;
+using MultiplayerMod.Events.Common;
+using MultiplayerMod.Events;
+using MultiplayerMod.Events.Others;
+using MultiplayerMod.Network.Common;
+using MultiplayerMod.Commands.NetCommands;
+using MultiplayerMod.Network.Common.Interfaces;
 
-namespace OniMP.Multiplayer.EventCalls;
+namespace MultiplayerMod.Multiplayer.EventCalls;
 
 /// <summary>
 /// Mulitplayer Server related Event calls

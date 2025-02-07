@@ -1,4 +1,4 @@
-﻿namespace OniMP.Multiplayer.Datas.World;
+﻿namespace MultiplayerMod.Multiplayer.Datas.World;
 
 /// <summary>
 /// Creates a new WorldSave for multiplayer

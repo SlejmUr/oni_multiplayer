@@ -1,9 +1,9 @@
-﻿using OniMP.Commands.NetCommands;
-using OniMP.Core;
-using OniMP.Core.Player;
-using OniMP.Events.Common;
+﻿using MultiplayerMod.Commands.NetCommands;
+using MultiplayerMod.Core;
+using MultiplayerMod.Core.Player;
+using MultiplayerMod.Events.Common;
 
-namespace OniMP.Multiplayer.EventCalls;
+namespace MultiplayerMod.Multiplayer.EventCalls;
 
 internal class MPBothCalls
 {

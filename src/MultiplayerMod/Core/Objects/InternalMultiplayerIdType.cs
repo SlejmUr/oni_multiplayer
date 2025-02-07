@@ -1,4 +1,4 @@
-﻿namespace OniMP.Core.Objects;
+﻿namespace MultiplayerMod.Core.Objects;
 
 /// <summary>
 /// Identify Type of <see cref="MultiplayerIdType"/> if its <see cref="MultiplayerIdType.Internal"/>

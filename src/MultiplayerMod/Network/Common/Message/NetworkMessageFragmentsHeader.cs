@@ -1,4 +1,4 @@
-﻿namespace OniMP.Network.Common.Message;
+﻿namespace MultiplayerMod.Network.Common.Message;
 
 /// <summary>
 /// Networking message that is indicate that is a fragmented message

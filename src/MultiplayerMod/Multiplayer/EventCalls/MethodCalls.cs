@@ -1,8 +1,8 @@
-﻿using OniMP.Commands.NetCommands;
-using OniMP.Core;
-using OniMP.Events.Others;
+﻿using MultiplayerMod.Commands.NetCommands;
+using MultiplayerMod.Core;
+using MultiplayerMod.Events.Others;
 
-namespace OniMP.Multiplayer.EventCalls;
+namespace MultiplayerMod.Multiplayer.EventCalls;
 
 internal class MethodCalls
 {

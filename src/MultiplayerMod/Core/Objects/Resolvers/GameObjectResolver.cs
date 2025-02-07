@@ -1,7 +1,7 @@
-﻿using OniMP.Core.Exceptions;
+﻿using MultiplayerMod.Core.Exceptions;
 using UnityEngine;
 
-namespace OniMP.Core.Objects.Resolvers;
+namespace MultiplayerMod.Core.Objects.Resolvers;
 
 /// <summary>
 /// Abstact class that creates <see cref="GameObject"/>

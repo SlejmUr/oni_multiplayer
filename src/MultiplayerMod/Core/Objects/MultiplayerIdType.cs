@@ -1,4 +1,4 @@
-﻿namespace OniMP.Core.Objects;
+﻿namespace MultiplayerMod.Core.Objects;
 
 /// <summary>
 /// Type of <see cref="MultiplayerId"/>

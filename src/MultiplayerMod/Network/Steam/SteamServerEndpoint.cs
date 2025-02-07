@@ -1,7 +1,7 @@
-﻿using OniMP.Network.Common.Interfaces;
+﻿using MultiplayerMod.Network.Common.Interfaces;
 using Steamworks;
 
-namespace OniMP.Network.Steam;
+namespace MultiplayerMod.Network.Steam;
 
 /// <summary>
 /// Creating steam Lobby Endpoint

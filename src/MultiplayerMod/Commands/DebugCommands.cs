@@ -1,6 +1,6 @@
-﻿using OniMP.Commands.NetCommands;
+﻿using MultiplayerMod.Commands.NetCommands;
 
-namespace OniMP.Commands;
+namespace MultiplayerMod.Commands;
 
 internal class DebugCommands
 {

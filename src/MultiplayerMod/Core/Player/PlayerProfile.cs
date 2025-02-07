@@ -1,4 +1,4 @@
-﻿namespace OniMP.Core.Player;
+﻿namespace MultiplayerMod.Core.Player;
 
 /// <summary>
 /// Basic profile that represent a Player

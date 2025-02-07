@@ -1,4 +1,4 @@
-﻿namespace OniMP.Commands.NetCommands;
+﻿namespace MultiplayerMod.Commands.NetCommands;
 
 /// <summary>
 /// Notify all clients the world is preparing

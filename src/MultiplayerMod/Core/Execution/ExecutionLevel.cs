@@ -1,4 +1,4 @@
-﻿namespace OniMP.Core.Execution;
+﻿namespace MultiplayerMod.Core.Execution;
 
 /// <summary>
 /// 

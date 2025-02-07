@@ -1,4 +1,4 @@
-﻿namespace OniMP.Network.Common;
+﻿namespace MultiplayerMod.Network.Common;
 
 /// <summary>
 /// Option for message command sending

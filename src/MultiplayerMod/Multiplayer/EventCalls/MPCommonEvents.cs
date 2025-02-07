@@ -1,13 +1,13 @@
-using OniMP.Core;
-using OniMP.Core.Behaviour;
-using OniMP.Events.MainMenu;
-using OniMP.Events.Others;
-using OniMP.Events;
-using OniMP.Multiplayer.UI.Overlays;
-using OniMP.Events.Common;
+using MultiplayerMod.Core;
+using MultiplayerMod.Core.Behaviour;
+using MultiplayerMod.Events.MainMenu;
+using MultiplayerMod.Events.Others;
+using MultiplayerMod.Events;
+using MultiplayerMod.Multiplayer.UI.Overlays;
+using MultiplayerMod.Events.Common;
 using UnityEngine;
 
-namespace OniMP.Multiplayer.EventCalls;
+namespace MultiplayerMod.Multiplayer.EventCalls;
 
 internal class MPCommonEvents
 {
@@ -32,6 +32,7 @@ internal class MPCommonEvents
 
         ];
         new GameObject("Multiplayer", components);
+        Debug.Log("Game started!");
     }
 
     internal static void StartServer(GameStartedEvent _)

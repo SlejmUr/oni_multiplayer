@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace OniMP.Events.EventArgs;
+namespace MultiplayerMod.Events.EventArgs;
 
 /// <summary>
 /// Arguments that is used to update the mouse position

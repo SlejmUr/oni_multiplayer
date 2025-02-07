@@ -1,7 +1,7 @@
-﻿using OniMP.Core.Player;
+using MultiplayerMod.Core.Player;
 using UnityEngine;
 
-namespace OniMP.Core.Behaviour;
+namespace MultiplayerMod.Core.Behaviour;
 
 /// <summary>
 /// Assing a custom player to this obejct

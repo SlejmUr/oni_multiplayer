@@ -1,6 +1,6 @@
 ﻿using System.Runtime.CompilerServices;
 
-namespace OniMP.Core.Execution;
+namespace MultiplayerMod.Core.Execution;
 
 internal class ExecutionManager
 {

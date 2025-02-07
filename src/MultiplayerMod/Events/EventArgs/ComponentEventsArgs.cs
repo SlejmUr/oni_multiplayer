@@ -1,6 +1,6 @@
 ﻿using System.Reflection;
 
-namespace OniMP.Events.EventArgs;
+namespace MultiplayerMod.Events.EventArgs;
 
 /// <summary>
 /// Arguments supplied for <see cref="Others.ComponentMethodCalled"/>

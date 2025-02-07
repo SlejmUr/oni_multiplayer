@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace OniMP.Events.Common;
+namespace MultiplayerMod.Events.Common;
 
 /// <summary>
 /// Event that 

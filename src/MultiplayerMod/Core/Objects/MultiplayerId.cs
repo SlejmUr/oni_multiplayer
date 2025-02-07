@@ -1,6 +1,6 @@
 ﻿using System.Runtime.CompilerServices;
 
-namespace OniMP.Core.Objects;
+namespace MultiplayerMod.Core.Objects;
 
 /// <summary>
 /// Identification for <see cref="MultiplayerObject"/>

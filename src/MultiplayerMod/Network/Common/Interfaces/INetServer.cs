@@ -1,6 +1,6 @@
-﻿using OniMP.Commands.NetCommands;
+﻿using MultiplayerMod.Commands.NetCommands;
 
-namespace OniMP.Network.Common.Interfaces;
+namespace MultiplayerMod.Network.Common.Interfaces;
 
 /// <summary>
 /// Interface for Plaform Server

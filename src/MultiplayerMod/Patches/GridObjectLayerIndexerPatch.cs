@@ -1,8 +1,8 @@
 ﻿using HarmonyLib;
-using OniMP.Core.Behaviour;
+using MultiplayerMod.Core.Behaviour;
 using UnityEngine;
 
-namespace OniMP.Patches;
+namespace MultiplayerMod.Patches;
 
 [HarmonyPatch(typeof(Grid.ObjectLayerIndexer))]
 internal static class GridObjectLayerIndexerPatch

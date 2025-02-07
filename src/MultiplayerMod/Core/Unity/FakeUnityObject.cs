@@ -1,6 +1,6 @@
 ﻿using System.Runtime.InteropServices;
 
-namespace OniMP.Core.Unity;
+namespace MultiplayerMod.Core.Unity;
 
 /// <summary>
 /// Static class faking <see cref="UnityEngine.Object"/>

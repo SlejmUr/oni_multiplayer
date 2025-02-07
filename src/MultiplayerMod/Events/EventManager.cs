@@ -1,10 +1,10 @@
 ﻿using HarmonyLib;
-using OniMP.Extensions;
+using MultiplayerMod.Extensions;
 using System.Collections.Generic;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 
-namespace OniMP.Events;
+namespace MultiplayerMod.Events;
 
 /// <summary>
 /// Managing custom event system

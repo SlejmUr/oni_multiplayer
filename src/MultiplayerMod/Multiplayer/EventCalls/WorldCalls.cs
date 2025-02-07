@@ -1,7 +1,7 @@
-﻿using OniMP.Core;
-using OniMP.Events.Common;
+﻿using MultiplayerMod.Core;
+using MultiplayerMod.Events.Common;
 
-namespace OniMP.Multiplayer.EventCalls;
+namespace MultiplayerMod.Multiplayer.EventCalls;
 
 internal class WorldCalls
 {

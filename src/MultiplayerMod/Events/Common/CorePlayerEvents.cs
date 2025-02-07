@@ -1,6 +1,6 @@
-﻿using OniMP.Core.Player;
+﻿using MultiplayerMod.Core.Player;
 
-namespace OniMP.Events.Common;
+namespace MultiplayerMod.Events.Common;
 
 /// <summary>
 /// Initialize current player

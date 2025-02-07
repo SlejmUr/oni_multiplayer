@@ -1,7 +1,7 @@
-﻿using OniMP.Core.Objects;
-using OniMP.Core.Player;
+﻿using MultiplayerMod.Core.Objects;
+using MultiplayerMod.Core.Player;
 
-namespace OniMP.Network.Common;
+namespace MultiplayerMod.Network.Common;
 
 /// <summary>
 /// Game that handles Players and Objects

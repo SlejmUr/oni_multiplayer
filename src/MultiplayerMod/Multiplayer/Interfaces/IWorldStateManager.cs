@@ -1,6 +1,6 @@
-﻿using OniMP.Multiplayer.Datas.World;
+﻿using MultiplayerMod.Multiplayer.Datas.World;
 
-namespace OniMP.Multiplayer.Interfaces;
+namespace MultiplayerMod.Multiplayer.Interfaces;
 
 /// <summary>
 /// State Save and Load implementation

@@ -1,7 +1,7 @@
-﻿using OniMP.Core.Behaviour;
+﻿using MultiplayerMod.Core.Behaviour;
 using UnityEngine;
 
-namespace OniMP.Core.Objects.Resolvers;
+namespace MultiplayerMod.Core.Objects.Resolvers;
 
 /// <summary>
 /// Creates a Grid Reference for <see cref="GameObject"/>

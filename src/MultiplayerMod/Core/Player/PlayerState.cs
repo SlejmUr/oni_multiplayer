@@ -1,4 +1,4 @@
-﻿namespace OniMP.Core.Player;
+﻿namespace MultiplayerMod.Core.Player;
 
 /// <summary>
 /// Representing a State of a Player
