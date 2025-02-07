@@ -1,17 +1,19 @@
-﻿using HarmonyLib;
+using HarmonyLib;
+using MultiplayerMod.Commands.NetCommands;
+using MultiplayerMod.Core;
 using MultiplayerMod.Core.Behaviour;
 using MultiplayerMod.Core.Execution;
 using MultiplayerMod.Extensions;
 using System.Reflection.Emit;
 using UnityEngine;
-using UnityEngine.Pool;
-using static ModInfo;
 
 namespace MultiplayerMod.Patches;
 
 [HarmonyPatch(typeof(Telepad))]
 internal class TelepadPatch
 {
+    internal static GameObject AcceptedGameObject;
+
     [HarmonyTranspiler]
     [HarmonyPatch(nameof(Telepad.OnAcceptDelivery))]
     static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
@@ -39,24 +41,20 @@ internal class TelepadPatch
         if (!ExecutionManager.LevelIsActive(ExecutionLevel.Game))
             return;
         ImmigrantScreenPatch.Deliverables = null;
-        //Reject?.Invoke(__instance.GetReference());
+        MultiplayerManager.Instance.NetClient.Send(new RejectDeliveryCommand(__instance.GetComponentResolver()));
     }
 
     private static void OnAcceptDelivery(Telepad telepad, ITelepadDeliverable deliverable, GameObject gameObject)
     {
         if (!ExecutionManager.LevelIsActive(ExecutionLevel.Game))
             return;
-        Debug.Log("OnAcceptDelivery Called!");
-        /*
+        AcceptedGameObject = gameObject;
         ImmigrantScreenPatch.Deliverables = null;
-        AcceptDelivery?.Invoke(
-            new AcceptDeliveryEventArgs(
-                telepad.GetReference(),
+        MultiplayerManager.Instance.NetClient.Send(new AcceptDeliveryCommand(new AcceptDeliveryEventArgs(
+                telepad.GetComponentResolver(),
                 deliverable,
                 gameObject.GetComponent<MultiplayerInstance>().Register(),
                 gameObject.GetComponent<MinionIdentity>()?.GetMultiplayerInstance().Register()
-            )
-        );
-        */
+            )));
     }
 }

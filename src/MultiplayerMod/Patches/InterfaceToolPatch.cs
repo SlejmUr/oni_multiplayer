@@ -12,15 +12,16 @@ namespace MultiplayerMod.Patches;
 [HarmonyPatch(typeof(InterfaceTool))]
 internal static class InterfaceToolPatch
 {
-
+    static int test = 0;
     [UsedImplicitly]
     [HarmonyPrefix]
     [HarmonyPatch(nameof(InterfaceTool.OnMouseMove))]
     private static void OnMouseMove(Vector3 cursor_pos)
     {
+        // Temporarly disable this.
+        return;
         if (!ExecutionManager.LevelIsActive(ExecutionLevel.Game))
             return;
-
         var kScreens = KScreenManager.Instance.screenStack.Where(screen => screen.mouseOver).ToList();
         if (kScreens.Count == 0)
             return;

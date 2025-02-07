@@ -1,12 +1,41 @@
-﻿using MultiplayerMod.Commands.NetCommands;
+using MultiplayerMod.Commands.NetCommands;
+using MultiplayerMod.Core.Behaviour;
+using MultiplayerMod.Extensions;
+using MultiplayerMod.Patches;
 
 namespace MultiplayerMod.Commands;
 
 internal class OtherCommands
 {
-    private static void SetDisinfectSettingsCommand_Event(SetDisinfectSettingsCommand playerCommand)
+    internal static void SetDisinfectSettingsCommand_Event(SetDisinfectSettingsCommand playerCommand)
     {
         SaveGame.Instance.enableAutoDisinfect = playerCommand.EnableAutoDisinfect;
         SaveGame.Instance.minGermCountForDisinfect = playerCommand.MinGerm;
+    }
+
+    internal static void AcceptDeliveryCommand_Event(AcceptDeliveryCommand command)
+    {
+        var telepad = command.Args.Target.Resolve();
+        telepad.OnAcceptDelivery(command.Args.Deliverable);
+        var capture = TelepadPatch.AcceptedGameObject;
+
+        var minionMultiplayer = capture.GetComponent<MultiplayerInstance>();
+        minionMultiplayer.Register(command.Args.GameObjectId);
+
+        var minionIdentity = capture.GetComponent<MinionIdentity>();
+        if (minionIdentity != null)
+        {
+            var proxyMultiplayer = minionIdentity.GetMultiplayerInstance();
+            proxyMultiplayer.Register(command.Args.ProxyId);
+            Debug.Log("ACCEPTED MINION: " + minionIdentity.ToString());
+        }
+
+        ImmigrantScreenPatch.Deliverables = null;
+    }
+
+    internal static void RejectDeliveryCommand_Event(RejectDeliveryCommand command)
+    {
+        command.Target.Resolve().RejectAll();
+        ImmigrantScreenPatch.Deliverables = null;
     }
 }

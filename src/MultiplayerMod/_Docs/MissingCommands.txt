@@ -1,0 +1,41 @@
+CreateChore
+AllowStateTransition
+SetStateArguments
+StartMove
+TransitToState
+UpdateMove
+ReleaseChoreDriver
+SetDriverChore
+ChangeRedAlertState
+SyncWorldDebugSnapshot ?
+ChangePriority
+SynchronizeObjectPosition
+SetDisinfectSettings
+PermitConsumableByDefault
+PermitConsumableToMinion
+InitializeImmigration
+SetDefaultPriority
+SetPersonalPrioritiesAdvanced
+SetPersonalPriority
+AbstractResearchEntryCommand !!
+ChangeSchedulesList
+UpdateAlarm
+UpdateCritterSensor
+UpdateLogicCounter
+UpdateLogicTimeOfDaySensor
+UpdateLogicTimeSensor
+UpdateRailGunCapacity
+UpdateTemperatureSwitch
+MasterSkill
+SetHat
+ClickUserMenuButton  ?
+AbstractBuildUtilityCommand !
+AbstractDragToolCommand !
+Build
+CopySettings
+Modify
+MoveToLocation
+Stamp
+GoToState
+MoveObjectToCell
+SetParameterValue

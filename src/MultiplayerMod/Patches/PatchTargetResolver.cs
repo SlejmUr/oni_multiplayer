@@ -1,8 +1,7 @@
-﻿using MultiplayerMod.Core.Serialization.Surrogates;
+using MultiplayerMod.Core.Serialization.Surrogates;
 using System.Reflection;
 using System.Runtime.Serialization;
 using UnityEngine;
-using static TUNING.NOISE_POLLUTION;
 
 namespace MultiplayerMod.Patches;
 

@@ -1,4 +1,4 @@
-﻿using HarmonyLib;
+using HarmonyLib;
 using MultiplayerMod.Core.Execution;
 using MultiplayerMod.Events;
 using MultiplayerMod.Events.EventArgs;
@@ -117,33 +117,6 @@ internal static class ManyObjectEventPatch
     // ReSharper disable once UnusedMember.Local
     private static IEnumerable<MethodBase> TargetMethods()
     {
-        Debug.Log("targets.targets");
-        foreach (var item in targets.targets)
-        {
-            if (item.Key != null)
-                Debug.Log(item.Key.FullDescription());
-            else 
-                Debug.Log("Null patch?");
-            
-            item.Value.ForEach(Debug.Log);
-        }
-
-        foreach (var item in targets.baseTypes)
-        {
-            if (item != null)
-            {
-                Debug.Log($"baseTypes: {item.FullDescription()}");
-            }
-            else
-            {
-                Debug.Log("Null patch?");
-            }
-            
-            
-        }
-
-
-
         var x = targets.Resolve().ToList();
         foreach ( var m in x )
         {
@@ -151,9 +124,7 @@ internal static class ManyObjectEventPatch
                 Debug.Log("Null patch?");
             Debug.Log($"ManyObjectEventPatch: {m.FullDescription()}");
         }
-
         return x;
-
     }
 
     [HarmonyPrefix]

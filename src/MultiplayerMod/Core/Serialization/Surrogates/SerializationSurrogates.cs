@@ -16,10 +16,23 @@ public static class SerializationSurrogates
     static SerializationSurrogates()
     {
         Selector.Add(new Vector2SerializationSurrogate());
-        Selector.Add(new Vector2NullSerializationSurrogate());
         Selector.Add(new Vector2fSerializationSurrogate());
         Selector.Add(new Vector3SerializationSurrogate());
-        Debug.Log("All selector added");
+        Selector.Add(new PrioritySettingSurrogate());
+        Selector.Add(new TagSurrogate());
+        Selector.Add(new PathNodeSurrogate());
+        Selector.Add(new AssignmentGroupSurrogate());
+        Selector.Add(new CarePackageInstanceDataSurrogate());
+        Selector.Add(new ChoreTypeSurrogate());
+        Selector.Add(new ComplexRecipeSurrogate());
+        Selector.Add(new DeathSurrogate());
+        Selector.Add(new EmoteSurrogate());
+        Selector.Add(new KAnimFileSurrogate());
+        Selector.Add(new MinionStartingStatsSurrogate());
+        Selector.Add(new RoomSurrogate());
+        Selector.Add(new ScheduleBlockTypeSurrogate());
+        Selector.Add(new SpaceDestinationSurrogate());
+        Selector.Add(new SpiceGrinderSurrogate());
     }
 
     /// <summary>
