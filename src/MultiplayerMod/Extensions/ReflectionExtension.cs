@@ -33,7 +33,7 @@ public static class ReflectionExtension
         if (field == null)
             throw new Exception($"Field {fieldName} not found in {obj.GetType()}");
 
-        return (T)field.GetValue(obj);
+        return (T) field.GetValue(obj);
     }
 
     /// <summary>
@@ -62,6 +62,6 @@ public static class ReflectionExtension
         if (field == null)
             throw new Exception($"Field {propertyName} not found in {obj.GetType()}");
 
-        return (T)field.GetValue(obj);
+        return (T) field.GetValue(obj);
     }
 }

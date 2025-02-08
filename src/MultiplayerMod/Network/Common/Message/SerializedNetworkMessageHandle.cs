@@ -16,7 +16,7 @@ public class SerializedNetworkMessageHandle(INetworkMessage message) : INetworkM
     public byte[] Message => message;
 
     /// <inheritdoc/>
-    public uint Size => (uint)message.Length;
+    public uint Size => (uint) message.Length;
 
     /// <summary>
     /// Serializing any <see cref="INetworkMessage"/> to <see cref="SerializedNetworkMessageHandle"/>

@@ -69,7 +69,7 @@ public class MultiplayerObjects
     /// <param name="id"></param>
     /// <typeparam name="T"></typeparam>
     /// <returns>default of <typeparamref name="T"/> or the retrived <typeparamref name="T"/></returns>
-    public T Get<T>(MultiplayerId id) => !index.TryGetInstance(id, out var instance) ? default : (T)instance!;
+    public T Get<T>(MultiplayerId id) => !index.TryGetInstance(id, out var instance) ? default : (T) instance!;
 
     /// <summary>
     /// Get the <see cref="MultiplayerObject"/> with <paramref name="instance"/> from <see cref="index"/>

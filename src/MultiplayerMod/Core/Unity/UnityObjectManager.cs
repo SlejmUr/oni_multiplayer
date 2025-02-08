@@ -54,10 +54,10 @@ public static class UnityObjectManager
     /// </summary>
     /// <typeparam name="T">Any <see cref="MonoBehaviour"/></typeparam>
     /// <returns>New <typeparamref name="T"/></returns>
-    public static T CreateStub<T>() where T : MonoBehaviour, new() => 
+    public static T CreateStub<T>() where T : MonoBehaviour, new() =>
         new()
-    {
-        m_CachedPtr = unityPlayerNullObject // Support for != and == for Unity objects
-    };
+        {
+            m_CachedPtr = unityPlayerNullObject // Support for != and == for Unity objects
+        };
 
 }

@@ -6,7 +6,7 @@
 /// <param name="controllerReference"></param>
 /// <param name="stateMachineInstanceType"></param>
 [Serializable]
-public class StateMachineResolver(ComponentResolver<StateMachineController> controllerReference,Type stateMachineInstanceType)
+public class StateMachineResolver(ComponentResolver<StateMachineController> controllerReference, Type stateMachineInstanceType)
     : TypedResolver<StateMachine.Instance>
 {
     private ComponentResolver<StateMachineController> ControllerReference { get; set; } = controllerReference;

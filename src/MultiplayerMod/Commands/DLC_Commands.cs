@@ -1,7 +1,7 @@
 using MultiplayerMod.Commands.NetCommands;
 using MultiplayerMod.Core;
-using MultiplayerMod.Events.Common;
 using MultiplayerMod.Events;
+using MultiplayerMod.Events.Common;
 using MultiplayerMod.Multiplayer.UI.Overlays;
 using MultiplayerMod.Network.Common;
 
@@ -12,7 +12,7 @@ internal class DLC_Commands
     internal static void DLC_CheckCommand_Event(DLC_CheckCommand command)
     {
         var game_dlcs = SaveLoader.Instance.GameInfo.dlcIds;
-        var client_dlc_not_compatible = !command.ClientDLCs.Any(x=> !game_dlcs.Contains(x));
+        var client_dlc_not_compatible = !command.ClientDLCs.Any(x => !game_dlcs.Contains(x));
         MultiplayerManager.Instance.NetServer.Send(command.ClientId, new DLC_ResultCommand(client_dlc_not_compatible));
     }
 

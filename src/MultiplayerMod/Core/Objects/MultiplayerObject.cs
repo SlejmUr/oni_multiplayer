@@ -42,7 +42,7 @@ public class MultiplayerObject(MultiplayerId id, int generation, bool persistent
         if (ReferenceEquals(this, other))
             return true;
 
-        return other.GetType() == GetType() && Equals((MultiplayerObject)other);
+        return other.GetType() == GetType() && Equals((MultiplayerObject) other);
     }
 
     /// <summary>

@@ -57,7 +57,7 @@ public class GridReference : GameObjectResolver
             return false;
         if (ReferenceEquals(this, obj))
             return true;
-        return obj.GetType() == GetType() && Equals((GridReference)obj);
+        return obj.GetType() == GetType() && Equals((GridReference) obj);
     }
 
     /// <inheritdoc/>

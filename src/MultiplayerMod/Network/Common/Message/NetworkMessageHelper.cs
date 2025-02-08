@@ -28,7 +28,7 @@ public static class NetworkMessageHelper
             yield break;
         }
 
-        var fragmentsCount = (int)message.Size / MaxFragmentDataSize + 1;
+        var fragmentsCount = (int) message.Size / MaxFragmentDataSize + 1;
         var header = new NetworkMessageFragmentsHeader(fragmentsCount);
         var serializedHeader = SerializedNetworkMessageHandle.Serialize(header);
         yield return serializedHeader;
@@ -37,7 +37,7 @@ public static class NetworkMessageHelper
         for (var i = 0; i < fragmentsCount; i++)
         {
             var offset = i * MaxFragmentDataSize;
-            var bufferSize = Math.Min(Math.Max((int)message.Size - offset, 0), MaxFragmentDataSize);
+            var bufferSize = Math.Min(Math.Max((int) message.Size - offset, 0), MaxFragmentDataSize);
 
             var data = new byte[bufferSize];
             Buffer.BlockCopy(message.Message, offset, data, 0, bufferSize);

@@ -22,8 +22,8 @@ internal class TelepadPatch
         List<CodeInstruction> newInstructions = instructions.ToList();
 
         // Getting the return index. (93 in U54-651155-SCR)
-        int index = newInstructions.FindIndex(x=>x.opcode == OpCodes.Ret);
-        newInstructions.InsertRange(index, 
+        int index = newInstructions.FindIndex(x => x.opcode == OpCodes.Ret);
+        newInstructions.InsertRange(index,
         [
             new CodeInstruction(OpCodes.Ldarg_0).MoveLabelsFrom(newInstructions[index]), // this
             new CodeInstruction(OpCodes.Ldarg_1), // delivery

@@ -11,7 +11,7 @@ public class MultiplayerGame
     /// <summary>
     /// Player Mode using <see cref="PlayerRole"/>
     /// </summary>
-    public PlayerRole Mode { get; private set; } 
+    public PlayerRole Mode { get; private set; }
 
     /// <summary>
     /// List of current <see cref="CorePlayer"/>

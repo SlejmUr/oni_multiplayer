@@ -21,7 +21,7 @@ public static class ImmigrantScreenExtensions
             var readyDeliverables = instance.containers?.Select(
                 container => container switch
                 {
-                    CharacterContainer characterContainer => (ITelepadDeliverable)characterContainer.stats,
+                    CharacterContainer characterContainer => (ITelepadDeliverable) characterContainer.stats,
                     CarePackageContainer packageContainer => packageContainer.carePackageInstanceData,
                     _ => null
                 }

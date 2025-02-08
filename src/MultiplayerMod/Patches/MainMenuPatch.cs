@@ -25,7 +25,7 @@ internal static class MainMenuPatch
             highlight: false,
             () => UseMultiplayerMode(PlayerRole.Server, __instance.LoadGame)
         );
-        
+
         __instance.AddButton(
             "JOIN MULTIPLAYER",
             highlight: false,

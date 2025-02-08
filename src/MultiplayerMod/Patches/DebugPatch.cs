@@ -2,8 +2,6 @@ using HarmonyLib;
 using MultiplayerMod.Commands.NetCommands;
 using MultiplayerMod.Core;
 using MultiplayerMod.Core.Execution;
-using MultiplayerMod.Events;
-using MultiplayerMod.Events.Others;
 
 namespace MultiplayerMod.Patches;
 

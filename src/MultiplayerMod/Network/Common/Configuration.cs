@@ -20,7 +20,7 @@ public static class Configuration
     private static int GetFragmentDataSize()
     {
         using var serialized = SerializedNetworkMessageHandle.Serialize(new NetworkMessageFragment(0, []));
-        return MaxMessageSize - (int)serialized.Size;
+        return MaxMessageSize - (int) serialized.Size;
     }
 
     /// <summary>

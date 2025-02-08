@@ -118,7 +118,7 @@ internal static class ManyObjectEventPatch
     private static IEnumerable<MethodBase> TargetMethods()
     {
         var x = targets.Resolve().ToList();
-        foreach ( var m in x )
+        foreach (var m in x)
         {
             if (m == null)
                 Debug.Log("Null patch?");
@@ -142,16 +142,16 @@ internal static class ManyObjectEventPatch
     private static void ProcessObjectEvent(object __instance, MethodBase __originalMethod, object[] __args)
     {
         if (ExecutionManager.LevelIsActive(ExecutionLevel.Game))
-        switch (__instance)
-        {
-            case KMonoBehaviour kMonoBehaviour:
-                EventManager.TriggerEvent<ComponentMethodCalled>(new(new ComponentEventsArgs(kMonoBehaviour, __originalMethod, __args)));
-                return;
-            case StateMachine.Instance stateMachine:
-                EventManager.TriggerEvent<StateMachineMethodCalled>(new(new StateMachineEventsArgs(stateMachine, __originalMethod, __args)));
-                return;
-            default:
-                throw new NotSupportedException($"{__instance} has un supported type");
-        }
+            switch (__instance)
+            {
+                case KMonoBehaviour kMonoBehaviour:
+                    EventManager.TriggerEvent<ComponentMethodCalled>(new(new ComponentEventsArgs(kMonoBehaviour, __originalMethod, __args)));
+                    return;
+                case StateMachine.Instance stateMachine:
+                    EventManager.TriggerEvent<StateMachineMethodCalled>(new(new StateMachineEventsArgs(stateMachine, __originalMethod, __args)));
+                    return;
+                default:
+                    throw new NotSupportedException($"{__instance} has un supported type");
+            }
     }
 }

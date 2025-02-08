@@ -32,7 +32,7 @@ public interface INetClient
     /// Tick
     /// </summary>
     public void Tick();
-    
+
     /// <summary>
     /// Sending Command to Host and other Clients
     /// </summary>

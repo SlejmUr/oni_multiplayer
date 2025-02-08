@@ -79,7 +79,7 @@ public class MulitplayerNotifier : MonoBehaviour
             toRemove.Add(notification);
             removalPending = false;
         }
-        toRemove.ForEach(x=> notifications.Remove(x));
+        toRemove.ForEach(x => notifications.Remove(x));
     }
 
 }

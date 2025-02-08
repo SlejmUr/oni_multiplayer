@@ -14,7 +14,7 @@ public class ComponentResolver<T>(GameObjectResolver reference) : TypedResolver<
     private Type ComponentType { get; } = typeof(T);
 
     /// <inheritdoc/>
-    public override T Resolve() => (T)GameObjectReference.Resolve().GetComponent(ComponentType);
+    public override T Resolve() => (T) GameObjectReference.Resolve().GetComponent(ComponentType);
 
     /// <summary>
     /// Returns a value indicating whether this instance and a specified <see cref="ComponentResolver"/> object represent the same value.
@@ -34,7 +34,7 @@ public class ComponentResolver<T>(GameObjectResolver reference) : TypedResolver<
         if (ReferenceEquals(this, obj))
             return true;
 
-        return obj.GetType() == GetType() && Equals((ComponentResolver)obj);
+        return obj.GetType() == GetType() && Equals((ComponentResolver) obj);
     }
 
     /// <inheritdoc/>

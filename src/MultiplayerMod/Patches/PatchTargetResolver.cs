@@ -96,7 +96,7 @@ internal class PatchTargetResolver
         if (methodToArgumentCount.ContainsKey(methodName))
         {
             var methodArgsCount = methodToArgumentCount[methodName];
-            methodInfo = type.GetMethods(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance).Single(x=>x.Name == methodName && x.GetParameters().Length == methodArgsCount);
+            methodInfo = type.GetMethods(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance).Single(x => x.Name == methodName && x.GetParameters().Length == methodArgsCount);
         }
         else
         {

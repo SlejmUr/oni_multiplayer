@@ -1,10 +1,10 @@
 using MultiplayerMod.Core;
 using MultiplayerMod.Core.Behaviour;
+using MultiplayerMod.Events;
+using MultiplayerMod.Events.Common;
 using MultiplayerMod.Events.MainMenu;
 using MultiplayerMod.Events.Others;
-using MultiplayerMod.Events;
 using MultiplayerMod.Multiplayer.UI.Overlays;
-using MultiplayerMod.Events.Common;
 using UnityEngine;
 
 namespace MultiplayerMod.Multiplayer.EventCalls;

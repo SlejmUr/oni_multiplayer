@@ -1,11 +1,11 @@
-﻿using MultiplayerMod.Core;
+﻿using MultiplayerMod.Commands.NetCommands;
+using MultiplayerMod.Core;
 using MultiplayerMod.Core.Exceptions;
 using MultiplayerMod.Core.Player;
-using MultiplayerMod.Events.Common;
 using MultiplayerMod.Events;
+using MultiplayerMod.Events.Common;
 using MultiplayerMod.Events.Others;
 using MultiplayerMod.Network.Common;
-using MultiplayerMod.Commands.NetCommands;
 using MultiplayerMod.Network.Common.Interfaces;
 
 namespace MultiplayerMod.Multiplayer.EventCalls;

@@ -1,7 +1,7 @@
-﻿using MultiplayerMod.Core.Objects.Resolvers;
+﻿using MultiplayerMod.Core.Behaviour;
+using MultiplayerMod.Core.Objects.Resolvers;
 using System.Runtime.CompilerServices;
 using UnityEngine;
-using MultiplayerMod.Core.Behaviour;
 
 namespace MultiplayerMod.Extensions;
 

@@ -20,7 +20,7 @@ public class NetworkMessageFragmentProcessor
     /// <param name="handle"></param>
     /// <returns>null if message is in progressm or <see cref="NetworkMessage"/></returns>
     public NetworkMessage Process(uint clientId, INetworkMessageHandle handle) =>
-        CoreSerializer.Deserialize<INetworkMessage>(handle.Message.Take((int)handle.Size).ToArray()) switch
+        CoreSerializer.Deserialize<INetworkMessage>(handle.Message.Take((int) handle.Size).ToArray()) switch
         {
             NetworkMessage message => message,
             NetworkMessageFragmentsHeader header => ProcessFragmentsHeader(clientId, header),
@@ -104,7 +104,7 @@ public class NetworkMessageFragmentProcessor
 
             watchdog.Enabled = false;
             using var stream = new MemoryStream(buffer);
-            return (NetworkMessage)new BinaryFormatter().Deserialize(stream);
+            return (NetworkMessage) new BinaryFormatter().Deserialize(stream);
         }
     }
 }

@@ -19,7 +19,7 @@ public class SteamNetworkMessageHandle : ISteamNetworkMessageHandle
 
     /// <inheritdoc/>
     public byte[] Message => bytes;
-    
+
 
     /// <summary>
     /// Creating new <see cref="SteamNetworkMessageHandle"/>
@@ -30,8 +30,8 @@ public class SteamNetworkMessageHandle : ISteamNetworkMessageHandle
     {
         Pointer = pointer;
         Size = size;
-        bytes = new byte[(int)Size];
-        Marshal.Copy(Pointer, bytes, 0, (int)Size);
+        bytes = new byte[(int) Size];
+        Marshal.Copy(Pointer, bytes, 0, (int) Size);
     }
 
     /// <summary>
@@ -40,10 +40,10 @@ public class SteamNetworkMessageHandle : ISteamNetworkMessageHandle
     /// <param name="msghandle"></param>
     public SteamNetworkMessageHandle(INetworkMessageHandle msghandle)
     {
-        bytes = msghandle.Message.Take((int)msghandle.Size).ToArray();
+        bytes = msghandle.Message.Take((int) msghandle.Size).ToArray();
         handle = GCHandle.Alloc(bytes, GCHandleType.Pinned);
         Pointer = handle.AddrOfPinnedObject();
-        Size = (uint)bytes.Length;
+        Size = (uint) bytes.Length;
     }
 
     /// <summary>
@@ -55,7 +55,7 @@ public class SteamNetworkMessageHandle : ISteamNetworkMessageHandle
         bytes = CoreSerializer.Serialize(message);
         handle = GCHandle.Alloc(bytes, GCHandleType.Pinned);
         Pointer = handle.AddrOfPinnedObject();
-        Size = (uint)bytes.Length;
+        Size = (uint) bytes.Length;
     }
 
     /// <inheritdoc/>

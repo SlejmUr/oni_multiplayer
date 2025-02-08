@@ -12,7 +12,7 @@ internal class UICalls
 
     internal static void OnConnectionLost(ConnectionLostEvent _)
     {
-        var screen = (InfoDialogScreen)GameScreenManager.Instance.StartScreen(
+        var screen = (InfoDialogScreen) GameScreenManager.Instance.StartScreen(
             ScreenPrefabs.Instance.InfoDialogScreen.gameObject,
             GameScreenManager.Instance.ssOverlayCanvas.gameObject
         );

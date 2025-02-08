@@ -1,6 +1,5 @@
 ﻿using HarmonyLib;
 using MultiplayerMod.Extensions;
-using System.Collections.Generic;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 
@@ -26,7 +25,7 @@ public static class EventManager
             Debug.Log($"Loading type from Assembly: {type.FullName}");
             BaseEventDeclaredTypes.Add(type);
         }
-            
+
         SubscribeAssemblyEvents(assembly);
     }
 
@@ -40,8 +39,8 @@ public static class EventManager
         foreach (var type in assembly.GetTypes())
         {
             var methods = type.GetMethods(BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic).Where(
-                x => x.GetParameters().Length == 1 
-                && BaseEventDeclaredTypes.Contains(x.GetParameters()[0].ParameterType) 
+                x => x.GetParameters().Length == 1
+                && BaseEventDeclaredTypes.Contains(x.GetParameters()[0].ParameterType)
                 && x.IsStatic
                 && x.GetCustomAttribute<NoAutoSubscribeAttribute>() == null);
             if (!methods.Any())

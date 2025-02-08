@@ -24,7 +24,7 @@ public class CorePlayers : IEnumerable<CorePlayer>
     /// </summary>
     /// <param name="id">Identification of a <see cref="CorePlayer"/></param>
     /// <returns>Success or Failure</returns>
-    
+
     public bool Remove(Guid id) => Players.Remove(id);
 
     /// <summary>

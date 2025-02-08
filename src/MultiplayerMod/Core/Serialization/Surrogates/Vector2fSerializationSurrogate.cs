@@ -13,7 +13,7 @@ public class Vector2fSerializationSurrogate : ISerializationSurrogate, ISurrogat
     /// <inheritdoc/>
     public void GetObjectData(object obj, SerializationInfo info, StreamingContext context)
     {
-        var vector = (Vector2f)obj;
+        var vector = (Vector2f) obj;
         info.AddValue("x", vector.x);
         info.AddValue("y", vector.y);
     }
@@ -21,7 +21,7 @@ public class Vector2fSerializationSurrogate : ISerializationSurrogate, ISurrogat
     /// <inheritdoc/>
     public object SetObjectData(object obj, SerializationInfo info, StreamingContext context, ISurrogateSelector selector)
     {
-        var vector = (Vector2f)obj;
+        var vector = (Vector2f) obj;
         vector.x = info.GetSingle("x");
         vector.y = info.GetSingle("y");
         return vector;

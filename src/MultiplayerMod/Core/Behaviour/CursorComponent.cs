@@ -1,9 +1,9 @@
-using TMPro;
-using UnityEngine.EventSystems;
-using UnityEngine;
-using UnityEngine.UI;
-using MultiplayerMod.Events.Others;
 using MultiplayerMod.Events;
+using MultiplayerMod.Events.Others;
+using TMPro;
+using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 namespace MultiplayerMod.Core.Behaviour;
 
@@ -201,7 +201,7 @@ public class CursorComponent : KMonoBehaviour
 
                 float updateDelta = current.Time - previous.Time;
                 var timeDiff = (System.DateTime.Now.Ticks - current.Time) / updateDelta;
-                return Vector2.Lerp((Vector2)previous.Position, (Vector2)current.Position, timeDiff);
+                return Vector2.Lerp((Vector2) previous.Position, (Vector2) current.Position, timeDiff);
             }
         }
 

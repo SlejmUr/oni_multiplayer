@@ -33,7 +33,7 @@ public class SteamNetId(CSteamID id) : INetId
     /// <inheritdoc/>
     public int GetHashCode(INetId obj)
     {
-        return ((SteamNetId)obj).Id.GetHashCode();
+        return ((SteamNetId) obj).Id.GetHashCode();
     }
 
     /// <inheritdoc/>

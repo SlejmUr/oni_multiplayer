@@ -77,7 +77,7 @@ public class SteamNetClient(SteamLobby lobby) : INetClient
         UnityObjectManager.Destroy(gameObject);
         lobby.Leave();
         lobby.OnJoin -= OnLobbyJoin;
-        SteamNetworkingSockets.CloseConnection(connection, (int)k_ESteamNetConnectionEnd_App_Generic, "", true);
+        SteamNetworkingSockets.CloseConnection(connection, (int) k_ESteamNetConnectionEnd_App_Generic, "", true);
         SetState(NetStateClient.Disconnected);
         SteamFriends.ClearRichPresence();
     }
@@ -108,7 +108,7 @@ public class SteamNetClient(SteamLobby lobby) : INetClient
             }
             else
             {
-                steamHandle = (ISteamNetworkMessageHandle)handle;
+                steamHandle = (ISteamNetworkMessageHandle) handle;
             }
 
             EResult result = SteamNetworkingSockets.SendMessageToConnection(
@@ -177,7 +177,7 @@ public class SteamNetClient(SteamLobby lobby) : INetClient
         for (int i = 0; i < messagesCount; i++)
         {
             SteamNetworkingMessage_t steamMessage = SteamNetworkingMessage_t.FromIntPtr(messages[i]);
-            NetworkMessage message = messageProcessor.Process(steamMessage.m_conn.m_HSteamNetConnection,steamMessage.GetNetworkMessageHandle());
+            NetworkMessage message = messageProcessor.Process(steamMessage.m_conn.m_HSteamNetConnection, steamMessage.GetNetworkMessageHandle());
             if (message != null)
             {
                 Debug.Log($"Client Processed message: {message}");

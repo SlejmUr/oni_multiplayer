@@ -1,7 +1,7 @@
 ﻿using MultiplayerMod.Commands.NetCommands;
 using MultiplayerMod.Core;
-using MultiplayerMod.Events.Common;
 using MultiplayerMod.Events;
+using MultiplayerMod.Events.Common;
 using MultiplayerMod.Network.Common;
 using MultiplayerMod.Patches;
 

@@ -14,5 +14,5 @@ public static class SteamExtensions
     /// <param name="message"></param>
     /// <returns><see cref="SteamNetworkMessageHandle"/></returns>
     public static INetworkMessageHandle GetNetworkMessageHandle(this SteamNetworkingMessage_t message) =>
-        new SteamNetworkMessageHandle(message.m_pData, (uint)message.m_cbSize);
+        new SteamNetworkMessageHandle(message.m_pData, (uint) message.m_cbSize);
 }

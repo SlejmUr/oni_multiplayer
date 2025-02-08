@@ -31,7 +31,7 @@ public class MultiplayerId
     public MultiplayerId(InternalMultiplayerIdType type, long internalId)
     {
         Type = MultiplayerIdType.Internal;
-        HighPart = (long)type;
+        HighPart = (long) type;
         LowPart = internalId;
     }
 
@@ -51,13 +51,13 @@ public class MultiplayerId
     private long GetLong(byte[] bytes, int offset)
     {
         return bytes[offset] |
-               (long)bytes[offset + 1] << 8 |
-               (long)bytes[offset + 2] << 16 |
-               (long)bytes[offset + 3] << 24 |
-               (long)bytes[offset + 4] << 32 |
-               (long)bytes[offset + 5] << 40 |
-               (long)bytes[offset + 6] << 48 |
-               (long)bytes[offset + 7] << 56;
+               (long) bytes[offset + 1] << 8 |
+               (long) bytes[offset + 2] << 16 |
+               (long) bytes[offset + 3] << 24 |
+               (long) bytes[offset + 4] << 32 |
+               (long) bytes[offset + 5] << 40 |
+               (long) bytes[offset + 6] << 48 |
+               (long) bytes[offset + 7] << 56;
     }
 
     /// <summary>
@@ -78,9 +78,9 @@ public class MultiplayerId
         if (ReferenceEquals(this, other))
             return true;
 
-        return other.GetType() == GetType() && Equals((MultiplayerId)other);
+        return other.GetType() == GetType() && Equals((MultiplayerId) other);
     }
-    
+
     /// <inheritdoc/>
     public override int GetHashCode()
     {
@@ -108,6 +108,6 @@ public class MultiplayerId
     public static bool operator !=(MultiplayerId left, MultiplayerId right) => !Equals(left, right);
 
     /// <inheritdoc/>
-    public override string ToString() => $"{(byte)Type:x1}:{HighPart:x16}:{LowPart:x16}";
+    public override string ToString() => $"{(byte) Type:x1}:{HighPart:x16}:{LowPart:x16}";
 
 }

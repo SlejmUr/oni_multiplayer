@@ -145,7 +145,7 @@ public class SteamNetServer(SteamLobby lobby) : INetServer
     private void SendCommand(BaseCommandEvent command, MultiplayerCommandOptions options, IEnumerable<HSteamNetConnection> connections)
     {
         var sequence = NetworkMessageHelper.Create(command, options);
-        sequence.ForEach(handle => 
+        sequence.ForEach(handle =>
         {
             connections.ForEach(connection => Send(handle, connection));
             handle.Dispose();
@@ -162,7 +162,7 @@ public class SteamNetServer(SteamLobby lobby) : INetServer
         }
         else
         {
-            steamHandle = (ISteamNetworkMessageHandle)handle;
+            steamHandle = (ISteamNetworkMessageHandle) handle;
         }
 
         EResult result = SteamGameServerNetworkingSockets.SendMessageToConnection(
@@ -272,7 +272,7 @@ public class SteamNetServer(SteamLobby lobby) : INetServer
         if (result != k_EResultOK)
         {
             Debug.LogError($"Unable to accept connection from {clientSteamId} (error {result})");
-            var reason = (int)k_ESteamNetConnectionEnd_AppException_Generic + (int)result;
+            var reason = (int) k_ESteamNetConnectionEnd_AppException_Generic + (int) result;
             SteamGameServerNetworkingSockets.CloseConnection(
                 connection,
                 reason,
@@ -292,7 +292,7 @@ public class SteamNetServer(SteamLobby lobby) : INetServer
         ClientDisconnected?.Invoke(new SteamNetId(clientSteamId));
         SteamGameServerNetworkingSockets.CloseConnection(
             connection,
-            (int)k_ESteamNetConnectionEnd_App_Generic,
+            (int) k_ESteamNetConnectionEnd_App_Generic,
             null,
             false
         );

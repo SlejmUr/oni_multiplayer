@@ -3,4 +3,4 @@
 /// <summary>
 /// Even if meet the state do not subscribe to this method.
 /// </summary>
-public class NoAutoSubscribeAttribute  : Attribute;
+public class NoAutoSubscribeAttribute : Attribute;

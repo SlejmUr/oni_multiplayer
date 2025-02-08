@@ -33,7 +33,7 @@ public class SteamLobbyJoinRequestComponent : MonoBehaviour
         var arguments = Environment.GetCommandLineArgs();
         if (!arguments.Contains("+connect_lobby"))
             return;
-        int index = arguments.Where(arg=> arg.Contains("+connect_lobby")).Select((arg, ind)=> ind).FirstOrDefault();
+        int index = arguments.Where(arg => arg.Contains("+connect_lobby")).Select((arg, ind) => ind).FirstOrDefault();
         string lobby_id = arguments.ElementAtOrDefault(index + 1);
 
         if (string.IsNullOrEmpty(lobby_id))

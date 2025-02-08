@@ -1,7 +1,7 @@
 using HarmonyLib;
 using MultiplayerMod.Commands.NetCommands;
-using MultiplayerMod.Core.Execution;
 using MultiplayerMod.Core;
+using MultiplayerMod.Core.Execution;
 
 namespace MultiplayerMod.Patches;
 

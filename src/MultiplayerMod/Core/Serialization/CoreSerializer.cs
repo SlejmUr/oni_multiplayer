@@ -10,7 +10,7 @@ public static class CoreSerializer
 {
     internal static BinaryFormatter Formatter => new()
     {
-        SurrogateSelector = SerializationSurrogates.Selector,      
+        SurrogateSelector = SerializationSurrogates.Selector,
     };
 
     /// <summary>

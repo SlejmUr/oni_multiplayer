@@ -27,7 +27,7 @@ internal class ExecutionCalls
             Debug.Log("Execution set to Game");
             ExecutionManager.CurrentLevel = ExecutionLevel.Game;
         }
-            
+
     }
 
     internal static void OnStopMultiplayer(StopMultiplayerEvent _)

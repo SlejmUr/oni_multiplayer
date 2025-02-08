@@ -23,7 +23,7 @@ internal static class ResearchEntryPatch
         }
         MultiplayerManager.Instance.NetClient.Send(new ResearchEntryCommand(__instance.targetTech.Id, true));
     }
-        
+
 
     [HarmonyPostfix]
     [HarmonyPatch(nameof(ResearchEntry.OnResearchClicked))]

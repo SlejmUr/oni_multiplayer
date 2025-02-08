@@ -28,7 +28,7 @@ public class WorldManager(List<IWorldStateManager> stateManagers)
     /// </summary>
     public void Sync()
     {
-        
+
         SetupStatusOverlay();
 
         var resume = !SpeedControlScreen.Instance.IsPaused;
@@ -60,7 +60,7 @@ public class WorldManager(List<IWorldStateManager> stateManagers)
     {
         MultiplayerStatusOverlay.Show($"Loading {world.Name}...");
         EventManager.SubscribeEvent<PlayersReadyEvent>(MPCommonEvents.CloseOverlayOnReady);
-        EventManager.SubscribeEvent<WorldStateInitializingEvent>([UnsubAfterCall](_) => 
+        EventManager.SubscribeEvent<WorldStateInitializingEvent>([UnsubAfterCall] (_) =>
         {
             worldStateManagers.ForEach(it => it.LoadState(world.State));
         });

@@ -1,6 +1,6 @@
+using MultiplayerMod.Commands.NetCommands;
 using MultiplayerMod.Core;
 using MultiplayerMod.Events;
-using MultiplayerMod.Commands.NetCommands;
 using MultiplayerMod.Network.Common.Interfaces;
 
 namespace MultiplayerMod.Multiplayer.Controllers;

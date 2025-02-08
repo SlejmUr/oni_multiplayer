@@ -32,7 +32,7 @@ public class MultiplayerIdReference(MultiplayerId id) : GameObjectResolver
         if (ReferenceEquals(this, obj))
             return true;
 
-        return obj.GetType() == GetType() && Equals((MultiplayerIdReference)obj);
+        return obj.GetType() == GetType() && Equals((MultiplayerIdReference) obj);
     }
 
     /// <inheritdoc/>

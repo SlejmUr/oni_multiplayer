@@ -243,7 +243,7 @@ public class CoroutineWorkerCustom
 
     private static IEnumerator<double> StartAfterCoroutineHelper(IEnumerator<double> coptr)
     {
-        return _StartWhenDone((Coroutine?)_tmpRef, coptr);
+        return _StartWhenDone((Coroutine?) _tmpRef, coptr);
     }
     #endregion
     #region Static IEnumerators
@@ -332,7 +332,7 @@ public class CoroutineWorkerCustom
     /// <returns></returns>
     public static double StartAfterCoroutine(CoroutineHandle coroutine)
     {
-        Coroutine cor = Instance.CustomCoroutines.FirstOrDefault(x => coroutine.Equals((CoroutineHandle)x));
+        Coroutine cor = Instance.CustomCoroutines.FirstOrDefault(x => coroutine.Equals((CoroutineHandle) x));
         if (cor.IsSuccess)
         {
             return double.NaN;
@@ -371,7 +371,7 @@ public class CoroutineWorkerCustom
     /// <param name="coroutine"></param>
     public void KillCoroutine(CoroutineHandle coroutine)
     {
-        int index = Instance.CustomCoroutines.FindIndex(x => coroutine.Equals((CoroutineHandle)x));
+        int index = Instance.CustomCoroutines.FindIndex(x => coroutine.Equals((CoroutineHandle) x));
         if (index == -1)
         {
             Debug.Log("No Coroutine!");
@@ -403,7 +403,7 @@ public class CoroutineWorkerCustom
     {
         if (_mutex.WaitOne(1))
         {
-            var cors = Instance.CustomCoroutines.Where(x=>x.Tag == tag).Select(x=>(CoroutineHandle)x).ToList();
+            var cors = Instance.CustomCoroutines.Where(x => x.Tag == tag).Select(x => (CoroutineHandle) x).ToList();
             KillCoroutines(cors);
             _mutex.ReleaseMutex();
         }
@@ -424,7 +424,7 @@ public class CoroutineWorkerCustom
     /// <param name="coroutine"></param>
     public void PauseCoroutine(CoroutineHandle coroutine)
     {
-        int index = Instance.CustomCoroutines.FindIndex(x => coroutine.Equals((CoroutineHandle)x));
+        int index = Instance.CustomCoroutines.FindIndex(x => coroutine.Equals((CoroutineHandle) x));
         if (index == -1)
         {
             Debug.Log("No Coroutine!");
@@ -446,7 +446,7 @@ public class CoroutineWorkerCustom
     /// <returns></returns>
     public static bool IsCoroutineExists(CoroutineHandle coroutine)
     {
-        return Instance.CustomCoroutines.FindIndex(x => coroutine.Equals((CoroutineHandle)x)) != -1;
+        return Instance.CustomCoroutines.FindIndex(x => coroutine.Equals((CoroutineHandle) x)) != -1;
     }
 
     /// <summary>
@@ -466,7 +466,7 @@ public class CoroutineWorkerCustom
     /// <returns></returns>
     public bool IsCoroutineRunning(CoroutineHandle coroutine)
     {
-        int index = Instance.CustomCoroutines.FindIndex(x => coroutine.Equals((CoroutineHandle)x));
+        int index = Instance.CustomCoroutines.FindIndex(x => coroutine.Equals((CoroutineHandle) x));
         if (index == -1)
         {
             Debug.Log("No Coroutine!");
@@ -502,7 +502,7 @@ public class CoroutineWorkerCustom
         bool sucess = false;
         if (_mutex.WaitOne(1))
         {
-            int index = Instance.CustomCoroutines.FindIndex(x => coroutine.Equals((CoroutineHandle)x));
+            int index = Instance.CustomCoroutines.FindIndex(x => coroutine.Equals((CoroutineHandle) x));
             if (index == -1)
             {
                 Debug.Log("No Coroutine!");

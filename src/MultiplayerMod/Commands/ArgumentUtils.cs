@@ -203,7 +203,7 @@ public static class ArgumentUtils
             var field = type.GetField("storageFilter", BindingFlags) ??
                         type.GetField("filteredStorage", BindingFlags) ??
                         type.GetField("foodStorageFilter", BindingFlags);
-            return (FilteredStorage)field!.GetValue(root);
+            return (FilteredStorage) field!.GetValue(root);
         }
     }
 
