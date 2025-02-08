@@ -91,7 +91,7 @@ internal class OtherCommands
         }
     }
 
-    public static void ChangeSchedulesListCommand_Event(ChangeSchedulesListCommand command)
+    internal static void ChangeSchedulesListCommand_Event(ChangeSchedulesListCommand command)
     {
         var manager = ScheduleManager.Instance;
         var schedules = manager.schedules;
@@ -127,7 +127,7 @@ internal class OtherCommands
         }
     }
 
-    public static void MasterSkillCommand_Event(MasterSkillCommand command)
+    internal static void MasterSkillCommand_Event(MasterSkillCommand command)
     {
         var component = command.MinionIdentityReference.Resolve().GetComponent<MinionResume>();
         if (component == null)
@@ -166,5 +166,42 @@ internal class OtherCommands
         }
 
         ManagementMenu.Instance.skillsScreen.RefreshAll();
+    }
+
+    internal static void ChangeRedAlertStateCommand_Event(ChangeRedAlertStateCommand command)
+    {
+        ClusterManager.Instance.activeWorld.AlertManager.ToggleRedAlert(command.IsEnabled);
+    }
+
+    internal static void UpdateAlarmCommand_Event(UpdateAlarmCommand command)
+    {
+        var alarm = command.Args.Target.Resolve();
+        alarm.notificationName = command.Args.NotificationName;
+        alarm.notificationTooltip = command.Args.NotificationTooltip;
+        alarm.pauseOnNotify = command.Args.PauseOnNotify;
+        alarm.zoomOnNotify = command.Args.ZoomOnNotify;
+        alarm.notificationType = command.Args.NotificationType;
+
+        alarm.UpdateNotification(true);
+    }
+
+    internal static void UpdateLogicCounterCommand_Event(UpdateLogicCounterCommand command)
+    {
+        var logicCounter = command.Args.Target.Resolve();
+        logicCounter.maxCount = command.Args.MaxCount;
+        logicCounter.currentCount = command.Args.CurrentCount;
+        logicCounter.advancedMode = command.Args.AdvancedMode;
+
+        logicCounter.SetCounterState();
+        logicCounter.UpdateLogicCircuit();
+        logicCounter.UpdateVisualState(true);
+        logicCounter.UpdateMeter();
+    }
+
+    internal static void UpdateCritterSensorCommand_Event(UpdateCritterSensorCommand command)
+    {
+        var logicCritterCountSensor = command.Args.Target.Resolve();
+        logicCritterCountSensor.countCritters = command.Args.CountCritters;
+        logicCritterCountSensor.countEggs = command.Args.CountEggs;
     }
 }

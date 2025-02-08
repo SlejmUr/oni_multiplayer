@@ -6,12 +6,8 @@ TransitToState
 UpdateMove
 ReleaseChoreDriver
 SetDriverChore
-ChangeRedAlertState
 SyncWorldDebugSnapshot ?
 SynchronizeObjectPosition
-UpdateAlarm
-UpdateCritterSensor
-UpdateLogicCounter
 UpdateLogicTimeOfDaySensor
 UpdateLogicTimeSensor
 UpdateRailGunCapacity
