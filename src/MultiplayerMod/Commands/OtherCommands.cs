@@ -2,6 +2,7 @@ using MultiplayerMod.Commands.NetCommands;
 using MultiplayerMod.Core.Behaviour;
 using MultiplayerMod.Extensions;
 using MultiplayerMod.Patches;
+using MultiplayerMod.Patches.ScreenPatches;
 
 namespace MultiplayerMod.Commands;
 
@@ -203,5 +204,34 @@ internal class OtherCommands
         var logicCritterCountSensor = command.Args.Target.Resolve();
         logicCritterCountSensor.countCritters = command.Args.CountCritters;
         logicCritterCountSensor.countEggs = command.Args.CountEggs;
+    }
+
+    internal static void UpdateLogicTimeOfDaySensorCommand_Event(UpdateLogicTimeOfDaySensorCommand command)
+    {
+        var sensor = command.Args.Target.Resolve();
+        sensor.startTime = command.Args.StartTime;
+        sensor.duration = command.Args.Duration;
+    }
+
+    internal static void UpdateLogicTimeSensorCommand_Event(UpdateLogicTimeSensorCommand command)
+    {
+        var sensor = command.Args.Target.Resolve();
+        sensor.displayCyclesMode = command.Args.DisplayCyclesMode;
+        sensor.onDuration = command.Args.OnDuration;
+        sensor.offDuration = command.Args.OffDuration;
+        sensor.timeElapsedInCurrentState = command.Args.TimeElapsedInCurrentState;
+    }
+
+    internal static void UpdateRailGunCapacityCommand_Event(UpdateRailGunCapacityCommand command)
+    {
+        var railGun = command.Args.Target.Resolve();
+        railGun.launchMass = command.Args.LaunchMass;
+    }
+
+    internal static void UpdateTemperatureSwitchCommand_Event(UpdateTemperatureSwitchCommand command)
+    {
+        var temperatureControlledSwitch = command.Args.Target.Resolve();
+        temperatureControlledSwitch.thresholdTemperature = command.Args.ThresholdTemperature;
+        temperatureControlledSwitch.activateOnWarmerThan = command.Args.ActivateOnWarmerThan;
     }
 }

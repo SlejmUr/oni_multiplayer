@@ -4,7 +4,7 @@ using MultiplayerMod.Core.Execution;
 using MultiplayerMod.Events;
 using MultiplayerMod.Events.Others;
 
-namespace MultiplayerMod.Patches;
+namespace MultiplayerMod.Patches.ScreenPatches;
 
 [HarmonyPatch(typeof(SpeedControlScreen))]
 internal static class SpeedControlScreenPatch

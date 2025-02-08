@@ -4,7 +4,7 @@ using MultiplayerMod.Core.Execution;
 using MultiplayerMod.Events;
 using MultiplayerMod.Events.Common;
 
-namespace MultiplayerMod.Patches;
+namespace MultiplayerMod.Patches.ScreenPatches;
 
 [HarmonyPatch(typeof(PauseScreen))]
 internal static class PauseScreenPatch

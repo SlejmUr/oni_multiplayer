@@ -4,7 +4,7 @@ using MultiplayerMod.Core;
 using MultiplayerMod.Core.Execution;
 using MultiplayerMod.Extensions;
 
-namespace MultiplayerMod.Patches;
+namespace MultiplayerMod.Patches.ScreenPatches;
 
 [HarmonyPatch(typeof(ImmigrantScreen))]
 internal static class ImmigrantScreenPatch

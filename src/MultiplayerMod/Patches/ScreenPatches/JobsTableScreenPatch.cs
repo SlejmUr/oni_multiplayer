@@ -3,7 +3,7 @@ using MultiplayerMod.Commands.NetCommands;
 using MultiplayerMod.Core;
 using MultiplayerMod.Core.Execution;
 
-namespace MultiplayerMod.Patches;
+namespace MultiplayerMod.Patches.ScreenPatches;
 
 [HarmonyPatch(typeof(JobsTableScreen))]
 internal class JobsTableScreenPatch
@@ -14,6 +14,6 @@ internal class JobsTableScreenPatch
     {
         if (!ExecutionManager.LevelIsActive(ExecutionLevel.Game))
             return;
-        MultiplayerManager.Instance.NetClient.Send(new SetPersonalPrioritiesAdvancedCommand(global::Game.Instance.advancedPersonalPriorities));
+        MultiplayerManager.Instance.NetClient.Send(new SetPersonalPrioritiesAdvancedCommand(Game.Instance.advancedPersonalPriorities));
     }
 }

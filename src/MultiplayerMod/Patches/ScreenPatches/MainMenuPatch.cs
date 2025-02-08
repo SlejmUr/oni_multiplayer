@@ -6,7 +6,7 @@ using MultiplayerMod.Events.Common;
 using MultiplayerMod.Events.MainMenu;
 using MultiplayerMod.Extensions;
 
-namespace MultiplayerMod.Patches;
+namespace MultiplayerMod.Patches.ScreenPatches;
 
 [HarmonyPatch(typeof(MainMenu))]
 internal static class MainMenuPatch

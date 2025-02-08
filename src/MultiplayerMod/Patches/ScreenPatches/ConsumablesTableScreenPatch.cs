@@ -4,7 +4,7 @@ using MultiplayerMod.Core;
 using MultiplayerMod.Core.Execution;
 using UnityEngine;
 
-namespace MultiplayerMod.Patches;
+namespace MultiplayerMod.Patches.ScreenPatches;
 
 [HarmonyPatch(typeof(ConsumablesTableScreen))]
 internal static class ConsumablesTableScreenPatch

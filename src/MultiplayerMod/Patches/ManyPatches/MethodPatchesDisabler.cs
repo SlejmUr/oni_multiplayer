@@ -2,7 +2,7 @@ using HarmonyLib;
 using MultiplayerMod.Core.Execution;
 using System.Reflection;
 
-namespace MultiplayerMod.Patches;
+namespace MultiplayerMod.Patches.ManyPatches;
 
 [HarmonyPatch]
 internal static class MethodPatchesDisabler

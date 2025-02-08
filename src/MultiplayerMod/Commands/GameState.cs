@@ -3,7 +3,7 @@ using MultiplayerMod.Core;
 using MultiplayerMod.Events;
 using MultiplayerMod.Events.Common;
 using MultiplayerMod.Network.Common;
-using MultiplayerMod.Patches;
+using MultiplayerMod.Patches.ScreenPatches;
 
 namespace MultiplayerMod.Commands;
 

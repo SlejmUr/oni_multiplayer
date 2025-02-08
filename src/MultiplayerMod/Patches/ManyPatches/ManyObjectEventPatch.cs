@@ -5,7 +5,7 @@ using MultiplayerMod.Events.EventArgs;
 using MultiplayerMod.Events.Others;
 using System.Reflection;
 
-namespace MultiplayerMod.Patches;
+namespace MultiplayerMod.Patches.ManyPatches;
 
 [HarmonyPatch]
 internal static class ManyObjectEventPatch

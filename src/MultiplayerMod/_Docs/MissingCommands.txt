@@ -8,10 +8,6 @@ ReleaseChoreDriver
 SetDriverChore
 SyncWorldDebugSnapshot ?
 SynchronizeObjectPosition
-UpdateLogicTimeOfDaySensor
-UpdateLogicTimeSensor
-UpdateRailGunCapacity
-UpdateTemperatureSwitch
 ClickUserMenuButton  ?
 AbstractBuildUtilityCommand !
 AbstractDragToolCommand !
