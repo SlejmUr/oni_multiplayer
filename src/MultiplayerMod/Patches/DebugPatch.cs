@@ -1,4 +1,6 @@
-﻿using HarmonyLib;
+using HarmonyLib;
+using MultiplayerMod.Commands.NetCommands;
+using MultiplayerMod.Core;
 using MultiplayerMod.Core.Execution;
 using MultiplayerMod.Events;
 using MultiplayerMod.Events.Others;
@@ -13,7 +15,8 @@ internal static class DebugPatch
     private static void DebugStepFramePrefix()
     {
         if (!ExecutionManager.LevelIsActive(ExecutionLevel.Game))
-            EventManager.TriggerEvent<DebugGameFrameStep>(new());
+            return;
+        MultiplayerManager.Instance.NetClient.Send(new DebugGameFrameStepCommand());
     }
 
     [HarmonyPrefix]
@@ -21,6 +24,7 @@ internal static class DebugPatch
     private static void ForceSimStepPrefix()
     {
         if (!ExecutionManager.LevelIsActive(ExecutionLevel.Game))
-            EventManager.TriggerEvent<DebugSimulationStep>(new());
+            return;
+        MultiplayerManager.Instance.NetClient.Send(new DebugSimulationStepCommand());
     }
 }

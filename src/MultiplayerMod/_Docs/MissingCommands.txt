@@ -9,10 +9,6 @@ SetDriverChore
 ChangeRedAlertState
 SyncWorldDebugSnapshot ?
 SynchronizeObjectPosition
-SetDisinfectSettings
-SetDefaultPriority
-SetPersonalPrioritiesAdvanced
-SetPersonalPriority
 ChangeSchedulesList
 UpdateAlarm
 UpdateCritterSensor

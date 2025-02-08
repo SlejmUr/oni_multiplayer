@@ -59,11 +59,6 @@ internal class OtherCommands
         }
     }
 
-    internal static void ChangePriorityCommand_Event(ChangePriorityCommand command)
-    {
-        command.Target.Resolve().SetMasterPriority(command.Priority);
-    }
-
     internal static void PermitConsumableByDefaultCommand_Event(PermitConsumableByDefaultCommand command)
     {
         ConsumerManager.instance.DefaultForbiddenTagsList.Clear();
