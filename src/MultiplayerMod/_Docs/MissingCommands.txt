@@ -8,16 +8,11 @@ ReleaseChoreDriver
 SetDriverChore
 ChangeRedAlertState
 SyncWorldDebugSnapshot ?
-ChangePriority
 SynchronizeObjectPosition
 SetDisinfectSettings
-PermitConsumableByDefault
-PermitConsumableToMinion
-InitializeImmigration
 SetDefaultPriority
 SetPersonalPrioritiesAdvanced
 SetPersonalPriority
-AbstractResearchEntryCommand !!
 ChangeSchedulesList
 UpdateAlarm
 UpdateCritterSensor

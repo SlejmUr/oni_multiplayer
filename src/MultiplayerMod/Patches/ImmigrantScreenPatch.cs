@@ -1,4 +1,8 @@
-﻿using HarmonyLib;
+using HarmonyLib;
+using MultiplayerMod.Commands.NetCommands;
+using MultiplayerMod.Core;
+using MultiplayerMod.Core.Execution;
+using MultiplayerMod.Events;
 using MultiplayerMod.Extensions;
 
 namespace MultiplayerMod.Patches;
@@ -12,7 +16,23 @@ internal static class ImmigrantScreenPatch
     [HarmonyPatch(nameof(ImmigrantScreen.Initialize))]
     private static void Initialize(ImmigrantScreen __instance)
     {
-        new TaskFactory().StartNew(async () =>
+        if (!ExecutionManager.LevelIsActive(ExecutionLevel.Game))
+            return;
+        var createDelivers = new TaskFactory().StartNew(async () =>
+        {
+            if (Deliverables != null)
+                return;
+
+            var readyDeliverables = await ImmigrantScreenExtensions.WaitForAllDeliverablesReady(__instance);
+            if (readyDeliverables != null)
+            {
+                MultiplayerManager.Instance.NetClient.Send(new InitializeImmigrationCommand(Deliverables));
+                Deliverables = readyDeliverables;
+            }
+        });
+        createDelivers.Wait();
+
+        var setdeliveries = new TaskFactory().StartNew(async () =>
         {
             if (Deliverables == null)
                 return;
@@ -25,6 +45,7 @@ internal static class ImmigrantScreenPatch
 
             SetDeliverablesData(Deliverables, __instance);
         });
+        setdeliveries.Wait();
     }
     private static void InitializeContainers(
     List<ITelepadDeliverable> telepadDeliverables,

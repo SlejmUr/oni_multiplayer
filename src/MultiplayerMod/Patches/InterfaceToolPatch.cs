@@ -12,7 +12,7 @@ namespace MultiplayerMod.Patches;
 [HarmonyPatch(typeof(InterfaceTool))]
 internal static class InterfaceToolPatch
 {
-    static int test = 0;
+    static int Test = 0;
     [UsedImplicitly]
     [HarmonyPrefix]
     [HarmonyPatch(nameof(InterfaceTool.OnMouseMove))]

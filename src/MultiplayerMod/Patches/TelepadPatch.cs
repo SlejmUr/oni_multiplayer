@@ -61,11 +61,11 @@ internal class TelepadPatch
             IsRequestedByCommand = false;
             return;
         }
-        MultiplayerManager.Instance.NetClient.Send(new AcceptDeliveryCommand(new AcceptDeliveryEventArgs(
+        MultiplayerManager.Instance.NetClient.Send(new AcceptDeliveryCommand(
                 telepad.GetComponentResolver(),
                 deliverable,
                 gameObject.GetComponent<MultiplayerInstance>().Register(),
                 gameObject.GetComponent<MinionIdentity>()?.GetMultiplayerInstance().Register()
-            )));
+            ));
     }
 }

@@ -1,4 +1,4 @@
-﻿namespace MultiplayerMod.Extensions;
+namespace MultiplayerMod.Extensions;
 
 /// <summary>
 /// 
@@ -6,8 +6,8 @@
 public static class ImmigrantScreenExtensions
 {
 
-    private const int delayMS = 1;
-    private const int maxWaitMS = 50;
+    private const int DelayMS = 1;
+    private const int MaxWaitMS = 50;
     /// <summary>
     /// 
     /// </summary>
@@ -16,7 +16,7 @@ public static class ImmigrantScreenExtensions
     public static async Task<List<ITelepadDeliverable>> WaitForAllDeliverablesReady(ImmigrantScreen instance)
     {
         var currentDelay = 0;
-        while (currentDelay < maxWaitMS)
+        while (currentDelay < MaxWaitMS)
         {
             var readyDeliverables = instance.containers?.Select(
                 container => container switch
@@ -29,8 +29,8 @@ public static class ImmigrantScreenExtensions
             if (readyDeliverables != null && readyDeliverables.Count == instance.containers?.Count)
                 return readyDeliverables;
 
-            await Task.Delay(delayMS);
-            currentDelay += delayMS;
+            await Task.Delay(DelayMS);
+            currentDelay += DelayMS;
         }
         return null;
     }
