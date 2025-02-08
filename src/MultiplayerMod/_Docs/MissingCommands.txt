@@ -16,8 +16,6 @@ UpdateLogicTimeOfDaySensor
 UpdateLogicTimeSensor
 UpdateRailGunCapacity
 UpdateTemperatureSwitch
-MasterSkill
-SetHat
 ClickUserMenuButton  ?
 AbstractBuildUtilityCommand !
 AbstractDragToolCommand !

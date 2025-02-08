@@ -126,4 +126,45 @@ internal class OtherCommands
             manager.DeleteSchedule(schedules.Last());
         }
     }
+
+    public static void MasterSkillCommand_Event(MasterSkillCommand command)
+    {
+        var component = command.MinionIdentityReference.Resolve().GetComponent<MinionResume>();
+        if (component == null)
+            return;
+
+        if (DebugHandler.InstantBuildMode && component.AvailableSkillpoints < 1)
+            component.ForceAddSkillPoint();
+        var masteryConditions = component.GetSkillMasteryConditions(command.SkillId);
+        if (!component.CanMasterSkill(masteryConditions))
+            return;
+        if (component.HasMasteredSkill(command.SkillId))
+            return;
+
+        component.MasterSkill(command.SkillId);
+
+        ManagementMenu.Instance.skillsScreen.RefreshAll();
+    }
+
+    internal static void SetHatCommand_Event(SetHatCommand command)
+    {
+        var resume = command.MinionIdentityReference.Resolve().GetComponent<MinionResume>();
+        if (resume == null)
+            return;
+
+        resume.SetHats(resume.currentHat, command.TargetHat);
+        if (command.TargetHat != null)
+        {
+            if (resume.OwnsHat(command.TargetHat))
+            {
+                var unused = new PutOnHatChore(resume, Db.Get().ChoreTypes.SwitchHat);
+            }
+        }
+        else
+        {
+            resume.ApplyTargetHat();
+        }
+
+        ManagementMenu.Instance.skillsScreen.RefreshAll();
+    }
 }
