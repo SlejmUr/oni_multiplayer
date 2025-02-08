@@ -1,4 +1,5 @@
 using MultiplayerMod.Commands.NetCommands;
+using MultiplayerMod.Commands.NetCommands.Args;
 using MultiplayerMod.Core.Behaviour;
 using MultiplayerMod.Extensions;
 using MultiplayerMod.Patches;
@@ -88,6 +89,42 @@ internal class OtherCommands
                 Where(entry => entry.Key is ConsumableInfoTableColumn).
                 Select(entry => entry.Value).
                 ForEach(widget => screen.on_load_consumable_info(minion, widget));
+        }
+    }
+
+    public static void ChangeSchedulesListCommand_Event(ChangeSchedulesListCommand command)
+    {
+        var manager = ScheduleManager.Instance;
+        var schedules = manager.schedules;
+
+        for (var i = 0; i < Math.Min(command.SerializableSchedules.Count, schedules.Count); i++)
+        {
+            ScheduleScreenEventsPatch.IsCommandSent = true;
+            var schedule = schedules[i];
+            var changedSchedule = command.SerializableSchedules[i];
+            schedule.name = changedSchedule.Name;
+            schedule.alarmActivated = changedSchedule.AlarmActivated;
+            schedule.assigned = changedSchedule.Assigned;
+            schedule.SetBlocksToGroupDefaults(changedSchedule.Groups); // Triggers "Changed"
+        }
+
+        if (Math.Abs(command.SerializableSchedules.Count - schedules.Count) > 1)
+            Debug.LogWarning("Schedules update contains more than one schedule addition / removal");
+
+        if (command.SerializableSchedules.Count > schedules.Count)
+        {
+            ScheduleScreenEventsPatch.IsCommandSent = true;
+            // New schedules was added
+            var newSchedule = command.SerializableSchedules.Last();
+            var schedule = manager.AddSchedule(newSchedule.Groups, newSchedule.Name, newSchedule.AlarmActivated);
+            schedule.assigned = newSchedule.Assigned;
+            schedule.Changed();
+        }
+        else if (schedules.Count > command.SerializableSchedules.Count)
+        {
+            ScheduleScreenEventsPatch.IsCommandSent = true;
+            // A schedule was removed
+            manager.DeleteSchedule(schedules.Last());
         }
     }
 }

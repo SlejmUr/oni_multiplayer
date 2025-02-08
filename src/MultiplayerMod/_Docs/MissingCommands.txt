@@ -9,7 +9,6 @@ SetDriverChore
 ChangeRedAlertState
 SyncWorldDebugSnapshot ?
 SynchronizeObjectPosition
-ChangeSchedulesList
 UpdateAlarm
 UpdateCritterSensor
 UpdateLogicCounter
