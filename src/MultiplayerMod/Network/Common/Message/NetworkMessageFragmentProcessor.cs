@@ -1,4 +1,4 @@
-﻿using MultiplayerMod.Core.Exceptions;
+using MultiplayerMod.Core.Exceptions;
 using MultiplayerMod.Core.Serialization;
 using System.Collections.Concurrent;
 using System.Runtime.Serialization.Formatters.Binary;

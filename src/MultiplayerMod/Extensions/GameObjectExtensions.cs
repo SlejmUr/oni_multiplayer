@@ -1,4 +1,4 @@
-﻿using MultiplayerMod.Core.Behaviour;
+using MultiplayerMod.Core.Behaviour;
 using MultiplayerMod.Core.Objects.Resolvers;
 using System.Runtime.CompilerServices;
 using UnityEngine;

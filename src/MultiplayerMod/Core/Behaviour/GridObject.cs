@@ -1,4 +1,4 @@
-﻿namespace MultiplayerMod.Core.Behaviour;
+namespace MultiplayerMod.Core.Behaviour;
 
 /// <summary>
 /// Grid object helper.

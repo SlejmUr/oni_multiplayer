@@ -1,4 +1,4 @@
-﻿using MultiplayerMod.Core;
+using MultiplayerMod.Core;
 using MultiplayerMod.Core.Execution;
 using MultiplayerMod.Core.Player;
 using MultiplayerMod.Events.Common;

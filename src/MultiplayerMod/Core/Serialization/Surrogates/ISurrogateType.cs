@@ -1,4 +1,4 @@
-﻿namespace MultiplayerMod.Core.Serialization.Surrogates;
+namespace MultiplayerMod.Core.Serialization.Surrogates;
 
 /// <summary>
 /// Interface to identify Type

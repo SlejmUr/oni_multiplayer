@@ -1,4 +1,4 @@
-﻿namespace MultiplayerMod.Multiplayer.Datas.World;
+namespace MultiplayerMod.Multiplayer.Datas.World;
 
 /// <summary>
 /// Creating a new Custom state for multiplayer

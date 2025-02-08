@@ -1,4 +1,4 @@
-﻿using MultiplayerMod.Network.Common.Interfaces;
+using MultiplayerMod.Network.Common.Interfaces;
 using UnityEngine;
 
 namespace MultiplayerMod.Network.Common.Components;

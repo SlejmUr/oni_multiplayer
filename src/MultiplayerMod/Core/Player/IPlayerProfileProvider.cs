@@ -1,4 +1,4 @@
-﻿namespace MultiplayerMod.Core.Player;
+namespace MultiplayerMod.Core.Player;
 
 /// <summary>
 /// Interface to many platform that provide <see cref="PlayerProfile"/>

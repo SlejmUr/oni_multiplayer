@@ -1,4 +1,4 @@
-﻿namespace MultiplayerMod.Network.Common;
+namespace MultiplayerMod.Network.Common;
 
 /// <summary>
 /// Networking state of the Client

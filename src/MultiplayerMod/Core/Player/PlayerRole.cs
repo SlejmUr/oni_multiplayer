@@ -1,4 +1,4 @@
-﻿namespace MultiplayerMod.Core.Player;
+namespace MultiplayerMod.Core.Player;
 
 /// <summary>
 /// Server/Client representation

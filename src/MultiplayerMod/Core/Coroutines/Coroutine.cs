@@ -1,4 +1,4 @@
-﻿namespace EIV_Common.Coroutines;
+namespace EIV_Common.Coroutines;
 
 /// <summary>
 /// Represent a Coroutine

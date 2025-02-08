@@ -1,4 +1,4 @@
-﻿using MultiplayerMod.Events.EventArgs;
+using MultiplayerMod.Events.EventArgs;
 
 namespace MultiplayerMod.Events.Others;
 

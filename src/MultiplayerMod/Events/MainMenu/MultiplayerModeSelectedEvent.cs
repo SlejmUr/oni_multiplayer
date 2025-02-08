@@ -1,4 +1,4 @@
-﻿using MultiplayerMod.Core.Player;
+using MultiplayerMod.Core.Player;
 
 namespace MultiplayerMod.Events.MainMenu;
 

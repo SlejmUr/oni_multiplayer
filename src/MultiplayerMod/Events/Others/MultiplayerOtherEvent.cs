@@ -1,4 +1,4 @@
-﻿using MultiplayerMod.Core.Player;
+using MultiplayerMod.Core.Player;
 using MultiplayerMod.Network.Common.Interfaces;
 
 namespace MultiplayerMod.Events.Others;

@@ -1,4 +1,4 @@
-﻿namespace EIV_Common.Coroutines;
+namespace EIV_Common.Coroutines;
 
 /// <summary>
 /// Type of coroutines must be run

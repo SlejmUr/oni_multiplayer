@@ -1,4 +1,4 @@
-﻿namespace MultiplayerMod.Events;
+namespace MultiplayerMod.Events;
 
 /// <summary>
 /// Unsubcribe the Event after getting called.

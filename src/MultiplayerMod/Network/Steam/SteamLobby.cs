@@ -1,4 +1,4 @@
-﻿using MultiplayerMod.Core.Exceptions;
+using MultiplayerMod.Core.Exceptions;
 using Steamworks;
 
 namespace MultiplayerMod.Network.Steam;

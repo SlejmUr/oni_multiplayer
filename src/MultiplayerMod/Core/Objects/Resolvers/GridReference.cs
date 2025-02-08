@@ -1,4 +1,4 @@
-﻿using MultiplayerMod.Core.Behaviour;
+using MultiplayerMod.Core.Behaviour;
 using UnityEngine;
 
 namespace MultiplayerMod.Core.Objects.Resolvers;

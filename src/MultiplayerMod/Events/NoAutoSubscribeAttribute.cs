@@ -1,4 +1,4 @@
-﻿namespace MultiplayerMod.Events;
+namespace MultiplayerMod.Events;
 
 /// <summary>
 /// Even if meet the state do not subscribe to this method.

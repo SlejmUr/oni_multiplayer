@@ -1,4 +1,4 @@
-﻿namespace MultiplayerMod.Core.Execution;
+namespace MultiplayerMod.Core.Execution;
 
 /// <summary>
 /// 

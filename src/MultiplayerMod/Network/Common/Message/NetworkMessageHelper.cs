@@ -1,4 +1,4 @@
-﻿using MultiplayerMod.Commands.NetCommands;
+using MultiplayerMod.Commands.NetCommands;
 using static MultiplayerMod.Network.Common.Configuration;
 
 namespace MultiplayerMod.Network.Common.Message;

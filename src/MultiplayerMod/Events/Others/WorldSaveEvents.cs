@@ -1,1 +1,1 @@
-﻿namespace MultiplayerMod.Events.Others;
+namespace MultiplayerMod.Events.Others;

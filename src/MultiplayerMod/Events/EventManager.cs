@@ -1,4 +1,4 @@
-﻿using HarmonyLib;
+using HarmonyLib;
 using MultiplayerMod.Extensions;
 using System.Reflection;
 using System.Runtime.CompilerServices;

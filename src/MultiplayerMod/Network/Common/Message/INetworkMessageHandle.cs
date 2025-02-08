@@ -1,4 +1,4 @@
-﻿namespace MultiplayerMod.Network.Common.Message;
+namespace MultiplayerMod.Network.Common.Message;
 
 /// <summary>
 /// Common Network Message Handle

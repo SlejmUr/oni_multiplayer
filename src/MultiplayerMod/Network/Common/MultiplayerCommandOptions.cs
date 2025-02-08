@@ -1,4 +1,4 @@
-﻿namespace MultiplayerMod.Network.Common;
+namespace MultiplayerMod.Network.Common;
 
 /// <summary>
 /// Option for message command sending

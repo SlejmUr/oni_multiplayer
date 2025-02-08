@@ -1,4 +1,4 @@
-﻿namespace MultiplayerMod.Events.Common;
+namespace MultiplayerMod.Events.Common;
 
 /// <summary>
 /// Event that tells the server/client that the world currently loading

@@ -1,4 +1,4 @@
-﻿using HarmonyLib;
+using HarmonyLib;
 using MultiplayerMod.Core;
 using MultiplayerMod.Core.Player;
 using MultiplayerMod.Events;

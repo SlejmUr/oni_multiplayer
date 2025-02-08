@@ -1,4 +1,4 @@
-﻿namespace MultiplayerMod.Network.Common.Interfaces;
+namespace MultiplayerMod.Network.Common.Interfaces;
 
 /// <summary>
 /// Represent a Unique Network Identity

@@ -1,4 +1,4 @@
-﻿using MultiplayerMod.Network.Common.Message;
+using MultiplayerMod.Network.Common.Message;
 
 namespace MultiplayerMod.Network.Common;
 

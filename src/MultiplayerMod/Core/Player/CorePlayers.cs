@@ -1,4 +1,4 @@
-﻿using MultiplayerMod.Extensions;
+using MultiplayerMod.Extensions;
 using System.Collections;
 
 namespace MultiplayerMod.Core.Player;

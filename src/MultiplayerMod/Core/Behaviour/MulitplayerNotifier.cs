@@ -1,4 +1,4 @@
-﻿using MultiplayerMod.Events;
+using MultiplayerMod.Events;
 using MultiplayerMod.Events.Common;
 using UnityEngine;
 

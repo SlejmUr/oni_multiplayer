@@ -1,4 +1,4 @@
-﻿namespace MultiplayerMod.Commands.NetCommands;
+namespace MultiplayerMod.Commands.NetCommands;
 
 /// <summary>
 /// Remove player from the network

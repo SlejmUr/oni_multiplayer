@@ -1,4 +1,4 @@
-﻿namespace MultiplayerMod.Events.Others;
+namespace MultiplayerMod.Events.Others;
 
 /// <summary>
 /// Event that called when user sets a new speed.

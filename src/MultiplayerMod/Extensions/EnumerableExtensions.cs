@@ -1,4 +1,4 @@
-﻿namespace MultiplayerMod.Extensions;
+namespace MultiplayerMod.Extensions;
 
 /// <summary>
 /// 

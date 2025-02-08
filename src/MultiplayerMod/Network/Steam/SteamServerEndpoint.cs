@@ -1,4 +1,4 @@
-﻿using MultiplayerMod.Network.Common.Interfaces;
+using MultiplayerMod.Network.Common.Interfaces;
 using Steamworks;
 
 namespace MultiplayerMod.Network.Steam;

@@ -1,4 +1,4 @@
-﻿namespace MultiplayerMod.Core.Objects.Resolvers;
+namespace MultiplayerMod.Core.Objects.Resolvers;
 
 /// <summary>
 /// Interface that can create <typeparamref name="T"/>

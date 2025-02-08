@@ -1,4 +1,4 @@
-﻿using MultiplayerMod.Core.Objects;
+using MultiplayerMod.Core.Objects;
 
 namespace MultiplayerMod.Core.Behaviour;
 

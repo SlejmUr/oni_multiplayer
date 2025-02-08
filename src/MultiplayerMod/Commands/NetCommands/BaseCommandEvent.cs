@@ -1,4 +1,4 @@
-﻿using MultiplayerMod.Events;
+using MultiplayerMod.Events;
 using MultiplayerMod.Network.Common.Interfaces;
 
 namespace MultiplayerMod.Commands.NetCommands;

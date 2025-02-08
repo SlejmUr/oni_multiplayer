@@ -1,4 +1,4 @@
-﻿using MultiplayerMod.Core.Objects.Resolvers;
+using MultiplayerMod.Core.Objects.Resolvers;
 using System.Runtime.CompilerServices;
 
 namespace MultiplayerMod.Extensions;

@@ -1,4 +1,4 @@
-﻿namespace MultiplayerMod.Core.Exceptions;
+namespace MultiplayerMod.Core.Exceptions;
 
 /// <summary>
 /// Initializes a new instance of the <see cref="NetworkPlatformException"/> class with a specified error message.

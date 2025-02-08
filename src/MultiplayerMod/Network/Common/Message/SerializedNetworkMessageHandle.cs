@@ -1,4 +1,4 @@
-﻿using MultiplayerMod.Core.Serialization;
+using MultiplayerMod.Core.Serialization;
 
 namespace MultiplayerMod.Network.Common.Message;
 

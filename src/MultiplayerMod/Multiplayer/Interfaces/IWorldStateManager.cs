@@ -1,4 +1,4 @@
-﻿using MultiplayerMod.Multiplayer.Datas.World;
+using MultiplayerMod.Multiplayer.Datas.World;
 
 namespace MultiplayerMod.Multiplayer.Interfaces;
 

@@ -1,4 +1,4 @@
-﻿using MultiplayerMod.Core.Exceptions;
+using MultiplayerMod.Core.Exceptions;
 using UnityEngine;
 
 namespace MultiplayerMod.Core.Objects.Resolvers;

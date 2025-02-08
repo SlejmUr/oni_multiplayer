@@ -1,4 +1,4 @@
-﻿namespace MultiplayerMod.Core.Objects;
+namespace MultiplayerMod.Core.Objects;
 
 /// <summary>
 /// Stores <see cref="MultiplayerObject"/> with the <see cref="MultiplayerId"/>

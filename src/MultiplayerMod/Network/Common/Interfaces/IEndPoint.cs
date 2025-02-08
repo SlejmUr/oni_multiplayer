@@ -1,4 +1,4 @@
-﻿namespace MultiplayerMod.Network.Common.Interfaces;
+namespace MultiplayerMod.Network.Common.Interfaces;
 
 /// <summary>
 /// Interface that represend an Endpoint that Platform can connect to.

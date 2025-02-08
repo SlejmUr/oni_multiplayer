@@ -1,4 +1,4 @@
-﻿namespace MultiplayerMod.Core.Objects.Resolvers;
+namespace MultiplayerMod.Core.Objects.Resolvers;
 
 /// <summary>
 /// Type resolver for <see cref="StateMachine"/>

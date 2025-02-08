@@ -1,4 +1,4 @@
-﻿namespace MultiplayerMod.Core.Objects;
+namespace MultiplayerMod.Core.Objects;
 
 /// <summary>
 /// Repersentation of a Unique object in Multiplayer

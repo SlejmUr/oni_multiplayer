@@ -1,4 +1,4 @@
-﻿namespace MultiplayerMod.Events.Common;
+namespace MultiplayerMod.Events.Common;
 
 /// <summary>
 /// Multiplayer stated event
