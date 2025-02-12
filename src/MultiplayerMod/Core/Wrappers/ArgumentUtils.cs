@@ -4,7 +4,7 @@ using MultiplayerMod.Extensions;
 using System.Reflection;
 using UnityEngine;
 
-namespace MultiplayerMod.Commands;
+namespace MultiplayerMod.Core.Wrappers;
 
 /// <summary>
 /// Helping argument serializations.

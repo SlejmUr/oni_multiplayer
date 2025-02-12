@@ -1,8 +1,9 @@
+using HarmonyLib;
 using MultiplayerMod.Core.Objects;
 using MultiplayerMod.Core.Player;
 using MultiplayerMod.Multiplayer.Controllers;
 using MultiplayerMod.Multiplayer.EventCalls;
-using MultiplayerMod.Multiplayer.Managers.Server;
+using MultiplayerMod.Multiplayer.Managers;
 using MultiplayerMod.Network.Common;
 using MultiplayerMod.Network.Common.Interfaces;
 using MultiplayerMod.Network.Steam;
@@ -40,9 +41,10 @@ public class MultiplayerManager
     /// <summary>
     /// Creating Objects, Loading Platform related configuration, classes.
     /// </summary>
-    public void Init()
+    public void Init(Harmony harmony)
     {
         Instance = this;
+        HarmonyPatch = harmony;
         MPObjects = new();
         MultiGame = new(MPObjects);
         if (!DistributionPlatform.Initialized)
@@ -99,7 +101,12 @@ public class MultiplayerManager
     public WorldManager WorldManager { get; internal set; }
 
     /// <summary>
-    /// 
+    /// Public instance for <see cref="IPlayerProfileProvider"/>
     /// </summary>
     public IPlayerProfileProvider PlayerProfileProvider { get; internal set; }
+
+    /// <summary>
+    /// Public instance for <see cref="Harmony"/>
+    /// </summary>
+    public Harmony HarmonyPatch { get; internal set; }
 }

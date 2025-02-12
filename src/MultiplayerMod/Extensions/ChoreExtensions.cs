@@ -35,4 +35,15 @@ public static class ChoreExtensions
     /// <param name="chore"></param>
     /// <returns></returns>
     public static ChoreResolver GetResolver(this Chore chore) => new(chore);
+
+    /// <summary>
+    /// Getting the <see cref="StateMachine.Instance"/> from the <see cref="Chore"/>
+    /// </summary>
+    /// <param name="chore"></param>
+    /// <returns></returns>
+    public static StateMachine.Instance GetSMI(this Chore chore)
+    {
+        return (StateMachine.Instance) chore.GetType().GetProperty(nameof(Chore<StateMachine.Instance>.smi)).GetValue(chore);
+    }
+
 }

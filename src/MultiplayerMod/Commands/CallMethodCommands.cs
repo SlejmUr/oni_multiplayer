@@ -1,4 +1,5 @@
 using MultiplayerMod.Commands.NetCommands;
+using MultiplayerMod.Core.Wrappers;
 using System.Reflection;
 
 namespace MultiplayerMod.Commands;

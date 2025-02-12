@@ -10,7 +10,7 @@ using MultiplayerMod.Multiplayer.Interfaces;
 using MultiplayerMod.Multiplayer.UI.Overlays;
 using MultiplayerMod.Network.Common;
 
-namespace MultiplayerMod.Multiplayer.Managers.Server;
+namespace MultiplayerMod.Multiplayer.Managers;
 
 /// <summary>
 /// World manager for Server

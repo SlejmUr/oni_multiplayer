@@ -24,6 +24,6 @@ public class ModLoad : UserMod2
         Debug.Log("MultiplayerMod GetPatchedMethods: " + harmony.GetPatchedMethods().Count());
         CoroutineWorkerCustom.Instance.Start();
         EventManager.LoadMain(assembly);
-        MultiplayerManager.Instance.Init();
+        MultiplayerManager.Instance.Init(harmony);
     }
 }

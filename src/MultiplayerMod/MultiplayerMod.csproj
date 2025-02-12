@@ -41,7 +41,6 @@
 
 	<!-- Empty directories show to VS -->
 	<ItemGroup>
-	  <Folder Include="Multiplayer\Managers\Client\" />
 	  <Folder Include="Network\Epic\" />
 	  <Folder Include="StateMachines\" />
 	  <Folder Include="_Docs\" />
