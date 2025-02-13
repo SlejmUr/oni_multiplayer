@@ -10,7 +10,7 @@ namespace MultiplayerMod.Patches.ManyPatches;
 [HarmonyPatch]
 internal static class ManyObjectEventPatch
 {
-    private static readonly PatchTargetResolver targets = new PatchTargetResolver.Builder()
+    internal static readonly PatchTargetResolver targets = new PatchTargetResolver.Builder()
         .AddMethods(typeof(Filterable), nameof(Filterable.SelectedTag))
         .AddMethods(
             typeof(TreeFilterable),
@@ -114,8 +114,7 @@ internal static class ManyObjectEventPatch
         //.CheckArgumentsSerializable(true)
         .Build();
 
-    // ReSharper disable once UnusedMember.Local
-    private static IEnumerable<MethodBase> TargetMethods()
+    internal static IEnumerable<MethodBase> TargetMethods()
     {
         var x = targets.Resolve().ToList();
         foreach (var m in x)
@@ -128,18 +127,16 @@ internal static class ManyObjectEventPatch
     }
 
     [HarmonyPrefix]
-    // ReSharper disable once UnusedMember.Local
-    private static void ObjectEventsPrefix() => ExecutionManager.EnterOverrideSection(ExecutionLevel.Component);
+    internal static void ObjectEventsPrefix() => ExecutionManager.EnterOverrideSection(ExecutionLevel.Component);
 
     [HarmonyPostfix]
-    // ReSharper disable once UnusedMember.Local
-    private static void ObjectEventsPostfix(object __instance, MethodBase __originalMethod, object[] __args)
+    internal static void ObjectEventsPostfix(object __instance, MethodBase __originalMethod, object[] __args)
     {
         ExecutionManager.LeaveOverrideSection();
         ProcessObjectEvent(__instance, __originalMethod, __args);
     }
 
-    private static void ProcessObjectEvent(object __instance, MethodBase __originalMethod, object[] __args)
+    internal static void ProcessObjectEvent(object __instance, MethodBase __originalMethod, object[] __args)
     {
         if (ExecutionManager.LevelIsActive(ExecutionLevel.Game))
             switch (__instance)

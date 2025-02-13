@@ -30,12 +30,12 @@ internal class SetHatEventPatch
 
         [HarmonyPostfix]
         [HarmonyPatch(nameof(SkillMinionWidget.OnHatDropEntryClick))]
-        internal static void OnHatDropEntryClick(SkillMinionWidget __instance, IListableOption skill)
+        internal static void OnHatDropEntryClick(SkillMinionWidget __instance, IListableOption hatOption)
         {
             if (!ExecutionManager.LevelIsActive(ExecutionLevel.Game))
                 return;
             __instance.skillsScreen.GetMinionIdentity(__instance.assignableIdentity, out var minionIdentity, out _);
-            MultiplayerManager.Instance.NetClient.Send(new SetHatCommand(minionIdentity.gameObject.GetGOResolver(), (skill as HatListable).hat));
+            MultiplayerManager.Instance.NetClient.Send(new SetHatCommand(minionIdentity.gameObject.GetGOResolver(), (hatOption as HatListable).hat));
         }
 
     }

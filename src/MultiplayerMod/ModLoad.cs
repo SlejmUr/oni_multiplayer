@@ -22,6 +22,10 @@ public class ModLoad : UserMod2
         var version = assembly.GetCustomAttribute<AssemblyInformationalVersionAttribute>().InformationalVersion;
         Debug.Log("MultiplayerMod Version: " + version);
         Debug.Log("MultiplayerMod GetPatchedMethods: " + harmony.GetPatchedMethods().Count());
+        foreach (var item in harmony.GetPatchedMethods())
+        {
+            Debug.Log("Patched: " + item.FullDescription());
+        }
         CoroutineWorkerCustom.Instance.Start();
         EventManager.LoadMain(assembly);
         MultiplayerManager.Instance.Init(harmony);

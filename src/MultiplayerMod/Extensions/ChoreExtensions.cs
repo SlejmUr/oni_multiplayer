@@ -41,7 +41,7 @@ public static class ChoreExtensions
     /// </summary>
     /// <param name="chore"></param>
     /// <returns></returns>
-    public static StateMachine.Instance GetSMI(this Chore chore)
+    public static StateMachine.Instance GetSMI_Ext(this Chore chore)
     {
         return (StateMachine.Instance) chore.GetType().GetProperty(nameof(Chore<StateMachine.Instance>.smi)).GetValue(chore);
     }
