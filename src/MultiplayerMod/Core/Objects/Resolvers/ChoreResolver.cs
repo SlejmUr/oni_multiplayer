@@ -3,7 +3,7 @@ using MultiplayerMod.Extensions;
 namespace MultiplayerMod.Core.Objects.Resolvers;
 
 /// <summary>
-/// Type resolver for the basic tyle <see cref="Chore"/>
+/// Type resolver for the basic type <see cref="Chore"/>
 /// </summary>
 /// <param name="chore"></param>
 public class ChoreResolver(Chore chore) : TypedResolver<Chore>

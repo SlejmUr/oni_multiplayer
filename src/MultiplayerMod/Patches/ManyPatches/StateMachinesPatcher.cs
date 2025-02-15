@@ -1,9 +1,8 @@
 using HarmonyLib;
+using MultiplayerMod.ChoreSync;
 using MultiplayerMod.Core;
 using MultiplayerMod.Core.Execution;
 using MultiplayerMod.Extensions;
-using MultiplayerMod.StateMachines;
-using MultiplayerMod.StateMachines.ChoreStates;
 using System.Reflection;
 
 namespace MultiplayerMod.Patches.ManyPatches;
@@ -48,30 +47,24 @@ internal static class StateMachinesPatcher
     internal static void ServerPostWork(StateMachine __instance)
     {
         Type state_type = __instance.GetType().DeclaringType;
-        IChoreState state = ChoreStatesList.GetChoreByType(state_type);
+        var state = ChoreSyncList.GetSync(state_type);
         if (state == default)
         {
             Debug.Log($"State for Type {state_type} not yet been implemented.");
             return;
         }
-        foreach (var baseState in state.States)
-        {
-            baseState.Server(__instance);
-        }
+        state.Server(__instance);
     }
 
     internal static void ClientPostWork(StateMachine __instance)
     {
         Type state_type = __instance.GetType().DeclaringType;
-        IChoreState state = ChoreStatesList.GetChoreByType(state_type);
+        var state = ChoreSyncList.GetSync(state_type);
         if (state == default)
         {
             Debug.Log($"State for Type {state_type} not yet been implemented.");
             return;
         }
-        foreach (var baseState in state.States)
-        {
-            baseState.Client(__instance);
-        }
+        state.Client(__instance);
     }
 }
