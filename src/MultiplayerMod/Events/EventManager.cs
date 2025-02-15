@@ -55,7 +55,7 @@ public static class EventManager
     /// <param name="methodInfo"></param>
     public static void SubscribeEvent(MethodInfo methodInfo)
     {
-        //Debug.Log($"Loading Events from methodInfo: {methodInfo.Name}");
+        Debug.Log($"Loading Events from methodInfo: {methodInfo.Name}");
         Type param = methodInfo.GetParameters()[0].ParameterType;
         var @delegate = Delegate.CreateDelegate(System.Linq.Expressions.Expression.GetActionType(param), methodInfo);
         SubscribeEvent(param, @delegate);

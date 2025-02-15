@@ -1,9 +1,12 @@
 using MultiplayerMod.Extensions;
+using MultiplayerMod.StateMachines.States;
 using System.Reflection;
+using System.Runtime.CompilerServices;
+using System.Text.RegularExpressions;
 
 namespace MultiplayerMod.StateMachines;
 
-internal static class HelperForStates
+internal static class StateHelper
 {
     public static StateMachine.BaseState GetMonitoredState(StateMachine sm, string StateToMonitorName)
     {
@@ -53,14 +56,15 @@ internal static class HelperForStates
     public const string WaitStateName = "WaitHostState";
     public const string ContinuationName = "ContinuationState";
 
-    public static void AllowTransition(Chore chore, string? targetState, Dictionary<int, object?> args)
+    public static void AllowTransition(Chore chore, string targetState, Dictionary<int, object> args)
     {
         var smi = GetSmi(chore);
 
         var waitHostState = GetWaitHostState(smi);
-        waitHostState.GetType().GetMethod(nameof(IWaitHostState.AllowTransition))!.Invoke(
+        waitHostState.GetType().GetMethod(nameof(IWaitHostState.AllowTransition))!
+        .Invoke(
             waitHostState,
-            new object?[] { smi, targetState, args }
+            [smi, targetState, args]
         );
     }
 
@@ -72,7 +76,7 @@ internal static class HelperForStates
             .GetNestedType("State")
             .GetNestedType("Callback")
             .MakeGenericType(sm.GetType().BaseType.GetGenericArguments().Append(typeof(object)));
-        var method = typeof(HelperForStates).GetMethod(
+        var method = typeof(StateHelper).GetMethod(
             nameof(TransitToWaitState),
             BindingFlags.NonPublic | BindingFlags.Static
         )!;
@@ -120,4 +124,9 @@ internal static class HelperForStates
     {
         smi.GoTo(GetWaitHostState(smi));
     }
+
+    private static readonly Regex stateNameRegex = new(@"nameof\(.*?\..*?\.(.*?)\)"); // Chore.State.(chained.name)
+
+    public static string GetChainedStateName(string value, [CallerArgumentExpression(nameof(value))] string expression = default!) =>
+        stateNameRegex.Match(expression).Groups[1].Value;
 }

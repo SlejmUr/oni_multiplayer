@@ -11,9 +11,16 @@ using MultiplayerMod.Multiplayer.Interfaces;
 
 namespace MultiplayerMod.Multiplayer.Managers;
 
+/// <summary>
+/// Sync Chore between clients
+/// </summary>
 public class ChoreWorldStateManager : IWorldStateManager
 {
     internal Dictionary<Chore, ChoreCreatedEvent> CurrentChores = [];
+
+    /// <summary>
+    /// Sync Chore between clients
+    /// </summary>
     public ChoreWorldStateManager()
     {
         EventManager.SubscribeEvent<ChoreCreatedEvent>(ChoreCreatedEvent_Call);

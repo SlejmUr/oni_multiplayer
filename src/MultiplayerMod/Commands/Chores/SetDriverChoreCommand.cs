@@ -5,6 +5,7 @@ using MultiplayerMod.Extensions;
 
 namespace MultiplayerMod.Commands.Chores;
 
+[Serializable]
 public class SetDriverChoreCommand(ChoreDriver driver, ChoreConsumer consumer, Chore chore, object data) : BaseCommandEvent
 {
     public ComponentResolver<ChoreDriver> DriverReference => driver.GetComponentResolver();

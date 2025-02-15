@@ -1,8 +1,9 @@
 using HarmonyLib;
-using JetBrains.Annotations;
 using MultiplayerMod.Core;
 using MultiplayerMod.Core.Execution;
 using MultiplayerMod.Extensions;
+using MultiplayerMod.StateMachines;
+using MultiplayerMod.StateMachines.ChoreStates;
 using System.Reflection;
 
 namespace MultiplayerMod.Patches.ManyPatches;
@@ -32,10 +33,10 @@ internal static class StateMachinesPatcher
         switch (MultiplayerManager.Instance.MultiGame.Mode)
         {
             case Core.Player.PlayerRole.Server:
-                ServerPostWork(__instance);
+                ServerPostWork(__instance as StateMachine);
                 break;
             case Core.Player.PlayerRole.Client:
-                ClientPostWork(__instance);
+                ClientPostWork(__instance as StateMachine);
                 break;
             default:
                 break;
@@ -44,13 +45,33 @@ internal static class StateMachinesPatcher
         Debug.Log("PostFix: " + __instance.GetType().DeclaringType);
     }
 
-    internal static void ServerPostWork(object __instance)
+    internal static void ServerPostWork(StateMachine __instance)
     {
-
+        Type state_type = __instance.GetType().DeclaringType;
+        IChoreState state = ChoreStatesList.GetChoreByType(state_type);
+        if (state == default)
+        {
+            Debug.Log($"State for Type {state_type} not yet been implemented.");
+            return;
+        }
+        foreach (var baseState in state.States)
+        {
+            baseState.Server(__instance);
+        }
     }
 
-    internal static void ClientPostWork(object __instance)
+    internal static void ClientPostWork(StateMachine __instance)
     {
-
+        Type state_type = __instance.GetType().DeclaringType;
+        IChoreState state = ChoreStatesList.GetChoreByType(state_type);
+        if (state == default)
+        {
+            Debug.Log($"State for Type {state_type} not yet been implemented.");
+            return;
+        }
+        foreach (var baseState in state.States)
+        {
+            baseState.Client(__instance);
+        }
     }
 }

@@ -4,8 +4,17 @@ using STRINGS;
 
 namespace MultiplayerMod.Core.Wrappers;
 
+/// <summary>
+/// Argument wrapper for <see cref="Chore"/>
+/// </summary>
 public static class ChoreArgumentsWrapper
 {
+    /// <summary>
+    /// Wrap the <paramref name="choreType"/> and <paramref name="args"/> to able to send with network.
+    /// </summary>
+    /// <param name="choreType"></param>
+    /// <param name="args"></param>
+    /// <returns></returns>
     public static object[] Wrap(Type choreType, object[] args)
     {
         if (choreType == typeof(MoveChore))
@@ -32,6 +41,12 @@ public static class ChoreArgumentsWrapper
         return args;
     }
 
+    /// <summary>
+    /// UnWrap the <paramref name="choreType"/> and <paramref name="args"/> from the received network.
+    /// </summary>
+    /// <param name="choreType"></param>
+    /// <param name="args"></param>
+    /// <returns></returns>
     public static object[] Unwrap(Type choreType, object[] args)
     {
         if (choreType == typeof(MoveChore))
