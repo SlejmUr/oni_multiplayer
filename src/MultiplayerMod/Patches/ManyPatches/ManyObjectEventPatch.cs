@@ -116,14 +116,7 @@ internal static class ManyObjectEventPatch
 
     internal static IEnumerable<MethodBase> TargetMethods()
     {
-        var x = targets.Resolve().ToList();
-        foreach (var m in x)
-        {
-            if (m == null)
-                Debug.Log("Null patch?");
-            Debug.Log($"ManyObjectEventPatch: {m.FullDescription()}");
-        }
-        return x;
+        return targets.Resolve();
     }
 
     [HarmonyPrefix]

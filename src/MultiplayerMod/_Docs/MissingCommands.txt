@@ -1,13 +1,9 @@
-CreateChore
-AllowStateTransition
-SetStateArguments
-StartMove
-TransitToState
-UpdateMove
-ReleaseChoreDriver
-SetDriverChore
+AllowStateTransition -- No longer used.
+SetStateArguments -- No longer used.
+StartMove -- No longer used.
+TransitToState -- No longer used.
+UpdateMove -- No longer used.
 SyncWorldDebugSnapshot ?
-SynchronizeObjectPosition
 ClickUserMenuButton  ?
 AbstractBuildUtilityCommand !
 AbstractDragToolCommand !
@@ -16,6 +12,3 @@ CopySettings
 Modify
 MoveToLocation
 Stamp
-GoToState
-MoveObjectToCell
-SetParameterValue

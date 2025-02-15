@@ -32,8 +32,37 @@ public static class ReflectionExtension
         var field = type.GetField(fieldName, BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public);
         if (field == null)
             throw new Exception($"Field {fieldName} not found in {obj.GetType()}");
-
         return (T) field.GetValue(obj);
+    }
+
+    /// <summary>
+    /// Set Field Value for <paramref name="fieldName"/>
+    /// </summary>
+    /// <param name="obj"></param>
+    /// <param name="fieldName"></param>
+    /// <param name="value"></param>
+    /// <returns></returns>
+    public static void SetFieldValue(this object obj, string fieldName, object value)
+    {
+        SetFieldValue<object>(obj, fieldName, value);
+    }
+
+    /// <summary>
+    /// Set Field Value for <paramref name="fieldName"/>
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    /// <param name="obj"></param>
+    /// <param name="fieldName"></param>
+    /// <param name="value"></param>
+    /// <returns></returns>
+    /// <exception cref="Exception"></exception>
+    public static void SetFieldValue<T>(this object obj, string fieldName, T value)
+    {
+        var type = obj.GetType();
+        var field = type.GetField(fieldName, BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public);
+        if (field == null)
+            throw new Exception($"Field {fieldName} not found in {obj.GetType()}");
+        field.SetValue(obj, value);
     }
 
     /// <summary>

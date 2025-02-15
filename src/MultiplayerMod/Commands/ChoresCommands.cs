@@ -1,4 +1,5 @@
 using MultiplayerMod.Commands.Chores;
+using MultiplayerMod.Core.Weak;
 using MultiplayerMod.Core.Wrappers;
 using MultiplayerMod.Extensions;
 using MultiplayerMod.Multiplayer.Controllers;
@@ -45,5 +46,33 @@ internal static class ChoresCommands
         }
         ChoresController.Set(driver, ref choreContext);
     }
-    
+
+    internal static void GoToStateCommand_Event(GoToStateCommand command)
+    {
+        var state_instance = command.Resolver.Resolve();
+        StateMachineWeak.Get(state_instance).GoToState(command.StateName);
+    }
+
+    internal static void MoveObjectToCellCommand_Event(MoveObjectToCellCommand command)
+    {
+        var weak = StateMachineWeak.Get(command.reference.Resolve());
+        weak.FindParameter(MoveObjectToCellCommand.TargetCell)?.Set(command.cell);
+        weak.GoToState(command.movingStateName);
+    }
+
+    internal static void SynchronizeObjectPositionCommand_Event(SynchronizeObjectPositionCommand command)
+    {
+        var gameObject = command.Resolver.Resolve();
+        gameObject.transform.SetPosition(command.Position);
+        if (command.FacingLeft != null)
+            gameObject.GetComponent<Facing>().SetFacing(command.FacingLeft.Value);
+    }
+
+    internal static void SetParameterValueCommand_Event(SetParameterValueCommand command)
+    {
+        var instance = command.Controller.Resolve().GetSMI(command.StateMachineInstanceType);
+        var parameterContext = instance.parameterContexts[command.ParameterIndex];
+        var parameterValue = ArgumentUtils.UnWrapObject(command.Value);
+        StateMachineContextWeak.Get(parameterContext).Set(instance, parameterValue);
+    }
 }

@@ -1,3 +1,5 @@
+using MultiplayerMod.Extensions;
+
 namespace MultiplayerMod.Core.Objects.Resolvers;
 
 /// <summary>
@@ -23,7 +25,7 @@ public class StateMachineResolver(ComponentResolver<StateMachineController> cont
 /// <typeparam name="StateMachineInstanceType"></typeparam>
 /// <param name="chore"></param>
 [Serializable]
-public class ChoreStateMachineResolver<StateMachineInstanceType>(Chore<StateMachineInstanceType> chore)
+public class ChoreTStateMachineResolver<StateMachineInstanceType>(Chore<StateMachineInstanceType> chore)
     : TypedResolver<StateMachine.Instance> where StateMachineInstanceType : StateMachine.Instance
 {
     private static readonly MultiplayerObjects objects = MultiplayerManager.Instance.MPObjects;
@@ -34,3 +36,15 @@ public class ChoreStateMachineResolver<StateMachineInstanceType>(Chore<StateMach
     public StateMachine.Instance Get() => Resolve();
 
 }
+
+[Serializable]
+public class ChoreStateMachineResolver(Chore chore) : TypedResolver<StateMachine.Instance>
+{
+    private static readonly MultiplayerObjects objects = MultiplayerManager.Instance.MPObjects;
+    private MultiplayerId id = objects.Get(chore)!.Id;
+    /// <inheritdoc/>
+    public override StateMachine.Instance Resolve() => objects.Get<Chore>(id)!.GetSMI_Ext();
+    /// <inheritdoc/>
+    public StateMachine.Instance Get() => Resolve();
+}
+
