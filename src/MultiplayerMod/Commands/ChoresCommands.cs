@@ -55,9 +55,9 @@ internal static class ChoresCommands
 
     internal static void MoveObjectToCellCommand_Event(MoveObjectToCellCommand command)
     {
-        var weak = StateMachineWeak.Get(command.reference.Resolve());
-        weak.FindParameter(MoveObjectToCellCommand.TargetCell)?.Set(command.cell);
-        weak.GoToState(command.movingStateName);
+        var weak = StateMachineWeak.Get(command.Reference.Resolve());
+        weak.FindParameter(MoveObjectToCellCommand.TargetCell)?.Set(command.Cell);
+        weak.GoToState(command.MovingStateName);
     }
 
     internal static void SynchronizeObjectPositionCommand_Event(SynchronizeObjectPositionCommand command)

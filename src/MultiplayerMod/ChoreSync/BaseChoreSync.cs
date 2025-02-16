@@ -25,9 +25,11 @@ internal abstract class BaseChoreSync<ChoreStateMachine> : IChoreSync
             if (existingParameter != null)
                 return (Param) existingParameter;
         }
-        var parameter = new Param();
-        parameter.name = parameterInfo.Name;
-        parameter.idx = StateMachine.parameters.Length;
+        var parameter = new Param
+        {
+            name = parameterInfo.Name,
+            idx = StateMachine.parameters.Length
+        };
         StateMachine.parameters = StateMachine.parameters.Append(parameter);
         return parameter;
     }

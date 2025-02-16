@@ -4,17 +4,24 @@ using MultiplayerMod.Core.Wrappers;
 
 namespace MultiplayerMod.Commands.Chores;
 
+/// <summary>
+/// Called when a <see cref="Chore"/> has been created.
+/// </summary>
 [Serializable]
-public class CreateChoreCommand : BaseCommandEvent
+public class CreateChoreCommand(MultiplayerId id, Type choreType, object[] arguments) : BaseCommandEvent
 {
-    public MultiplayerId MultiId;
-    public Type ChoreType;
-    public object[] Arguments;
+    /// <summary>
+    /// The <see cref="MultiplayerId"/> of <see cref="Chore"/>
+    /// </summary>
+    public MultiplayerId MultiId => id;
 
-    public CreateChoreCommand(MultiplayerId id, Type choreType, object[] arguments)
-    {
-        MultiId = id;
-        ChoreType = choreType;
-        Arguments = ArgumentUtils.WrapObjects(ChoreArgumentsWrapper.Wrap(ChoreType, arguments));
-    }
+    /// <summary>
+    /// The <see cref="Type"/> of the <see cref="Chore"/>
+    /// </summary>
+    public Type ChoreType => choreType;
+
+    /// <summary>
+    /// Argument that the <see cref="Chore"/> created
+    /// </summary>
+    public object[] Arguments => ArgumentUtils.WrapObjects(ChoreArgumentsWrapper.Wrap(ChoreType, arguments));
 }

@@ -56,17 +56,18 @@ public class ChoreWorldStateManager : IWorldStateManager
     /// <inheritdoc/>
     public void SaveState(WorldState data)
     {
-        var state = new ChoresState(data);
-
-        state.Chores = CurrentChores.Values.Select(it => new ChoreState
+        ChoresState state = new(data)
         {
-            id = it.Id,
-            type = it.Type,
-            arguments = ArgumentUtils.WrapObjects(ChoreArgumentsWrapper.Wrap(it.Type, it.Arguments))
-        }).ToArray();
+            Chores = CurrentChores.Values.Select(it => new ChoreState
+            {
+                id = it.Id,
+                type = it.Type,
+                arguments = ArgumentUtils.WrapObjects(ChoreArgumentsWrapper.Wrap(it.Type, it.Arguments))
+            }).ToArray(),
 
-        state.Drivers = UnityEngine.Object.FindObjectsOfType<ChoreDriver>()
-            .Where(it => {
+            Drivers = UnityEngine.Object.FindObjectsOfType<ChoreDriver>()
+            .Where(it =>
+            {
                 var chore = it.GetCurrentChore();
                 if (chore == null)
                     return false;
@@ -80,7 +81,8 @@ public class ChoreWorldStateManager : IWorldStateManager
                 Consumer = it.context.consumerState.consumer.GetComponentResolver(),
                 Chore = new ChoreResolver(it.GetCurrentChore())
             })
-            .ToArray();
+            .ToArray()
+        };
     }
 
     internal void ChoreCreatedEvent_Call(ChoreCreatedEvent @event)

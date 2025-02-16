@@ -6,6 +6,9 @@ using System.Runtime.CompilerServices;
 
 namespace MultiplayerMod.Core.Weak;
 
+/// <summary>
+/// Weak table for <see cref="StateMachine.Instance"/>
+/// </summary>
 public class StateMachineWeak
 {
     private static readonly ConditionalWeakTable<StateMachine.Instance, StateMachineWeak> cache = new();
@@ -17,6 +20,12 @@ public class StateMachineWeak
         this.instance = instance;
     }
 
+    /// <summary>
+    /// Find <see cref="Parameter{T}"/> with the providen <paramref name="parameterInfo"/>
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    /// <param name="parameterInfo"></param>
+    /// <returns></returns>
     public Parameter<T> FindParameter<T>(ParameterInfo<T> parameterInfo)
     {
         var parameters = instance.stateMachine.parameters;
@@ -30,21 +39,33 @@ public class StateMachineWeak
         return null;
     }
 
+    /// <summary>
+    /// Make <see cref="instance"/> go to desired state <paramref name="name"/>
+    /// </summary>
+    /// <param name="name"></param>
+    /// <exception cref="StateMachineStateNotFoundException"></exception>
     public void GoToState(string name)
     {
         if (name != null)
         {
-            var state = instance.stateMachine.GetState(name);
-            if (state == null)
-                throw new StateMachineStateNotFoundException(instance.stateMachine, name);
+            var state = instance.stateMachine.GetState(name) ?? throw new StateMachineStateNotFoundException(instance.stateMachine, name);
             instance.GoTo(state);
         }
         else
             instance.GoTo((StateMachine.BaseState)null);
     }
 
+    /// <summary>
+    /// Get the <see cref="StateMachineController"/> from <see cref="instance"/>
+    /// </summary>
+    /// <returns></returns>
     public StateMachineController GetController() => (StateMachineController) instance.GetFieldValue(nameof(StateMachineMemberReference.Instance.controller));
 
+    /// <summary>
+    /// Get <see cref="StateMachineWeak"/> from <paramref name="instance"/>
+    /// </summary>
+    /// <param name="instance"></param>
+    /// <returns></returns>
     public static StateMachineWeak Get(StateMachine.Instance instance)
     {
         if (cache.TryGetValue(instance, out var tools))

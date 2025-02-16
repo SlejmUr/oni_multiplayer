@@ -37,11 +37,15 @@ public class ChoreTStateMachineResolver<StateMachineInstanceType>(Chore<StateMac
 
 }
 
+/// <summary>
+/// Type resolver for <see cref="StateMachine.Instance"/> using <paramref name="chore"/>
+/// </summary>
+/// <param name="chore"></param>
 [Serializable]
 public class ChoreStateMachineResolver(Chore chore) : TypedResolver<StateMachine.Instance>
 {
     private static readonly MultiplayerObjects objects = MultiplayerManager.Instance.MPObjects;
-    private MultiplayerId id = objects.Get(chore)!.Id;
+    private readonly MultiplayerId id = objects.Get(chore)!.Id;
     /// <inheritdoc/>
     public override StateMachine.Instance Resolve() => objects.Get<Chore>(id)!.GetSMI_Ext();
     /// <inheritdoc/>

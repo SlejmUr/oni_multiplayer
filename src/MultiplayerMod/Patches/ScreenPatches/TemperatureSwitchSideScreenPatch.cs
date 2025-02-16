@@ -23,11 +23,9 @@ internal static class TemperatureSwitchSideScreenPatch
         if (!ExecutionManager.LevelIsActive(ExecutionLevel.Game))
             return;
         MultiplayerManager.Instance.NetClient.Send(new UpdateTemperatureSwitchCommand(
-            new TemperatureSwitchSideScreenEventArgs(
             instance.targetTemperatureSwitch.GetComponentResolver(),
             instance.targetTemperatureSwitch.thresholdTemperature,
             instance.targetTemperatureSwitch.activateOnWarmerThan
-        )
             ));
     }
 }

@@ -188,10 +188,10 @@ internal class OtherCommands
 
     internal static void UpdateLogicCounterCommand_Event(UpdateLogicCounterCommand command)
     {
-        var logicCounter = command.Args.Target.Resolve();
-        logicCounter.maxCount = command.Args.MaxCount;
-        logicCounter.currentCount = command.Args.CurrentCount;
-        logicCounter.advancedMode = command.Args.AdvancedMode;
+        var logicCounter = command.Target.Resolve();
+        logicCounter.maxCount = command.MaxCount;
+        logicCounter.currentCount = command.CurrentCount;
+        logicCounter.advancedMode = command.AdvancedMode;
 
         logicCounter.SetCounterState();
         logicCounter.UpdateLogicCircuit();
@@ -201,37 +201,37 @@ internal class OtherCommands
 
     internal static void UpdateCritterSensorCommand_Event(UpdateCritterSensorCommand command)
     {
-        var logicCritterCountSensor = command.Args.Target.Resolve();
-        logicCritterCountSensor.countCritters = command.Args.CountCritters;
-        logicCritterCountSensor.countEggs = command.Args.CountEggs;
+        var logicCritterCountSensor = command.Target.Resolve();
+        logicCritterCountSensor.countCritters = command.CountCritters;
+        logicCritterCountSensor.countEggs = command.CountEggs;
     }
 
     internal static void UpdateLogicTimeOfDaySensorCommand_Event(UpdateLogicTimeOfDaySensorCommand command)
     {
-        var sensor = command.Args.Target.Resolve();
-        sensor.startTime = command.Args.StartTime;
-        sensor.duration = command.Args.Duration;
+        var sensor = command.Target.Resolve();
+        sensor.startTime = command.StartTime;
+        sensor.duration = command.Duration;
     }
 
     internal static void UpdateLogicTimeSensorCommand_Event(UpdateLogicTimeSensorCommand command)
     {
-        var sensor = command.Args.Target.Resolve();
-        sensor.displayCyclesMode = command.Args.DisplayCyclesMode;
-        sensor.onDuration = command.Args.OnDuration;
-        sensor.offDuration = command.Args.OffDuration;
-        sensor.timeElapsedInCurrentState = command.Args.TimeElapsedInCurrentState;
+        var sensor = command.Target.Resolve();
+        sensor.displayCyclesMode = command.DisplayCyclesMode;
+        sensor.onDuration = command.OnDuration;
+        sensor.offDuration = command.OffDuration;
+        sensor.timeElapsedInCurrentState = command.TimeElapsedInCurrentState;
     }
 
     internal static void UpdateRailGunCapacityCommand_Event(UpdateRailGunCapacityCommand command)
     {
-        var railGun = command.Args.Target.Resolve();
-        railGun.launchMass = command.Args.LaunchMass;
+        var railGun = command.Target.Resolve();
+        railGun.launchMass = command.LaunchMass;
     }
 
     internal static void UpdateTemperatureSwitchCommand_Event(UpdateTemperatureSwitchCommand command)
     {
-        var temperatureControlledSwitch = command.Args.Target.Resolve();
-        temperatureControlledSwitch.thresholdTemperature = command.Args.ThresholdTemperature;
-        temperatureControlledSwitch.activateOnWarmerThan = command.Args.ActivateOnWarmerThan;
+        var temperatureControlledSwitch = command.Target.Resolve();
+        temperatureControlledSwitch.thresholdTemperature = command.ThresholdTemperature;
+        temperatureControlledSwitch.activateOnWarmerThan = command.ActivateOnWarmerThan;
     }
 }

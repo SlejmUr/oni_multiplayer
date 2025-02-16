@@ -22,10 +22,10 @@ internal class CritterSensorSideScreenPatch
     {
         if (!ExecutionManager.LevelIsActive(ExecutionLevel.Game))
             return;
-        MultiplayerManager.Instance.NetClient.Send(new UpdateCritterSensorCommand(new CritterSensorSideScreenEventArgs(
+        MultiplayerManager.Instance.NetClient.Send(new UpdateCritterSensorCommand(
             instance.targetSensor.GetComponentResolver(),
             instance.targetSensor.countCritters,
             instance.targetSensor.countEggs
-        )));
+        ));
     }
 }

@@ -17,10 +17,9 @@ internal static class TimeRangeSideScreenPatch
         if (!ExecutionManager.LevelIsActive(ExecutionLevel.Game))
             return;
         MultiplayerManager.Instance.NetClient.Send(new UpdateLogicTimeOfDaySensorCommand(
-            new TimeRangeSideScreenEventArgs(
             __instance.targetTimedSwitch.GetComponentResolver(),
             __instance.targetTimedSwitch.startTime,
             __instance.targetTimedSwitch.duration
-        )));
+        ));
     }
 }

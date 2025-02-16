@@ -4,6 +4,9 @@ using System.Runtime.CompilerServices;
 
 namespace MultiplayerMod.Core.Weak;
 
+/// <summary>
+/// Weak Table for <see cref="StateMachine.Parameter.Context"/>
+/// </summary>
 public class StateMachineContextWeak
 {
     private static readonly ConditionalWeakTable<StateMachine.Parameter.Context, StateMachineContextWeak> cache = new();
@@ -22,6 +25,12 @@ public class StateMachineContextWeak
         )!;
     }
 
+    /// <summary>
+    /// Set the <see cref="context"/> for <paramref name="instance"/> with <paramref name="value"/>
+    /// </summary>
+    /// <param name="instance"></param>
+    /// <param name="value"></param>
+    /// <returns></returns>
     public bool Set(StateMachine.Instance instance, object value)
     {
         var parameterType = context.parameter.GetType();
@@ -43,6 +52,11 @@ public class StateMachineContextWeak
         return true;
     }
 
+    /// <summary>
+    /// Getting the <see cref="StateMachineContextWeak"/> from <paramref name="context"/>
+    /// </summary>
+    /// <param name="context"></param>
+    /// <returns></returns>
     public static StateMachineContextWeak Get(StateMachine.Parameter.Context context)
     {
         if (cache.TryGetValue(context, out var tools))

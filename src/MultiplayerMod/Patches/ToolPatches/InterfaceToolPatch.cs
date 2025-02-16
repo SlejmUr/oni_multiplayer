@@ -1,5 +1,4 @@
 using HarmonyLib;
-using JetBrains.Annotations;
 using MultiplayerMod.Core;
 using MultiplayerMod.Core.Execution;
 using MultiplayerMod.Events;
@@ -7,19 +6,17 @@ using MultiplayerMod.Events.EventArgs;
 using MultiplayerMod.Events.Others;
 using UnityEngine;
 
-namespace MultiplayerMod.Patches;
+namespace MultiplayerMod.Patches.ToolPatches;
 
 [HarmonyPatch(typeof(InterfaceTool))]
 internal static class InterfaceToolPatch
 {
-    static int Test = 0;
-    [UsedImplicitly]
     [HarmonyPrefix]
     [HarmonyPatch(nameof(InterfaceTool.OnMouseMove))]
     private static void OnMouseMove(Vector3 cursor_pos)
     {
+        /*
         // Temporarly disable this.
-        return;
         if (!ExecutionManager.LevelIsActive(ExecutionLevel.Game))
             return;
         var kScreens = KScreenManager.Instance.screenStack.Where(screen => screen.mouseOver).ToList();
@@ -37,6 +34,7 @@ internal static class InterfaceToolPatch
                 GetScreenName(kScreen),
                 kScreen.GetType().ToString()
             )));
+        */
     }
 
     private static string GetScreenName(KScreen screen) => screen switch

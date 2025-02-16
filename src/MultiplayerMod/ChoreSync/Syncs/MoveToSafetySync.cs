@@ -41,7 +41,7 @@ internal class MoveToSafetySync : BaseChoreSync<MoveToSafetyChore.States>
 
         StateMachine.move.Exit(smi => {
             MultiplayerManager.Instance.NetServer.Send(
-                new GoToStateCommand(new ChoreStateMachineResolver(smi.master), (StateMachine.BaseState?) null),
+                new GoToStateCommand(new ChoreStateMachineResolver(smi.master), (StateMachine.BaseState) null),
                 MultiplayerCommandOptions.SkipHost
             );
             MultiplayerManager.Instance.NetServer.Send(

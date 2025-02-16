@@ -17,9 +17,7 @@ internal static class RailGunSideScreenPatch
         if (!ExecutionManager.LevelIsActive(ExecutionLevel.Game))
             return;
         MultiplayerManager.Instance.NetClient.Send(
-            new UpdateRailGunCapacityCommand(
-                new RailGunSideScreenEventArgs(__instance.selectedGun.GetComponentResolver(), newValue)
-                )
+            new UpdateRailGunCapacityCommand(__instance.selectedGun.GetComponentResolver(), newValue)
             );
     }
 }

@@ -23,12 +23,11 @@ internal static class TimerSideScreenPatch
         if (!ExecutionManager.LevelIsActive(ExecutionLevel.Game))
             return;
         MultiplayerManager.Instance.NetClient.Send(new UpdateLogicTimeSensorCommand(
-            new TimerSideScreenEventArgs(
             instance.targetTimedSwitch.GetComponentResolver(),
             instance.targetTimedSwitch.displayCyclesMode,
             instance.targetTimedSwitch.onDuration,
             instance.targetTimedSwitch.offDuration,
             instance.targetTimedSwitch.timeElapsedInCurrentState
-        )));
+        ));
     }
 }

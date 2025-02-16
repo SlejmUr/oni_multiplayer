@@ -1,6 +1,5 @@
 using HarmonyLib;
 using MultiplayerMod.Commands.NetCommands;
-using MultiplayerMod.Commands.NetCommands.Args;
 using MultiplayerMod.Core;
 using MultiplayerMod.Core.Execution;
 using MultiplayerMod.Extensions;
@@ -23,11 +22,11 @@ internal static class CounterSideScreenPatch
     {
         if (!ExecutionManager.LevelIsActive(ExecutionLevel.Game))
             return;
-        MultiplayerManager.Instance.NetClient.Send(new UpdateLogicCounterCommand(new CounterSideScreenEventArgs(
+        MultiplayerManager.Instance.NetClient.Send(new UpdateLogicCounterCommand(
             instance.targetLogicCounter.GetComponentResolver(),
             instance.targetLogicCounter.currentCount,
             instance.targetLogicCounter.maxCount,
             instance.targetLogicCounter.advancedMode
-        )));
+        ));
     }
 }

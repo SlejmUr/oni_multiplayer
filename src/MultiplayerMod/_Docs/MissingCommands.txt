@@ -5,10 +5,7 @@ TransitToState -- No longer used.
 UpdateMove -- No longer used.
 SyncWorldDebugSnapshot ?
 ClickUserMenuButton  ?
-AbstractBuildUtilityCommand !
 AbstractDragToolCommand !
-Build
-CopySettings
 Modify
 MoveToLocation
 Stamp
