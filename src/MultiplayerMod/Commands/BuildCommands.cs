@@ -116,4 +116,16 @@ internal class BuildCommands
         tool.SetSourceObject(source);
         args.DragEvent.Cells.ForEach(it => tool.OnDragTool(it, 0));
     }
+
+    internal static void ModifyCommand_Event(ModifyCommand command)
+    {
+        var tool = new DebugTool
+        {
+            type = command.Args.Type
+        };
+        ContextRunner.Override(
+            command.Args.ToolContext,
+            () => { command.Args.DragEventArgs.Cells.ForEach(it => tool.OnDragTool(it, 0)); }
+        );
+    }
 }

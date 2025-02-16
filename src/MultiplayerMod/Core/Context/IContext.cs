@@ -1,7 +1,17 @@
 namespace MultiplayerMod.Core.Context;
 
-internal interface IContext
+/// <summary>
+/// Contect for loading and apply fake instance
+/// </summary>
+public interface IContext
 {
+    /// <summary>
+    /// Apply fake instance
+    /// </summary>
     public void Apply();
+
+    /// <summary>
+    /// restore real instance
+    /// </summary>
     public void Restore();
 }

@@ -6,6 +6,5 @@ UpdateMove -- No longer used.
 SyncWorldDebugSnapshot ?
 ClickUserMenuButton  ?
 AbstractDragToolCommand !
-Modify
 MoveToLocation
 Stamp
