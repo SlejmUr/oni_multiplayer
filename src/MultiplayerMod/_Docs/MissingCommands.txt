@@ -4,6 +4,4 @@ StartMove -- No longer used.
 TransitToState -- No longer used.
 UpdateMove -- No longer used.
 SyncWorldDebugSnapshot ?
-ClickUserMenuButton  ?
 AbstractDragToolCommand !
-Stamp

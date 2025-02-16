@@ -139,4 +139,17 @@ internal class BuildCommands
         else if (movable != null)
             movable.MoveToLocation(command.Cell);
     }
+
+    internal static void StampCommand_Event(StampCommand command)
+    {
+        var tool = new StampTool
+        {
+            stampTemplate = command.Template,
+            ready = true,
+            selectAffected = false,
+            deactivateOnStamp = false
+        };
+        ContextRunner.Override(new StampCompletionOverride(), () => tool.Stamp(command.Location));
+
+    }
 }
