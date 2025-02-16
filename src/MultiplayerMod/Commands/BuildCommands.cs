@@ -128,4 +128,15 @@ internal class BuildCommands
             () => { command.Args.DragEventArgs.Cells.ForEach(it => tool.OnDragTool(it, 0)); }
         );
     }
+
+    internal static void MoveToLocationCommand_Event(MoveToLocationCommand command)
+    {
+        var navigator = command.NavigatorReference?.Resolve();
+        var movable = command.MovableReference?.Resolve();
+
+        if (navigator != null)
+            navigator.GetSMI<MoveToLocationMonitor.Instance>()?.MoveToLocation(command.Cell);
+        else if (movable != null)
+            movable.MoveToLocation(command.Cell);
+    }
 }
