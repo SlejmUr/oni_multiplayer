@@ -58,7 +58,7 @@ internal static class BuildToolPatch
         var falseCondition = generator.DefineLabel();
         result.Add(new CodeInstruction(OpCodes.Ldloc_1));
         result.Add(new CodeInstruction(OpCodes.Ldnull));
-        result.Add(CodeInstruction.Call(typeof(Object), "op_Inequality", [typeof(Object), typeof(Object)]));
+        result.Add(CodeInstruction.Call(typeof(UnityEngine.Object), "op_Inequality", [typeof(UnityEngine.Object), typeof(UnityEngine.Object)]));
         result.Add(new CodeInstruction(OpCodes.Ldloc_S, asyncReplace));
         result.Add(new CodeInstruction(OpCodes.Or));
         result.Add(new CodeInstruction(OpCodes.Brfalse_S, falseCondition));

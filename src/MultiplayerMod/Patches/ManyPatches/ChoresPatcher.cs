@@ -64,11 +64,15 @@ internal static class ChoresPatcher
             return;
         CoroutineWorkerCustom.StartCoroutine(_ChoreCreateWait(chore, arguments));
     }
-    private static void CancelChore(Chore chore)
+    private static void CancelChore(StandardChoreBase chore)
     {
         if (!ExecutionManager.LevelIsActive(ExecutionLevel.Multiplayer))
             return;
-        chore.Cancel($"Chore instantiation of type \"{chore.GetType()}\" is disabled");
+        if (chore == null)
+            return;
+        Debug.Log("Cancel Chore " + chore.GetType());
+        string reason = $"Chore instantiation of type \"{chore.GetType()}\" is disabled";
+        chore.Cancel(reason);
     }
 
     internal static IEnumerator<double> _ChoreCreateWait(StandardChoreBase chore, object[] arguments)
