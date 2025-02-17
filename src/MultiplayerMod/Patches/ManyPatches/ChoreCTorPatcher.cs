@@ -57,6 +57,7 @@ internal static class ChoreCTorPatcher
         StateMachine.Instance smi = null;
         yield return CoroutineWorkerCustom.WaitUntilTrue(() =>
         {
+            Debug.Log($"Create Wait Chore! {chore.GetType()}");
             smi = chore.GetSMI_Ext();
             return smi != null;
         });
@@ -80,6 +81,7 @@ internal static class ChoreCTorPatcher
         yield return TimeSpan.FromMilliseconds(10).TotalSeconds;
         yield return CoroutineWorkerCustom.WaitUntilTrue(() =>
         {
+            Debug.Log($"Cancel Wait Chore! {chore.GetType()}");
             var smi = chore.GetSMI_Ext();
             return smi != null;
         });
