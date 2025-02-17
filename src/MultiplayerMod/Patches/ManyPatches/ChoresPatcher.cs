@@ -30,6 +30,7 @@ internal static class ChoresPatcher
         if (!ExecutionManager.LevelIsActive(ExecutionLevel.Multiplayer))
             return;
         MultiplayerManager.Instance.MultiGame.Objects.RemoveObject(__instance);
+        Debug.Log($"ChoreCleanup: Clear Chore: {__instance}");
         EventManager.TriggerEvent(new ChoreCleanupEvent(__instance));
     }
     
@@ -56,12 +57,13 @@ internal static class ChoresPatcher
             yield return newInstructions[z];
     }
 
-    private static void BeforeChoreSetCall(ChoreDriver driver,Chore previousChore, ref Chore.Precondition.Context context)
+    private static void BeforeChoreSetCall(ChoreDriver driver, Chore previousChore, ref Chore.Precondition.Context context)
     {
         if (!ExecutionManager.LevelIsActive(ExecutionLevel.Multiplayer))
             return;
         if (MultiplayerManager.Instance.MultiGame.Mode != Core.Player.PlayerRole.Server)
             return;
+        Debug.Log($"BeforeChoreSetCall: Driver: {driver} Prev Chore: {previousChore} contect chore: {context.chore}");
         EventManager.TriggerEvent(new BeforeChoreSetEvent(driver, previousChore, ref context));
     }
 }
