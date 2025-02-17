@@ -5,7 +5,6 @@ using MultiplayerMod.Core.Context;
 using MultiplayerMod.Events.Others;
 using MultiplayerMod.Patches;
 using UnityEngine;
-using static STRINGS.UI.TOOLS;
 
 namespace MultiplayerMod.Multiplayer.EventCalls;
 
@@ -76,40 +75,40 @@ internal class DragCompleteEvents
         switch (@event.Sender)
         {
             case DigTool:
-                command = new DragToolCommand<DigTool>(@event.Args);
+                command = new DragToolCommand(@event.Args, typeof(DigTool));
                 break;
             case CancelTool:
-                command = new DragToolCommand<CancelTool>(@event.Args);
+                command = new DragToolCommand(@event.Args, typeof(CancelTool));
                 break;
             case DeconstructTool:
-                command = new DragToolCommand<DeconstructTool>(@event.Args);
+                command = new DragToolCommand(@event.Args, typeof(DeconstructTool));
                 break;
             case PrioritizeTool:
-                command = new DragToolCommand<PrioritizeTool>(@event.Args);
+                command = new DragToolCommand(@event.Args, typeof(PrioritizeTool));
                 break;
             case DisinfectTool:
-                command = new DragToolCommand<DisinfectTool>(@event.Args);
+                command = new DragToolCommand(@event.Args, typeof(DisinfectTool));
                 break;
             case ClearTool:
-                command = new DragToolCommand<ClearTool>(@event.Args);
+                command = new DragToolCommand(@event.Args, typeof(ClearTool));
                 break;
             case AttackTool:
-                command = new DragToolCommand<AttackTool>(@event.Args);
+                command = new DragToolCommand(@event.Args, typeof(AttackTool));
                 break;
             case MopTool:
-                command = new DragToolCommand<MopTool>(@event.Args);
+                command = new DragToolCommand(@event.Args, typeof(MopTool));
                 break;
             case CaptureTool:
-                command = new DragToolCommand<CaptureTool>(@event.Args);
+                command = new DragToolCommand(@event.Args, typeof(CaptureTool));
                 break;
             case HarvestTool:
-                command = new DragToolCommand<HarvestTool>(@event.Args);
+                command = new DragToolCommand(@event.Args, typeof(HarvestTool));
                 break;
             case EmptyPipeTool:
-                command = new DragToolCommand<EmptyPipeTool>(@event.Args);
+                command = new DragToolCommand(@event.Args, typeof(EmptyPipeTool));
                 break;
             case DisconnectTool:
-                command = new DragToolCommand<DisconnectTool>(@event.Args);
+                command = new DragToolCommand(@event.Args, typeof(DisconnectTool));
                 break;
             default:
                 return;

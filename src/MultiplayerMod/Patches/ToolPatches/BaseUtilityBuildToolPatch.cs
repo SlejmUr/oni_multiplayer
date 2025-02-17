@@ -27,6 +27,6 @@ internal static class BaseUtilityBuildToolPatch
             [.. __instance.selectedElements],
             __instance.path,
             GameStatePatch.BuildToolPriority
-        )));
+        ), __instance.GetType()));
     }
 }

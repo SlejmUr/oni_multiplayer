@@ -7,10 +7,21 @@ namespace MultiplayerMod.Commands.Tools;
 /// 
 /// </summary>
 [Serializable]
-public class DragToolCommand<T>(DragCompleteEventArgs args) : BaseCommandEvent where T : DragTool, new()
+public class DragToolCommand(DragCompleteEventArgs args, Type dragToolType) : BaseCommandEvent
 {
     /// <summary>
     /// Argument for <see cref="DragTool"/>
     /// </summary>
     public DragCompleteEventArgs Args => args;
+
+    /// <summary>
+    /// Type of this DragToolCommand
+    /// </summary>
+    public Type DragToolType => dragToolType;
+
+    /// <inheritdoc/>
+    public override string ToString()
+    {
+        return $"{base.ToString()} Args: {Args} Type: {DragToolType}";
+    }
 }

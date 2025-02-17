@@ -3,92 +3,138 @@ using MultiplayerMod.Commands.Tools.Args;
 using MultiplayerMod.Core.Context;
 using MultiplayerMod.Events;
 using MultiplayerMod.Extensions;
-using static Mono.Cecil.Mixin;
 
 namespace MultiplayerMod.Commands;
 
 internal static class DragCommands
 {
-    internal static void DragToolCommand_Cancel(DragToolCommand<CancelTool> toolCommand)
+    internal static void DragToolCommand_Any(DragToolCommand toolCommand)
+    {
+        Debug.Log("DragToolCommand: " + toolCommand.DragToolType + " " + toolCommand.DragToolType.Name);
+        Debug.Log("DragToolCommand: " + nameof(DigTool));
+        switch (toolCommand.DragToolType.Name)
+        {
+            case nameof(DigTool):
+                DragToolCommand_Dig(toolCommand.Args);
+                break;
+            case nameof(CancelTool):
+                DragToolCommand_Cancel(toolCommand.Args);
+                break;
+            case nameof(DeconstructTool):
+                DragToolCommand_Destruction(toolCommand.Args);
+                break;
+            case nameof(PrioritizeTool):
+                DragToolCommand_Prioritize(toolCommand.Args);
+                break;
+            case nameof(DisinfectTool):
+                DragToolCommand_Disinfect(toolCommand.Args);
+                break;
+            case nameof(ClearTool):
+                DragToolCommand_Clear(toolCommand.Args);
+                break;
+            case nameof(AttackTool):
+                DragToolCommand_Attack(toolCommand.Args);
+                break;
+            case nameof(MopTool):
+                DragToolCommand_Mop(toolCommand.Args);
+                break;
+            case nameof(CaptureTool):
+                DragToolCommand_Capture(toolCommand.Args);
+                break;
+            case nameof(HarvestTool):
+                DragToolCommand_Harvest(toolCommand.Args);
+                break;
+            case nameof(EmptyPipeTool):
+                DragToolCommand_EmptyPipe(toolCommand.Args);
+                break;
+            case nameof(DisconnectTool):
+                DragToolCommand_Disconnect(toolCommand.Args);
+                break;
+            default:
+                break;
+        }
+
+    }
+    internal static void DragToolCommand_Cancel(DragCompleteEventArgs args)
     {
         var tool = new CancelTool();
-        RunBasicCommandForTool(tool, toolCommand.Args, () => { toolCommand.Args.Cells.ForEach(it => tool.OnDragTool(it, 0)); });
+        RunBasicCommandForTool(tool, args, () => { args.Cells.ForEach(it => tool.OnDragTool(it, 0)); });
     }
 
-    internal static void DragToolCommand_Destruction(DragToolCommand<DeconstructTool> toolCommand)
+    internal static void DragToolCommand_Destruction(DragCompleteEventArgs args)
     {
         var tool = new DeconstructTool();
-        RunBasicCommandForTool(tool, toolCommand.Args, () => { toolCommand.Args.Cells.ForEach(it => tool.OnDragTool(it, 0)); });
+        RunBasicCommandForTool(tool, args, () => { args.Cells.ForEach(it => tool.OnDragTool(it, 0)); });
     }
 
-    internal static void DragToolCommand_Dig(DragToolCommand<DigTool> toolCommand)
+    internal static void DragToolCommand_Dig(DragCompleteEventArgs args)
     {
         var tool = new DigTool();
-        RunBasicCommandForTool(tool, toolCommand.Args, () => { toolCommand.Args.Cells.ForEach(it => tool.OnDragTool(it, 0)); });
+        RunBasicCommandForTool(tool, args, () => { args.Cells.ForEach(it => tool.OnDragTool(it, 0)); });
     }
 
-    internal static void DragToolCommand_Disinfect(DragToolCommand<DisinfectTool> toolCommand)
+    internal static void DragToolCommand_Disinfect(DragCompleteEventArgs args)
     {
         var tool = new DisinfectTool();
-        RunBasicCommandForTool(tool, toolCommand.Args, () => { toolCommand.Args.Cells.ForEach(it => tool.OnDragTool(it, 0)); });
+        RunBasicCommandForTool(tool, args, () => { args.Cells.ForEach(it => tool.OnDragTool(it, 0)); });
     }
 
-    internal static void DragToolCommand_EmptyPipe(DragToolCommand<EmptyPipeTool> toolCommand)
+    internal static void DragToolCommand_EmptyPipe(DragCompleteEventArgs args)
     {
         var tool = new EmptyPipeTool();
-        RunBasicCommandForTool(tool, toolCommand.Args, () => { toolCommand.Args.Cells.ForEach(it => tool.OnDragTool(it, 0)); });
+        RunBasicCommandForTool(tool, args, () => { args.Cells.ForEach(it => tool.OnDragTool(it, 0)); });
     }
 
-    internal static void DragToolCommand_Clear(DragToolCommand<ClearTool> toolCommand)
+    internal static void DragToolCommand_Clear(DragCompleteEventArgs args)
     {
         var tool = new ClearTool();
-        RunBasicCommandForTool(tool, toolCommand.Args, () => { toolCommand.Args.Cells.ForEach(it => tool.OnDragTool(it, 0)); });
+        RunBasicCommandForTool(tool, args, () => { args.Cells.ForEach(it => tool.OnDragTool(it, 0)); });
     }
 
-    internal static void DragToolCommand_Attack(DragToolCommand<AttackTool> toolCommand)
+    internal static void DragToolCommand_Attack(DragCompleteEventArgs args)
     {
         var tool = new AttackTool();
-        RunBasicCommandForTool(tool, toolCommand.Args, () => { tool.OnDragComplete(toolCommand.Args.CursorDown, toolCommand.Args.CursorUp); });
+        RunBasicCommandForTool(tool, args, () => { tool.OnDragComplete(args.CursorDown, args.CursorUp); });
     }
 
-    internal static void DragToolCommand_Disconnect(DragToolCommand<DisconnectTool> toolCommand)
+    internal static void DragToolCommand_Disconnect(DragCompleteEventArgs args)
     {
         var tool = new DisconnectTool();
-        RunBasicCommandForTool(tool, toolCommand.Args, () => { tool.OnDragComplete(toolCommand.Args.CursorDown, toolCommand.Args.CursorUp); });
+        RunBasicCommandForTool(tool, args, () => { tool.OnDragComplete(args.CursorDown, args.CursorUp); });
     }
 
-    internal static void DragToolCommand_Capture(DragToolCommand<CaptureTool> toolCommand)
+    internal static void DragToolCommand_Capture(DragCompleteEventArgs args)
     {
         var tool = new CaptureTool();
-        RunBasicCommandForTool(tool, toolCommand.Args, () => { tool.OnDragComplete(toolCommand.Args.CursorDown, toolCommand.Args.CursorUp); });
+        RunBasicCommandForTool(tool, args, () => { tool.OnDragComplete(args.CursorDown, args.CursorUp); });
     }
 
-    internal static void DragToolCommand_Harvest(DragToolCommand<HarvestTool> toolCommand)
+    internal static void DragToolCommand_Harvest(DragCompleteEventArgs args)
     {
         var tool = new HarvestTool();
-        tool.downPos = toolCommand.Args.CursorDown;
+        tool.downPos = args.CursorDown;
 
         tool.options = new Dictionary<string, ToolParameterMenu.ToggleState>
         {
             ["HARVEST_WHEN_READY"] = ToolParameterMenu.ToggleState.Off,
             ["DO_NOT_HARVEST"] = ToolParameterMenu.ToggleState.Off
         };
-        toolCommand.Args.Parameters?.ForEach(it => tool.options[it] = ToolParameterMenu.ToggleState.On);
-        ContextRunner.Override(new PrioritySettingsContext(toolCommand.Args.Priority), () => { tool.OnDragComplete(toolCommand.Args.CursorDown, toolCommand.Args.CursorUp); });
+        args.Parameters?.ForEach(it => tool.options[it] = ToolParameterMenu.ToggleState.On);
+        ContextRunner.Override(new PrioritySettingsContext(args.Priority), () => { tool.OnDragComplete(args.CursorDown, args.CursorUp); });
     }
 
-    internal static void DragToolCommand_Mop(DragToolCommand<MopTool> toolCommand)
+    internal static void DragToolCommand_Mop(DragCompleteEventArgs args)
     {
         var tool = new MopTool();
-        tool.downPos = toolCommand.Args.CursorDown;
+        tool.downPos = args.CursorDown;
         tool.Placer = Assets.GetPrefab(new Tag("MopPlacer"));
-        ContextRunner.Override(new PrioritySettingsContext(toolCommand.Args.Priority), () => { tool.OnDragComplete(toolCommand.Args.CursorDown, toolCommand.Args.CursorUp); });
+        ContextRunner.Override(new PrioritySettingsContext(args.Priority), () => { tool.OnDragComplete(args.CursorDown, args.CursorUp); });
     }
 
-    internal static void DragToolCommand_Prioritize(DragToolCommand<PrioritizeTool> toolCommand)
+    internal static void DragToolCommand_Prioritize(DragCompleteEventArgs args)
     {
         var tool = new PrioritizeTool();
-        tool.downPos = toolCommand.Args.CursorDown;
+        tool.downPos = args.CursorDown;
 
         if (tool is not FilteredDragTool filteredTool)
             return;
@@ -97,8 +143,8 @@ internal static class DragCommands
         {
             [ToolParameterMenu.FILTERLAYERS.ALL] = ToolParameterMenu.ToggleState.Off
         };
-        toolCommand.Args.Parameters?.ForEach(it => filteredTool.currentFilterTargets[it] = ToolParameterMenu.ToggleState.On);
-        ContextRunner.Override(new ContextArray(new PrioritySettingsContext(toolCommand.Args.Priority), new DisablePriorityConfirmSound()), () => { tool.OnDragComplete(toolCommand.Args.CursorDown, toolCommand.Args.CursorUp); });
+        args.Parameters?.ForEach(it => filteredTool.currentFilterTargets[it] = ToolParameterMenu.ToggleState.On);
+        ContextRunner.Override(new ContextArray(new PrioritySettingsContext(args.Priority), new DisablePriorityConfirmSound()), () => { tool.OnDragComplete(args.CursorDown, args.CursorUp); });
     }
 
     [NoAutoSubscribe]
@@ -107,7 +153,10 @@ internal static class DragCommands
         tool.downPos = args.CursorDown;
 
         if (tool is not FilteredDragTool filteredTool)
+        {
+            ContextRunner.Override(new PrioritySettingsContext(args.Priority), invokeAction);
             return;
+        }
 
         filteredTool.currentFilterTargets = new Dictionary<string, ToolParameterMenu.ToggleState>
         {

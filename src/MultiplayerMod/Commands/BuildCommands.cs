@@ -15,13 +15,28 @@ internal class BuildCommands
     internal static void BuildUtilityCommand_UtilityBuildTool_Event(BuildUtilityCommand command)
     {
         var definition = Assets.GetBuildingDef(command.Args.PrefabId);
-        var tool = new BaseUtilityBuildTool()
+        BaseUtilityBuildTool tool = null;
+        if (command.SenderType.Name == nameof(WireBuildTool))
         {
-            def = definition,
-            conduitMgr = definition.BuildingComplete.GetComponent<IHaveUtilityNetworkMgr>().GetNetworkManager(),
-            selectedElements = command.Args.Materials,
-            path = command.Args.Path
-        };
+            tool = new WireBuildTool()
+            {
+                def = definition,
+                conduitMgr = definition.BuildingComplete.GetComponent<IHaveUtilityNetworkMgr>().GetNetworkManager(),
+                selectedElements = command.Args.Materials,
+                path = command.Args.Path
+            };
+        }
+        else
+        {
+            tool = new BaseUtilityBuildTool()
+            {
+                def = definition,
+                conduitMgr = definition.BuildingComplete.GetComponent<IHaveUtilityNetworkMgr>().GetNetworkManager(),
+                selectedElements = command.Args.Materials,
+                path = command.Args.Path
+            };
+        }
+
         BaseUtilityBuildToolPatch.IsCommandSent = true;
         ContextRunner.Override(new PrioritySettingsContext(command.Args.Priority), tool.BuildPath);
     }
