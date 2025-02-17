@@ -16,11 +16,11 @@ public struct Coroutine(IEnumerator<double> enumerator, CoroutineType type, stri
     /// <summary>
     /// Is Coroutine currently running
     /// </summary>
-    public bool IsRunning = true;
+    public bool IsRunning;
     /// <summary>
     /// Should Kill this coroutine
     /// </summary>
-    public bool ShouldKill = false;
+    public bool ShouldKill;
     /// <summary>
     /// Should pause this coroutine
     /// </summary>
@@ -28,7 +28,7 @@ public struct Coroutine(IEnumerator<double> enumerator, CoroutineType type, stri
     /// <summary>
     /// Is Coroutine successly run 
     /// </summary>
-    public bool IsSuccess = false;
+    public bool IsSuccess;
     /// <summary>
     /// Tag to unique names
     /// </summary>

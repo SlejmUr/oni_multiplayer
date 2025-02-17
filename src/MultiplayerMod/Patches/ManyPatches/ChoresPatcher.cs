@@ -2,12 +2,15 @@ using EIV_Common.Coroutines;
 using HarmonyLib;
 using MultiplayerMod.Core;
 using MultiplayerMod.Core.Execution;
+using MultiplayerMod.Core.Objects;
 using MultiplayerMod.Events;
 using MultiplayerMod.Events.Chores;
 using MultiplayerMod.Extensions;
 using MultiplayerMod.Multiplayer.Controllers;
 using System.Reflection.Emit;
-using System.Runtime.Serialization;
+using static Mono.Cecil.Mixin;
+using static ResearchTypes;
+using static STRINGS.DUPLICANTS;
 
 namespace MultiplayerMod.Patches.ManyPatches;
 
@@ -62,7 +65,7 @@ internal static class ChoresPatcher
     {
         if (!ExecutionManager.LevelIsActive(ExecutionLevel.Multiplayer))
             return;
-        CoroutineWorkerCustom.StartCoroutine(_ChoreCreateWait(chore, arguments));
+        CoroutineWorkerCustom.StartCoroutine(_ChoreCreateWait(chore, arguments), CoroutineType.Custom, "CreateWait");
     }
     private static void CancelChore(StandardChoreBase chore)
     {
@@ -70,21 +73,45 @@ internal static class ChoresPatcher
             return;
         if (chore == null)
             return;
-        Debug.Log("Cancel Chore " + chore.GetType());
-        string reason = $"Chore instantiation of type \"{chore.GetType()}\" is disabled";
-        chore.Cancel(reason);
+        CoroutineWorkerCustom.StartCoroutine(_ChoreCancelWait(chore), CoroutineType.Custom, "CancelWait");
     }
 
     internal static IEnumerator<double> _ChoreCreateWait(StandardChoreBase chore, object[] arguments)
     {
         yield return TimeSpan.FromMilliseconds(10).TotalSeconds;
-        var smi = chore.GetSMI();
-        yield return CoroutineWorkerCustom.WaitUntilFalse(() => { smi = chore.GetSMI(); return smi == null; });
-        var statemachine = smi.stateMachine;
-        yield return CoroutineWorkerCustom.WaitUntilFalse(() => { statemachine = smi.stateMachine; return statemachine == null; });
+        StateMachine.Instance smi = null;
+        yield return CoroutineWorkerCustom.WaitUntilTrue(() =>
+        {
+            smi = chore.GetSMI();
+            return smi != null;
+        });
+        yield return 0;
+        StateMachine statemachine = smi.stateMachine;
+        yield return CoroutineWorkerCustom.WaitUntilTrue(() =>
+        {;
+            statemachine = smi.stateMachine;
+            return statemachine != null;
+        });
         var seri = statemachine.serializable;
         var id = chore.Register(persistent: seri == StateMachine.SerializeType.Never);
+        Debug.Log("Register Success!");
         EventManager.TriggerEvent(new ChoreCreatedEvent(chore, id, chore.GetType(), arguments));
+        yield break;
+    }
+
+    internal static IEnumerator<double> _ChoreCancelWait(StandardChoreBase chore)
+    {
+        yield return TimeSpan.FromMilliseconds(10).TotalSeconds;
+        yield return CoroutineWorkerCustom.WaitUntilTrue(() =>
+        {
+            var smi = chore.GetSMI();
+            return smi != null;
+        });
+        yield return 0;
+        Debug.Log("Cancel Chore: " + chore.GetType());
+        string reason = $"Chore instantiation of type \"{chore.GetType()}\" is disabled";
+        chore.Cancel(reason);
+        Debug.Log("Cancel Success!");
         yield break;
 
     }

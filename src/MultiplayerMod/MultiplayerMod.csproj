@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
 		<TargetFramework>net48</TargetFramework>
@@ -52,12 +52,4 @@
 	</PropertyGroup>
 
 	<!-- Show log files in client. -->
-	<ItemGroup>
-		<Content Include="$(UserProfile)\AppData\LocalLow\Klei\Oxygen Not Included\Player.log">
-			<Link>_logs/Player.log</Link>
-		</Content>
-		<Content Include="$(UserProfile)\AppData\LocalLow\Klei\Oxygen Not Included\VM\Player.log">
-			<Link>_logs/VM Player.log</Link>
-		</Content>
-	</ItemGroup>
 </Project>

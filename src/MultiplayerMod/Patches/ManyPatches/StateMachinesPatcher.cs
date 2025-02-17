@@ -36,11 +36,16 @@ internal static class StateMachinesPatcher
 
     internal static void ServerPostWork(StateMachine __instance)
     {
-        Type state_type = __instance.GetType().DeclaringType;
-        var state = ChoreSyncList.GetSync(state_type);
+        Type type = __instance.GetType();
+        var state = ChoreSyncList.GetSync(type);
         if (state == default)
         {
-            Debug.Log($"State for Type {state_type} not yet been implemented.");
+            type = __instance.GetType().DeclaringType;
+            state = ChoreSyncList.GetSync(type);
+        }
+        if (state == default)
+        {
+            Debug.Log($"State for Type {type} not yet been implemented.");
             return;
         }
         state.Server(__instance);
@@ -48,11 +53,16 @@ internal static class StateMachinesPatcher
 
     internal static void ClientPostWork(StateMachine __instance)
     {
-        Type state_type = __instance.GetType().DeclaringType;
-        var state = ChoreSyncList.GetSync(state_type);
+        Type type = __instance.GetType();
+        var state = ChoreSyncList.GetSync(type);
         if (state == default)
         {
-            Debug.Log($"State for Type {state_type} not yet been implemented.");
+            type = __instance.GetType().DeclaringType;
+            state = ChoreSyncList.GetSync(type);
+        }
+        if (state == default)
+        {
+            Debug.Log($"State for Type {type} not yet been implemented.");
             return;
         }
         state.Client(__instance);

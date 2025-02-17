@@ -10,8 +10,8 @@ namespace MultiplayerMod.Core.Objects.Resolvers;
 [Serializable]
 public class ComponentResolver<T>(GameObjectResolver reference) : TypedResolver<T> where T : Component
 {
-    private GameObjectResolver GameObjectReference { get; } = reference;
-    private Type ComponentType { get; } = typeof(T);
+    private GameObjectResolver GameObjectReference => reference;
+    private Type ComponentType => typeof(T);
 
     /// <inheritdoc/>
     public override T Resolve() => (T) GameObjectReference.Resolve().GetComponent(ComponentType);

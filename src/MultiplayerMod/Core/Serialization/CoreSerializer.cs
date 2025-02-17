@@ -1,4 +1,5 @@
 using MultiplayerMod.Core.Serialization.Surrogates;
+using System.Diagnostics;
 using System.Runtime.Serialization.Formatters.Binary;
 
 namespace MultiplayerMod.Core.Serialization;
@@ -28,6 +29,12 @@ public static class CoreSerializer
         catch (Exception ex)
         {
             Debug.LogWarning(ex);
+            StackTrace st = new StackTrace(true);
+            for (int i = 0; i < st.FrameCount; i++)
+            {
+                StackFrame sf = st.GetFrame(i);
+                Debug.LogWarning($"StackTrace: {i} : {sf.GetMethod()}");
+            }
             return default;
         }
     }
@@ -60,6 +67,12 @@ public static class CoreSerializer
         catch (Exception ex)
         {
             Debug.LogWarning(ex);
+            StackTrace st = new StackTrace(true);
+            for (int i = 0; i < st.FrameCount; i++)
+            {
+                StackFrame sf = st.GetFrame(i);
+                Debug.LogWarning($"StackTrace: {i} : {sf.GetMethod()}");
+            }
             return [];
         }
 

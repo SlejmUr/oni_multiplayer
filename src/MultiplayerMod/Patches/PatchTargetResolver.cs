@@ -87,8 +87,6 @@ internal class PatchTargetResolver
 
     private MethodBase GetMethod(Type type, string methodName, Type interfaceType)
     {
-        Debug.Log($"GetMethod. {type}, {methodName}, {interfaceType}");
-
         if (string.IsNullOrEmpty(methodName))
             return null;
 

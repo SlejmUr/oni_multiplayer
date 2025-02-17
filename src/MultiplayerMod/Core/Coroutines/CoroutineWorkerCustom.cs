@@ -80,7 +80,6 @@ public class CoroutineWorkerCustom
         {
             if (PauseUpdate)
                 continue;
-
             double currTime = Watch.ElapsedMilliseconds / 1000f;
             accumulator += currTime - prevTime;
             prevTime = currTime;
@@ -103,7 +102,7 @@ public class CoroutineWorkerCustom
             for (int i = 0; i < Instance.CustomCoroutines.Count; i++)
             {
                 Coroutine item = Instance.CustomCoroutines[i];
-                Debug.Log(Instance.Delays[i] + " " + i + " " + deltaTime + " " + item);
+                Debug.Log($"index: {i} Delay: {Instance.Delays[i]} DeltaTime: {deltaTime} CoroutineItem: {item}");
                 if (Instance.Delays[i] > 0f)
                     Instance.Delays[i] -= deltaTime;
                 if (Instance.Delays[i] <= 0f)
@@ -300,9 +299,9 @@ public class CoroutineWorkerCustom
     /// <returns></returns>
     public static double WaitUntilFalse(Func<bool> evaluatorFunc)
     {
-        if (evaluatorFunc == null || !evaluatorFunc())
+        if (evaluatorFunc == null || evaluatorFunc() == false)
         {
-            return double.NaN;
+            return 0;
         }
         _tmpRef = evaluatorFunc;
         ReplacementFunction = new Func<IEnumerator<double>, IEnumerator<double>>(WaitUntilFalseHelper);
@@ -318,7 +317,7 @@ public class CoroutineWorkerCustom
     {
         if (evaluatorFunc == null || evaluatorFunc())
         {
-            return double.NaN;
+            return 0;
         }
         _tmpRef = evaluatorFunc;
         ReplacementFunction = new Func<IEnumerator<double>, IEnumerator<double>>(WaitUntilTrueHelper);
@@ -335,7 +334,7 @@ public class CoroutineWorkerCustom
         Coroutine cor = Instance.CustomCoroutines.FirstOrDefault(x => coroutine.Equals((CoroutineHandle) x));
         if (cor.IsSuccess)
         {
-            return double.NaN;
+            return 0;
         }
         _tmpRef = cor;
         ReplacementFunction = new Func<IEnumerator<double>, IEnumerator<double>>(StartAfterCoroutineHelper);
