@@ -7,7 +7,7 @@ internal class SafeCellMonitorSync : BaseChoreSync<SafeCellMonitor>
     public override void Client(StateMachine instance)
     {
         Setup(instance);
-        StateMachine.danger.ToggleChore(null, null);
+        SM.danger.enterActions.Clear();
     }
 
     public override void Server(StateMachine instance)

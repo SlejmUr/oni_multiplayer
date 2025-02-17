@@ -1,3 +1,5 @@
+using MultiplayerMod.Core.Wrappers;
+
 namespace MultiplayerMod.ChoreSync.Syncs.MonitorSyncs;
 
 internal class IdleMonitorSync : BaseChoreSync<IdleMonitor>
@@ -7,7 +9,7 @@ internal class IdleMonitorSync : BaseChoreSync<IdleMonitor>
     public override void Client(StateMachine instance)
     {
         Setup(instance);
-        StateMachine.idle.ToggleChore(null, null);
+        SM.idle.ToggleChore((smi) => { return new EmptyChore(smi.master); }, SM.stopped);
     }
 
     public override void Server(StateMachine instance)

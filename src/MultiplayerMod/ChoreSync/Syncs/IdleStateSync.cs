@@ -13,11 +13,10 @@ internal class IdleStateSync : BaseChoreSync<IdleStates>
     public override void Client(StateMachine instance)
     {
         Setup(instance);
-        StateMachine.loop.ToggleScheduleCallback(null, null, null);
-        StateMachine.move.Enter(null);
+        SM.loop.enterActions.Clear();
 
         var targetCell = AddMultiplayerParameter<int, IdleStates.IntParameter>(MoveObjectToCellCommand.TargetCell);
-        StateMachine.move.Enter(smi => {
+        SM.move.Enter(smi => {
             var navigator = smi.GetComponent<Navigator>();
             navigator.GoTo(targetCell.Get(smi));
         });
@@ -26,7 +25,7 @@ internal class IdleStateSync : BaseChoreSync<IdleStates>
     public override void Server(StateMachine instance)
     {
         Setup(instance);
-        StateMachine.move.Enter(smi => {
+        SM.move.Enter(smi => {
             var target = smi.GetComponent<Navigator>().targetLocator;
             var cell = Grid.PosToCell(target);
 
@@ -35,18 +34,18 @@ internal class IdleStateSync : BaseChoreSync<IdleStates>
                 return;
 
             MultiplayerManager.Instance.NetServer.Send(
-                new MoveObjectToCellCommand(new StateMachineResolver(smi.controller.GetComponentResolver(), smi.GetType()), cell, StateMachine.move),
+                new MoveObjectToCellCommand(new StateMachineResolver(smi.controller.GetComponentResolver(), smi.GetType()), cell, SM.move),
                 MultiplayerCommandOptions.SkipHost
             );
         });
-        StateMachine.move.Exit(smi => {
+        SM.move.Exit(smi => {
 
             // TODO: Remove after critters sync (WorldGenSpawner.Spawnable + new critters)
             if (MultiplayerManager.Instance.MPObjects.Get(smi.master.gameObject) == null)
                 return;
 
             MultiplayerManager.Instance.NetServer.Send(
-                new GoToStateCommand(new StateMachineResolver(smi.controller.GetComponentResolver(), smi.GetType()), StateMachine.loop),
+                new GoToStateCommand(new StateMachineResolver(smi.controller.GetComponentResolver(), smi.GetType()), SM.loop),
                 MultiplayerCommandOptions.SkipHost
             );
             MultiplayerManager.Instance.NetServer.Send(

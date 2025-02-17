@@ -7,7 +7,7 @@ internal class ThreatMonitorSync : BaseChoreSync<ThreatMonitor>
     public override void Client(StateMachine instance)
     {
         Setup(instance);
-        StateMachine.threatened.duplicant.ShouldFight.ToggleChore(null, null);
+        SM.threatened.duplicant.ShouldFight.enterActions.Clear();
     }
 
     public override void Server(StateMachine instance)

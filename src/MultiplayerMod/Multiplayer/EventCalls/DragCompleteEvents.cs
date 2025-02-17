@@ -1,16 +1,11 @@
-using MultiplayerMod.Commands;
+using MultiplayerMod.Commands.NetCommands;
 using MultiplayerMod.Commands.Tools;
 using MultiplayerMod.Core;
 using MultiplayerMod.Core.Context;
 using MultiplayerMod.Events.Others;
 using MultiplayerMod.Patches;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UnityEngine;
-using static STRINGS.UI.USERMENUACTIONS;
+using static STRINGS.UI.TOOLS;
 
 namespace MultiplayerMod.Multiplayer.EventCalls;
 
@@ -73,5 +68,53 @@ internal class DragCompleteEvents
         };
 
         MultiplayerManager.Instance.NetClient.Send(new ModifyCommand(new(@event.Args, tool.type, context)));
+    }
+
+    internal static void DragCompletedEvent_Call(DragCompletedEvent @event)
+    {
+        BaseCommandEvent command = null;
+        switch (@event.Sender)
+        {
+            case DigTool:
+                command = new DragToolCommand<DigTool>(@event.Args);
+                break;
+            case CancelTool:
+                command = new DragToolCommand<CancelTool>(@event.Args);
+                break;
+            case DeconstructTool:
+                command = new DragToolCommand<DeconstructTool>(@event.Args);
+                break;
+            case PrioritizeTool:
+                command = new DragToolCommand<PrioritizeTool>(@event.Args);
+                break;
+            case DisinfectTool:
+                command = new DragToolCommand<DisinfectTool>(@event.Args);
+                break;
+            case ClearTool:
+                command = new DragToolCommand<ClearTool>(@event.Args);
+                break;
+            case AttackTool:
+                command = new DragToolCommand<AttackTool>(@event.Args);
+                break;
+            case MopTool:
+                command = new DragToolCommand<MopTool>(@event.Args);
+                break;
+            case CaptureTool:
+                command = new DragToolCommand<CaptureTool>(@event.Args);
+                break;
+            case HarvestTool:
+                command = new DragToolCommand<HarvestTool>(@event.Args);
+                break;
+            case EmptyPipeTool:
+                command = new DragToolCommand<EmptyPipeTool>(@event.Args);
+                break;
+            case DisconnectTool:
+                command = new DragToolCommand<DisconnectTool>(@event.Args);
+                break;
+            default:
+                return;
+        }
+
+        MultiplayerManager.Instance.NetClient.Send(command);
     }
 }
