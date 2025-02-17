@@ -6,9 +6,11 @@ namespace MultiplayerMod.Multiplayer.Chores;
 
 internal static class BindChoreSend
 {
-    internal static void ChoreCreatedEvent_Call(ChoreCreatedEvent @event)
+    internal static void MultiplayerChoreCreatedEvent_Call(ChoreCreatedEvent @event)
     {
-        Debug.Log("ChoreCreatedEvent: " + string.Join(", ", @event.Arguments));
-        MultiplayerManager.Instance.NetServer.Send(new CreateChoreCommand(@event.Id, @event.Type, @event.Arguments), Network.Common.MultiplayerCommandOptions.SkipHost);
+        Debug.Log($"ChoreCreatedEvent: Type: {@event.Chore.GetType()} Arg: {string.Join(", ", @event.Arguments)}");
+        var command = new CreateChoreCommand(@event.Id, @event.Type, @event.Arguments);
+        Debug.Log($"CreateChoreCommand: Type: {command.ChoreType} Arg: {string.Join(", ", command.Arguments)}");
+        MultiplayerManager.Instance.NetServer.Send(command, Network.Common.MultiplayerCommandOptions.SkipHost);
     }
 }

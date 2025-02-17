@@ -1,16 +1,10 @@
-using EIV_Common.Coroutines;
 using HarmonyLib;
 using MultiplayerMod.Core;
 using MultiplayerMod.Core.Execution;
-using MultiplayerMod.Core.Objects;
 using MultiplayerMod.Events;
 using MultiplayerMod.Events.Chores;
-using MultiplayerMod.Extensions;
 using MultiplayerMod.Multiplayer.Controllers;
 using System.Reflection.Emit;
-using static Mono.Cecil.Mixin;
-using static ResearchTypes;
-using static STRINGS.DUPLICANTS;
 
 namespace MultiplayerMod.Patches.ManyPatches;
 
@@ -38,83 +32,7 @@ internal static class ChoresPatcher
         MultiplayerManager.Instance.MultiGame.Objects.RemoveObject(__instance);
         EventManager.TriggerEvent(new ChoreCleanupEvent(__instance));
     }
-
-    [HarmonyPostfix]
-    [HarmonyPatch(typeof(StandardChoreBase), MethodType.Constructor,
-        [typeof(ChoreType), typeof(IStateMachineTarget), typeof(ChoreProvider), typeof(bool), typeof(Action<Chore>), typeof(Action<Chore>), typeof(Action<Chore>),
-        typeof(PriorityScreen.PriorityClass), typeof(int), typeof(bool), typeof(bool), typeof(int), typeof(bool), typeof(ReportManager.ReportType)]
-    )]
-    internal static void Chore_Ctor_Patch(StandardChoreBase __instance, object[] __args)
-    {
-        if (!ExecutionManager.LevelIsActive(ExecutionLevel.Multiplayer))
-            return;
-        if (!MultiplayerManager.IsMultiplayer())
-            return;
-        switch (MultiplayerManager.Instance.MultiGame.Mode)
-        {
-            case Core.Player.PlayerRole.Server:
-                OnChoreCreated(__instance, __args);
-                break;
-            case Core.Player.PlayerRole.Client:
-                CancelChore(__instance);
-                break;
-        }
-    }
-
-    private static void OnChoreCreated(StandardChoreBase chore, object[] arguments)
-    {
-        if (!ExecutionManager.LevelIsActive(ExecutionLevel.Multiplayer))
-            return;
-        CoroutineWorkerCustom.StartCoroutine(_ChoreCreateWait(chore, arguments), CoroutineType.Custom, "CreateWait");
-    }
-    private static void CancelChore(StandardChoreBase chore)
-    {
-        if (!ExecutionManager.LevelIsActive(ExecutionLevel.Multiplayer))
-            return;
-        if (chore == null)
-            return;
-        CoroutineWorkerCustom.StartCoroutine(_ChoreCancelWait(chore), CoroutineType.Custom, "CancelWait");
-    }
-
-    internal static IEnumerator<double> _ChoreCreateWait(StandardChoreBase chore, object[] arguments)
-    {
-        yield return TimeSpan.FromMilliseconds(10).TotalSeconds;
-        StateMachine.Instance smi = null;
-        yield return CoroutineWorkerCustom.WaitUntilTrue(() =>
-        {
-            smi = chore.GetSMI();
-            return smi != null;
-        });
-        yield return 0;
-        StateMachine statemachine = smi.stateMachine;
-        yield return CoroutineWorkerCustom.WaitUntilTrue(() =>
-        {;
-            statemachine = smi.stateMachine;
-            return statemachine != null;
-        });
-        var seri = statemachine.serializable;
-        var id = chore.Register(persistent: seri == StateMachine.SerializeType.Never);
-        Debug.Log("Register Success!");
-        EventManager.TriggerEvent(new ChoreCreatedEvent(chore, id, chore.GetType(), arguments));
-        yield break;
-    }
-
-    internal static IEnumerator<double> _ChoreCancelWait(StandardChoreBase chore)
-    {
-        yield return TimeSpan.FromMilliseconds(10).TotalSeconds;
-        yield return CoroutineWorkerCustom.WaitUntilTrue(() =>
-        {
-            var smi = chore.GetSMI();
-            return smi != null;
-        });
-        yield return 0;
-        Debug.Log("Cancel Chore: " + chore.GetType());
-        string reason = $"Chore instantiation of type \"{chore.GetType()}\" is disabled";
-        chore.Cancel(reason);
-        Debug.Log("Cancel Success!");
-        yield break;
-
-    }
+    
 
     [HarmonyTranspiler]
     [HarmonyPatch(typeof(ChoreDriver),nameof(ChoreDriver.SetChore))]

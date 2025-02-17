@@ -1,4 +1,5 @@
 using MultiplayerMod.Core.Objects;
+using MultiplayerMod.Core.Objects.Resolvers;
 using MultiplayerMod.Extensions;
 using STRINGS;
 
@@ -34,8 +35,11 @@ public static class ChoreArgumentsWrapper
         {
             var context = (Chore.Precondition.Context) args[0]!;
             return [
-                context.chore.MultiplayerId(), context.consumerState.consumer, context.consumerState.choreProvider,
-                context.masterPriority.priority_class, context.masterPriority.priority_value
+                context.chore.MultiplayerId(),
+                context.consumerState.consumer.GetComponentResolver(),
+                context.consumerState.choreProvider.GetComponentResolver(),
+                context.masterPriority.priority_class,
+                context.masterPriority.priority_value
             ];
         }
         return args;
@@ -78,15 +82,15 @@ public static class ChoreArgumentsWrapper
         if (choreType == typeof(FetchAreaChore))
         {
             var choreId = (MultiplayerId) args[0]!;
-            var choreConsumer = (ChoreConsumer) args[1]!;
-            var choreProvider = (ChoreProvider) args[2]!;
+            var choreConsumer = (ComponentResolver<ChoreConsumer>) args[1]!;
+            var choreProvider = (ComponentResolver<ChoreProvider>) args[2]!;
             var priorityClass = (PriorityScreen.PriorityClass) args[3]!;
             var priorityValue = (int) args[4]!;
             args = [
                 new Chore.Precondition.Context {
                     chore = MultiplayerManager.Instance.MultiGame.Objects.Get<Chore>(choreId),
-                    consumerState = new ChoreConsumerState(choreConsumer) {
-                        choreProvider = choreProvider
+                    consumerState = new ChoreConsumerState(choreConsumer.Resolve()) {
+                        choreProvider = choreProvider.Resolve()
                     },
                     masterPriority = new PrioritySetting(priorityClass, priorityValue)
                 }
