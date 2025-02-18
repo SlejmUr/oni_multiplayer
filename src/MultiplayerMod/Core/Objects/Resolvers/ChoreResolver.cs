@@ -6,6 +6,7 @@ namespace MultiplayerMod.Core.Objects.Resolvers;
 /// Type resolver for the basic type <see cref="Chore"/>
 /// </summary>
 /// <param name="chore"></param>
+[Serializable]
 public class ChoreResolver(Chore chore) : TypedResolver<Chore>
 {
     private MultiplayerId id = chore.MultiplayerId();

@@ -85,7 +85,9 @@ public class WorldManager(List<IWorldStateManager> stateManagers)
     /// <param name="event"></param>
     public void WaitPlayers(PlayerStateChangedEvent @event)
     {
+        Debug.Log($"Player change: {@event.Player.Id} {@event.State}");
         var players = MultiplayerManager.Instance.MultiGame.Players;
+        Debug.Log($"Players Ready: {players.Ready}");
         if (players.Ready)
         {
             MultiplayerStatusOverlay.Close();

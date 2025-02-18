@@ -9,7 +9,7 @@ internal class IdleMonitorSync : BaseChoreSync<IdleMonitor>
     public override void Client(StateMachine instance)
     {
         Setup(instance);
-        SM.idle.ToggleChore((smi) => { return new EmptyChore(smi.master); }, SM.stopped);
+        SM.idle.enterActions.Clear();
     }
 
     public override void Server(StateMachine instance)

@@ -11,20 +11,24 @@ internal class FetchAreaChoreSync : BaseChoreSync<FetchAreaChore.States>
 
     public override void Client(StateMachine instance)
     {
+        Setup(instance);
         SM.root.enterActions.Clear();
         SM.root.enterActions.Add(new("Transit to Empty State", (FetchAreaChore.StatesInstance smi) =>
         {
-            smi.GoTo(EmptyChore.States.EmptyState);
+            Debug.Log("(FetchAreaChoreSync) Client root.enterActions.");
+            smi.GoTo((StateMachine.BaseState) null);
         }));
         SM.delivering.next.enterActions.Clear();
         SM.delivering.next.enterActions.Add(new("Transit to Empty State", (FetchAreaChore.StatesInstance smi) =>
         {
-            smi.GoTo(EmptyChore.States.EmptyState);
+            Debug.Log("(FetchAreaChoreSync) Client delivering.next.enterActions.");
+            smi.GoTo((StateMachine.BaseState) null);
         }));
         SM.fetching.next.enterActions.Clear();
         SM.fetching.next.enterActions.Add(new("Transit to Empty State", (FetchAreaChore.StatesInstance smi) =>
         {
-            smi.GoTo(EmptyChore.States.EmptyState);
+            Debug.Log("(FetchAreaChoreSync) Client fetching.next.enterActions.");
+            smi.GoTo((StateMachine.BaseState) null);
         }));
     }
 
@@ -34,13 +38,15 @@ internal class FetchAreaChoreSync : BaseChoreSync<FetchAreaChore.States>
         SM.delivering.next.Exit("Trigger Multiplayer move event", (smi) =>
         {
             Debug.Log("(FetchAreaChoreSync) Server exit delivering.");
-            var stack = GetGoToStack(smi);
+            var stack = smi.gotoStack;
             Debug.Log($"Stack: {string.Join(", ", stack)}");
             var dest = SM.deliveryDestination.Get(smi);
             Debug.Log($"dest: {dest}");
             var obj = SM.deliveryObject.Get(smi);
             Debug.Log($"dest: {obj}");
 
+            if (!MultiplayerManager.Instance.MultiGame.Players.Ready)
+                return;
             MultiplayerManager.Instance.NetServer.Send(
                 new SynchronizeObjectPositionCommand(smi.gameObject),
                 MultiplayerCommandOptions.SkipHost
@@ -49,7 +55,7 @@ internal class FetchAreaChoreSync : BaseChoreSync<FetchAreaChore.States>
         SM.fetching.next.Exit("Trigger Multiplayer move event", (smi) =>
         {
             Debug.Log("(FetchAreaChoreSync) Server exit fetching.");
-            var stack = GetGoToStack(smi);
+            var stack = smi.gotoStack;
             Debug.Log($"Stack: {string.Join(", ", stack)}");
             var fetchTarget = SM.fetchTarget.Get(smi);
             Debug.Log($"fetchTarget: {fetchTarget}");
@@ -57,6 +63,9 @@ internal class FetchAreaChoreSync : BaseChoreSync<FetchAreaChore.States>
             Debug.Log($"fetchResultTarget: {fetchResultTarget}");
             var fetchAmount = SM.fetchAmount.Get(smi);
             Debug.Log($"fetchAmount: {fetchAmount}");
+
+            if (!MultiplayerManager.Instance.MultiGame.Players.Ready)
+                return;
 
             MultiplayerManager.Instance.NetServer.Send(
                 new SynchronizeObjectPositionCommand(smi.gameObject),

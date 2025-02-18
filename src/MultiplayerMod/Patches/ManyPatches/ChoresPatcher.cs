@@ -4,7 +4,6 @@ using MultiplayerMod.Core;
 using MultiplayerMod.Core.Execution;
 using MultiplayerMod.Events;
 using MultiplayerMod.Events.Chores;
-using MultiplayerMod.Extensions;
 using MultiplayerMod.Multiplayer.Controllers;
 using System.Reflection.Emit;
 
@@ -65,19 +64,39 @@ internal static class ChoresPatcher
             return;
         if (MultiplayerManager.Instance.MultiGame.Mode != Core.Player.PlayerRole.Server)
             return;
+        CoroutineWorkerCustom.StartCoroutine(_BeforeChoreSetCoroutine(driver, previousChore, context), CoroutineType.Custom, "BeforeChoreSet");
 
     }
 
-    internal static IEnumerator<double> _ChoreCreateWait(ChoreDriver driver, Chore previousChore, Chore.Precondition.Context context)
+    internal static IEnumerator<double> _BeforeChoreSetCoroutine(ChoreDriver driver, Chore previousChore, Chore.Precondition.Context context)
     {
         yield return TimeSpan.FromMilliseconds(10).TotalSeconds;
         StateMachine.Instance smi = null;
         yield return CoroutineWorkerCustom.WaitUntilTrue(() =>
         {
-            Debug.Log($"Create Wait Chore! {context.chore.GetType()}");
-            smi = context.chore.GetSMI_Ext();
-            return smi != null;
+            try
+            {
+                Debug.Log($"Create Wait Chore! {context.chore.GetType()}");
+                StandardChoreBase scb = context.chore as StandardChoreBase;
+                if (scb == null)
+                {
+                    Debug.Log($"Create Wait Chore! scb is null!! {context.chore.GetType()}");
+                    return true;
+                }
+                smi = scb.GetSMI();
+                return smi != null;
+            }
+            catch (Exception ex)
+            {
+                Debug.Log(ex.ToString());
+                return false;
+            }
         });
+        if (smi == null)
+        {
+            Debug.Log("Could not set smi.");
+            yield break;
+        }
         Debug.Log($"BeforeChoreSetCall: Driver: {driver} Prev Chore: {previousChore} contect chore: {context.chore}");
         EventManager.TriggerEvent(new BeforeChoreSetEvent(driver, previousChore, ref context));
         yield break;

@@ -15,23 +15,28 @@ internal static class ChoreCTorPatcher
 {
     internal static IEnumerable<MethodBase> TargetMethods()
     {
-        return ChoreSyncList.GetStateMachineTypes().Select(x => x.GetConstructors()[0]);
+        return ChoreSyncList.GetSyncTypes().Select(x => x.GetConstructors()[0]);
     }
 
     [HarmonyPostfix]
-    internal static void Chore_Ctor_Patch(StandardChoreBase __instance, object[] __args)
+    internal static void Chore_Ctor_Patch(Chore __instance, object[] __args)
     {
         if (!ExecutionManager.LevelIsActive(ExecutionLevel.Multiplayer))
             return;
         if (!MultiplayerManager.IsMultiplayer())
             return;
+        if (__instance is not StandardChoreBase standardChore)
+        {
+            Debug.Log("ChoreCTorPatcher: " + __instance.GetType());
+            return;
+        }
         switch (MultiplayerManager.Instance.MultiGame.Mode)
         {
             case Core.Player.PlayerRole.Server:
-                OnChoreCreated(__instance, __args);
+                OnChoreCreated(standardChore, __args);
                 break;
             case Core.Player.PlayerRole.Client:
-                CancelChore(__instance);
+                CancelChore(standardChore);
                 break;
         }
     }
@@ -65,13 +70,14 @@ internal static class ChoreCTorPatcher
         StateMachine statemachine = smi.stateMachine;
         yield return CoroutineWorkerCustom.WaitUntilTrue(() =>
         {
-            ;
             statemachine = smi.stateMachine;
             return statemachine != null;
         });
+        yield return 0;
         var seri = statemachine.serializable;
         var id = chore.Register(persistent: seri == StateMachine.SerializeType.Never);
-        Debug.Log("Register Success!");
+        Debug.Log($"Register Success! {id}, {chore.GetType()}");
+        yield return 0;
         EventManager.TriggerEvent(new ChoreCreatedEvent(chore, id, chore.GetType(), arguments));
         yield break;
     }

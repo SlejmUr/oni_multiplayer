@@ -58,7 +58,7 @@ public class ChoreWorldStateManager : IWorldStateManager
     {
         ChoresState state = new(data)
         {
-            Chores = CurrentChores.Values.Select(it => new ChoreState
+            Chores = CurrentChores.Values.Where(x=>x.Id != null && x.Chore.IsValid_Ext()).Select(it => new ChoreState
             {
                 id = it.Id,
                 type = it.Type,

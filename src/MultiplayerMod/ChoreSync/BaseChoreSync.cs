@@ -55,8 +55,4 @@ internal abstract class BaseChoreSync<ChoreStateMachine> : IChoreSync
         state.SetFieldValue("sm", SM);
         return state;
     }
-    public Stack<StateMachine.BaseState> GetGoToStack(StateMachine.Instance smi)
-    {
-        return smi.GetFieldValue<Stack<StateMachine.BaseState>>(nameof(StateMachineMemberReference.Instance.gotoStack));
-    }
 }

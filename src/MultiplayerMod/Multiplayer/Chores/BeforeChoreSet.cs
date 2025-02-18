@@ -32,6 +32,8 @@ internal class BeforeChoreSet
 
         if (!@event.Context.chore.IsValid_Ext())
             return;
+        if (!MultiplayerManager.Instance.MultiGame.Players.Ready)
+            return;
         MultiplayerManager.Instance.NetServer.Send(
             new SetDriverChoreCommand(@event.Driver, @event.Context.consumerState.consumer, @event.Context.chore, @event.Context.data),
             MultiplayerCommandOptions.SkipHost);

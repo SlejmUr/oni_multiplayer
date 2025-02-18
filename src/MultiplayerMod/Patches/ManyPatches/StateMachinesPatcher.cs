@@ -1,3 +1,4 @@
+using EIV_Common.Coroutines;
 using HarmonyLib;
 using MultiplayerMod.ChoreSync;
 using MultiplayerMod.Core;
@@ -21,13 +22,19 @@ internal static class StateMachinesPatcher
             return;
         Debug.Log("PostFix: " + __instance.GetType());
         Debug.Log("PostFix: " + __instance.GetType().DeclaringType);
+        CoroutineWorkerCustom.CallDelayed(TimeSpan.FromMilliseconds(10), () => _StateMachineWork(__instance as StateMachine));
+
+    }
+
+    internal static void _StateMachineWork(StateMachine __instance)
+    {
         switch (MultiplayerManager.Instance.MultiGame.Mode)
         {
             case Core.Player.PlayerRole.Server:
-                ServerPostWork(__instance as StateMachine);
+                ServerPostWork(__instance);
                 break;
             case Core.Player.PlayerRole.Client:
-                ClientPostWork(__instance as StateMachine);
+                ClientPostWork(__instance);
                 break;
             default:
                 break;

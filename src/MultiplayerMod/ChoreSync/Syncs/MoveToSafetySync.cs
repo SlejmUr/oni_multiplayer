@@ -13,6 +13,7 @@ internal class MoveToSafetySync : BaseChoreSync<MoveToSafetyChore.States>
     readonly StateInfo movingStateInfo = new (name: "__moving");
     public override void Client(StateMachine instance)
     {
+        Setup(instance);
         var waiting = AddState<MoveToSafetyChore.States.State, MoveToSafetyChore.States.State>(SM.root, "__waiting" , this.SM.BindState);
         var moving = AddState<MoveToSafetyChore.States.State, MoveToSafetyChore.States.State>(SM.root, movingStateInfo, this.SM.BindState);
 
@@ -25,6 +26,7 @@ internal class MoveToSafetySync : BaseChoreSync<MoveToSafetyChore.States>
 
     public override void Server(StateMachine instance)
     {
+        Setup(instance);
         SM.move.Enter(smi => {
             Debug.Log("(MoveToSafetySync) Sever move Enter!");
             MultiplayerManager.Instance.NetServer.Send(
