@@ -12,6 +12,8 @@ internal static class ChoreSyncList
         Register(new IdleChoreSync());
         Register(new IdleStateSync());
         Register(new MoveToSafetySync());
+        Register(new FetchAreaChoreSync());
+        Register(new EatChoreSync());
         // Monitor Syncs
         Register(new IdleMonitorSync());
         Register(new SafeCellMonitorSync());
@@ -30,5 +32,10 @@ internal static class ChoreSyncList
     public static List<Type> GetStateMachineTypes()
     {
         return Chores.Select(chore => chore.StateMachineType).ToList();
+    }
+
+    public static List<Type> GetSyncTypes()
+    {
+        return Chores.Select(chore => chore.SyncType).ToList();
     }
 }

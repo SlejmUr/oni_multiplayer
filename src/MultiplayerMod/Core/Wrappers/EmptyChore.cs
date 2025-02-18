@@ -34,7 +34,7 @@ internal class EmptyChore : Chore<EmptyChore.StatesInstance>
 
     public class States : GameStateMachine<States, StatesInstance, EmptyChore>
     {
-        public State EmptyState;
+        public static State EmptyState = null;
 
         public override void InitializeStates(out BaseState default_state)
         {

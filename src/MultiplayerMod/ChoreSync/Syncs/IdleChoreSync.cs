@@ -14,6 +14,7 @@ internal class IdleChoreSync : BaseChoreSync<IdleChore.States>
         Setup(instance);
         SM.idle.move.Enter(smi =>
         {
+            Debug.Log("(IdleChoreSync) Sever idle.move Enter!");
             var cell = smi.GetIdleCell();
             MultiplayerManager.Instance.NetServer.Send(
                 new MoveObjectToCellCommand(new ChoreStateMachineResolver(smi.master), cell, SM.idle.move),
@@ -22,6 +23,7 @@ internal class IdleChoreSync : BaseChoreSync<IdleChore.States>
         });
         SM.idle.move.Exit(smi =>
         {
+            Debug.Log("(IdleChoreSync) Sever idle.move Exit!");
             MultiplayerManager.Instance.NetServer.Send(
                 new GoToStateCommand(new ChoreStateMachineResolver(smi.master), SM.idle),
                 MultiplayerCommandOptions.SkipHost

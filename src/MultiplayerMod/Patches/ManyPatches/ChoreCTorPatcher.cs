@@ -19,7 +19,7 @@ internal static class ChoreCTorPatcher
     }
 
     [HarmonyPostfix]
-    internal static void Chore_Ctor_Patch(Chore __instance, object[] __args)
+    internal static void Chore_Ctor_Patch(StandardChoreBase __instance, object[] __args)
     {
         if (!ExecutionManager.LevelIsActive(ExecutionLevel.Multiplayer))
             return;
@@ -36,13 +36,13 @@ internal static class ChoreCTorPatcher
         }
     }
 
-    private static void OnChoreCreated(Chore chore, object[] arguments)
+    private static void OnChoreCreated(StandardChoreBase chore, object[] arguments)
     {
         if (!ExecutionManager.LevelIsActive(ExecutionLevel.Multiplayer))
             return;
         CoroutineWorkerCustom.StartCoroutine(_ChoreCreateWait(chore, arguments), CoroutineType.Custom, "CreateWait");
     }
-    private static void CancelChore(Chore chore)
+    private static void CancelChore(StandardChoreBase chore)
     {
         if (!ExecutionManager.LevelIsActive(ExecutionLevel.Multiplayer))
             return;
@@ -51,14 +51,14 @@ internal static class ChoreCTorPatcher
         CoroutineWorkerCustom.StartCoroutine(_ChoreCancelWait(chore), CoroutineType.Custom, "CancelWait");
     }
 
-    internal static IEnumerator<double> _ChoreCreateWait(Chore chore, object[] arguments)
+    internal static IEnumerator<double> _ChoreCreateWait(StandardChoreBase chore, object[] arguments)
     {
         yield return TimeSpan.FromMilliseconds(10).TotalSeconds;
         StateMachine.Instance smi = null;
         yield return CoroutineWorkerCustom.WaitUntilTrue(() =>
         {
             Debug.Log($"Create Wait Chore! {chore.GetType()}");
-            smi = chore.GetSMI_Ext();
+            smi = chore.GetSMI();
             return smi != null;
         });
         yield return 0;
@@ -76,13 +76,13 @@ internal static class ChoreCTorPatcher
         yield break;
     }
 
-    internal static IEnumerator<double> _ChoreCancelWait(Chore chore)
+    internal static IEnumerator<double> _ChoreCancelWait(StandardChoreBase chore)
     {
         yield return TimeSpan.FromMilliseconds(10).TotalSeconds;
         yield return CoroutineWorkerCustom.WaitUntilTrue(() =>
         {
             Debug.Log($"Cancel Wait Chore! {chore.GetType()}");
-            var smi = chore.GetSMI_Ext();
+            var smi = chore.GetSMI();
             return smi != null;
         });
         yield return 0;

@@ -1,8 +1,10 @@
+using EIV_Common.Coroutines;
 using HarmonyLib;
 using MultiplayerMod.Core;
 using MultiplayerMod.Core.Execution;
 using MultiplayerMod.Events;
 using MultiplayerMod.Events.Chores;
+using MultiplayerMod.Extensions;
 using MultiplayerMod.Multiplayer.Controllers;
 using System.Reflection.Emit;
 
@@ -63,7 +65,21 @@ internal static class ChoresPatcher
             return;
         if (MultiplayerManager.Instance.MultiGame.Mode != Core.Player.PlayerRole.Server)
             return;
+
+    }
+
+    internal static IEnumerator<double> _ChoreCreateWait(ChoreDriver driver, Chore previousChore, Chore.Precondition.Context context)
+    {
+        yield return TimeSpan.FromMilliseconds(10).TotalSeconds;
+        StateMachine.Instance smi = null;
+        yield return CoroutineWorkerCustom.WaitUntilTrue(() =>
+        {
+            Debug.Log($"Create Wait Chore! {context.chore.GetType()}");
+            smi = context.chore.GetSMI_Ext();
+            return smi != null;
+        });
         Debug.Log($"BeforeChoreSetCall: Driver: {driver} Prev Chore: {previousChore} contect chore: {context.chore}");
         EventManager.TriggerEvent(new BeforeChoreSetEvent(driver, previousChore, ref context));
+        yield break;
     }
 }

@@ -7,6 +7,7 @@ namespace MultiplayerMod.Commands.Tools;
 /// Command for <see cref="BaseUtilityBuildTool"/>
 /// </summary>
 /// <param name="args"></param>
+/// <param name="senderType"></param>
 [Serializable]
 public class BuildUtilityCommand(UtilityBuildEventArgs args, Type senderType) : BaseCommandEvent
 {

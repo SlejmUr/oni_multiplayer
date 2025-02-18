@@ -42,7 +42,7 @@ public class SetDriverChoreCommand : BaseCommandEvent
     {
         DriverReference = driver.GetComponentResolver();
         ConsumerReference = consumer.GetComponentResolver();
-        ChoreReference = chore.GetResolver();
+        ChoreReference = chore?.GetResolver();
         Data = ArgumentUtils.WrapObject(data);
     }
 }

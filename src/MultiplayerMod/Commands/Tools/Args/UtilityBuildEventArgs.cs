@@ -30,7 +30,7 @@ public class UtilityBuildEventArgs(string prefabId, Tag[] materials, List<BaseUt
     /// </summary>
     public PrioritySetting Priority => priority;
 
-    /// <inheritdoc>/>
+    /// <inheritdoc/>
     public override string ToString()
     {
         return $"PrefabId: {PrefabId}, Materials: {string.Join(", ", Materials)}, Path: {string.Join(", ", Path)}, Priority: {Priority}";

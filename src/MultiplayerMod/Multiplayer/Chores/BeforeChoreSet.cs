@@ -2,6 +2,7 @@ using MultiplayerMod.Commands.Chores;
 using MultiplayerMod.Core;
 using MultiplayerMod.Core.Wrappers;
 using MultiplayerMod.Events.Chores;
+using MultiplayerMod.Extensions;
 using MultiplayerMod.Multiplayer.Controllers;
 using MultiplayerMod.Network.Common;
 using System;
@@ -15,6 +16,9 @@ internal class BeforeChoreSet
 
     internal static void BeforeChoreSetEvent_Call(BeforeChoreSetEvent @event)
     {
+        if (!MultiplayerManager.IsMultiplayer())
+            return;
+
         var synchronized = driverSynchronizationState.GetValue(@event.Driver, _ => new BoxedValue<bool>(false));
         var shouldReleaseDriver = synchronized.Value && @event.PreviousChore != null && ChoresController.Supported(@event.PreviousChore);
         if (shouldReleaseDriver)
@@ -26,6 +30,8 @@ internal class BeforeChoreSet
         if (!ChoresController.Supported(@event.Context.chore))
             return;
 
+        if (!@event.Context.chore.IsValid_Ext())
+            return;
         MultiplayerManager.Instance.NetServer.Send(
             new SetDriverChoreCommand(@event.Driver, @event.Context.consumerState.consumer, @event.Context.chore, @event.Context.data),
             MultiplayerCommandOptions.SkipHost);

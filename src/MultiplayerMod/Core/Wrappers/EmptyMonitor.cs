@@ -1,5 +1,8 @@
 namespace MultiplayerMod.Core.Wrappers;
 
+/// <summary>
+/// Empty Monitor GameState Machine
+/// </summary>
 public class EmptyMonitor : GameStateMachine<EmptyMonitor, EmptyMonitor.Instance>
 {
     /// <inheritdoc/>
@@ -24,6 +27,11 @@ public class EmptyMonitor : GameStateMachine<EmptyMonitor, EmptyMonitor.Instance
         no_state.DoNothing();
     }
 
+    /// <summary>
+    /// Creating <see cref="EmptyChore"/>
+    /// </summary>
+    /// <param name="smi"></param>
+    /// <returns></returns>
     public Chore CreateEmptyChore(Instance smi)
     {
         return new EmptyChore(smi.master);

@@ -1,4 +1,5 @@
 using MultiplayerMod.ChoreSync.StateMachines;
+using MultiplayerMod.Core.Wrappers;
 using MultiplayerMod.Extensions;
 
 namespace MultiplayerMod.ChoreSync;
@@ -53,5 +54,9 @@ internal abstract class BaseChoreSync<ChoreStateMachine> : IChoreSync
         //StateMachine.BindState(parent, state, name);
         state.SetFieldValue("sm", SM);
         return state;
+    }
+    public Stack<StateMachine.BaseState> GetGoToStack(StateMachine.Instance smi)
+    {
+        return smi.GetFieldValue<Stack<StateMachine.BaseState>>(nameof(StateMachineMemberReference.Instance.gotoStack));
     }
 }

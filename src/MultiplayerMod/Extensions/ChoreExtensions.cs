@@ -30,6 +30,13 @@ public static class ChoreExtensions
     public static MultiplayerId MultiplayerId(this Chore chore) => MultiplayerManager.Instance.MPObjects.Get(chore)!.Id;
 
     /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="chore"></param>
+    /// <returns></returns>
+    public static bool IsValid_Ext(this Chore chore) => MultiplayerManager.Instance.MPObjects.Get(chore) == null;
+
+    /// <summary>
     /// Get the Type Resolver for this type of Chore
     /// </summary>
     /// <param name="chore"></param>

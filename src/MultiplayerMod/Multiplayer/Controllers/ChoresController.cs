@@ -1,3 +1,4 @@
+using MultiplayerMod.ChoreSync;
 using MultiplayerMod.Core;
 using MultiplayerMod.Core.Wrappers;
 using System.Runtime.CompilerServices;
@@ -7,7 +8,7 @@ namespace MultiplayerMod.Multiplayer.Controllers;
 internal static class ChoresController
 {
     public static ConditionalWeakTable<ChoreDriver, BoxedValue<bool>> driversAvailability = new();
-    public static List<Type> supportedTypes = [];
+    public static List<Type> supportedTypes = [..ChoreSyncList.GetSyncTypes()];
 
     public static bool Supported(Chore chore) => supportedTypes.Contains(chore.GetType());
 

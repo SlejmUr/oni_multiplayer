@@ -7,7 +7,7 @@ using MultiplayerMod.Patches.ScreenPatches;
 
 namespace MultiplayerMod.Commands;
 
-internal class GameState
+internal class GameStateCommands
 {
     internal static void PauseGame_Event(PauseGameCommand _)
     {

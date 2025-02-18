@@ -26,6 +26,7 @@ internal class MoveToSafetySync : BaseChoreSync<MoveToSafetyChore.States>
     public override void Server(StateMachine instance)
     {
         SM.move.Enter(smi => {
+            Debug.Log("(MoveToSafetySync) Sever move Enter!");
             MultiplayerManager.Instance.NetServer.Send(
                 new MoveObjectToCellCommand(new ChoreStateMachineResolver(smi.master), smi.targetCell, movingStateInfo),
                 MultiplayerCommandOptions.SkipHost
@@ -33,6 +34,7 @@ internal class MoveToSafetySync : BaseChoreSync<MoveToSafetyChore.States>
         });
 
         SM.move.Update((smi, _) => {
+            Debug.Log("(MoveToSafetySync) Sever move Update!");
             MultiplayerManager.Instance.NetServer.Send(
                 new MoveObjectToCellCommand(new ChoreStateMachineResolver(smi.master), smi.targetCell, movingStateInfo),
                 MultiplayerCommandOptions.SkipHost
@@ -40,6 +42,7 @@ internal class MoveToSafetySync : BaseChoreSync<MoveToSafetyChore.States>
         });
 
         SM.move.Exit(smi => {
+            Debug.Log("(MoveToSafetySync) Sever move Exit!");
             MultiplayerManager.Instance.NetServer.Send(
                 new GoToStateCommand(new ChoreStateMachineResolver(smi.master), (StateMachine.BaseState) null),
                 MultiplayerCommandOptions.SkipHost
