@@ -102,7 +102,7 @@ public class CoroutineWorkerCustom
             for (int i = 0; i < Instance.CustomCoroutines.Count; i++)
             {
                 Coroutine item = Instance.CustomCoroutines[i];
-                Debug.Log($"index: {i} Delay: {Instance.Delays[i]} DeltaTime: {deltaTime} CoroutineItem: {item}");
+                //Debug.Log($"index: {i} Delay: {Instance.Delays[i]} DeltaTime: {deltaTime} CoroutineItem: {item}");
                 if (Instance.Delays[i] > 0f)
                     Instance.Delays[i] -= deltaTime;
                 if (Instance.Delays[i] <= 0f)

@@ -34,7 +34,10 @@ public static class ChoreArgumentsWrapper
         if (choreType == typeof(FetchAreaChore))
         {
             var context = (Chore.Precondition.Context) args[0]!;
-            return [
+            if (!context.chore.IsValid_Ext())
+                context.chore.Register();
+            return
+            [
                 context.chore.MultiplayerId(),
                 context.consumerState.consumer.GetComponentResolver(),
                 context.consumerState.choreProvider.GetComponentResolver(),

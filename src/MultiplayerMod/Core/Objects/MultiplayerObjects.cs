@@ -46,22 +46,28 @@ public class MultiplayerObjects
     /// <returns></returns>
     public MultiplayerObject Register(object instance, MultiplayerId multiplayerId = null, bool persistent = false)
     {
-        var @object = new MultiplayerObject(multiplayerId ?? new MultiplayerId(Guid.NewGuid()), generation, persistent);
+        Debug.Log("MultiplayerObjects Register " + instance);
+        MultiplayerObject @object = new(multiplayerId ?? new MultiplayerId(Guid.NewGuid()), generation, persistent);
         index[@object] = instance;
         return @object;
     }
 
     private void Clear(bool force = true)
     {
+        Debug.Log("MultiplayerObjects Clear");
         index.Clear(force);
         generation++;
     }
 
     /// <inheritdoc/>
-    public void Remove(MultiplayerId id) => index.Remove(id);
+    public bool Remove(MultiplayerId id) => index.Remove(id);
 
     /// <inheritdoc/>
-    public void RemoveObject(object instance) => index.Remove(instance);
+    public bool RemoveObject(object instance)
+    {
+        Debug.Log("MultiplayerObjects RemoveObject " + instance);
+        return index.Remove(instance);
+    }
 
     /// <summary>
     /// Get the <typeparamref name="T"/> with <paramref name="id"/> from <see cref="index"/>

@@ -4,6 +4,7 @@ using MultiplayerMod.Core;
 using MultiplayerMod.Core.Execution;
 using MultiplayerMod.Events;
 using MultiplayerMod.Events.Chores;
+using MultiplayerMod.Extensions;
 using MultiplayerMod.Multiplayer.Controllers;
 using System.Reflection.Emit;
 
@@ -30,8 +31,9 @@ internal static class ChoresPatcher
     {
         if (!ExecutionManager.LevelIsActive(ExecutionLevel.Multiplayer))
             return;
-        MultiplayerManager.Instance.MultiGame.Objects.RemoveObject(__instance);
-        Debug.Log($"ChoreCleanup: Clear Chore: {__instance}");
+        var wasValid = __instance.IsValid_Ext();
+        bool Had = MultiplayerManager.Instance.MultiGame.Objects.RemoveObject(__instance);
+        Debug.Log($"ChoreCleanup: Clear Chore: {__instance}, WasValid: {wasValid}, Had: {Had}");
         EventManager.TriggerEvent(new ChoreCleanupEvent(__instance));
     }
     

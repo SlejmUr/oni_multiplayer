@@ -23,5 +23,5 @@ public class CreateChoreCommand(MultiplayerId id, Type choreType, object[] argum
     /// <summary>
     /// Argument that the <see cref="Chore"/> created
     /// </summary>
-    public object[] Arguments => ArgumentUtils.WrapObjects(ChoreArgumentsWrapper.Wrap(ChoreType, arguments));
+    public object[] Arguments => arguments;
 }

@@ -58,7 +58,7 @@ public class ChoreWorldStateManager : IWorldStateManager
     {
         ChoresState state = new(data)
         {
-            Chores = CurrentChores.Values.Where(x=>x.Id != null && x.Chore.IsValid_Ext()).Select(it => new ChoreState
+            Chores = CurrentChores.Values.Where(x=>x.Id != null).Select(it => new ChoreState
             {
                 id = it.Id,
                 type = it.Type,
@@ -92,6 +92,8 @@ public class ChoreWorldStateManager : IWorldStateManager
 
     internal void ChoreCleanupEvent_Call(ChoreCleanupEvent @event)
     {
+        if (@event.Chore == null)
+            return;
         CurrentChores.Remove(@event.Chore);
     }
 

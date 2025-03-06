@@ -77,7 +77,8 @@ internal static class ChoreCTorPatcher
         var seri = statemachine.serializable;
         var id = chore.Register(persistent: seri == StateMachine.SerializeType.Never);
         Debug.Log($"Register Success! {id}, {chore.GetType()}");
-        yield return 0;
+        Debug.Log($"Register Success! {chore.IsValid_Ext()} | {chore.MultiplayerId()}");
+        yield return 1;
         EventManager.TriggerEvent(new ChoreCreatedEvent(chore, id, chore.GetType(), arguments));
         yield break;
     }
