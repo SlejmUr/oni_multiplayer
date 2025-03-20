@@ -64,7 +64,7 @@ public class MultiplayerManager
     private void InitMultiplayerLogics()
     {
         Debug.Log("InitMultiplayerLogics");
-        WorldManager = new([new ChoreWorldStateManager()]);
+        WorldManager = new([/*new ChoreWorldStateManager()*/]);
         MPCommandController.Registers();
         MPClientCalls.Registers();
         MPServerCalls.Registers();

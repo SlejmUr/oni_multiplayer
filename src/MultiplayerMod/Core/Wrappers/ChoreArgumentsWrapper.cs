@@ -56,6 +56,13 @@ public static class ChoreArgumentsWrapper
     /// <returns></returns>
     public static object[] Unwrap(Type choreType, object[] args)
     {
+        Debug.Log(choreType);
+        foreach (object arg in args)
+        {
+            Debug.Log(arg);
+            Debug.Log(arg.GetType());
+        }
+
         if (choreType == typeof(MoveChore))
         {
             var targetCell = (int) args[2]!;
